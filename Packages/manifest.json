@@ -1,5 +1,25 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "NPM Registry",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.unity-atoms.unity-atoms-core",
+        "com.unity-atoms.unity-atoms-base-atoms",
+        "com.unity-atoms.unity-atoms-fsm",
+        "com.unity-atoms.unity-atoms-mono-hooks",
+        "com.unity-atoms.unity-atoms-tags",
+        "com.unity-atoms.unity-atoms-scene-mgmt"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.unity-atoms.unity-atoms-core": "4.4.3",
+    "com.unity-atoms.unity-atoms-base-atoms": "4.4.3",
+    "com.unity-atoms.unity-atoms-fsm": "4.4.3",
+    "com.unity-atoms.unity-atoms-mono-hooks": "4.4.3",
+    "com.unity-atoms.unity-atoms-tags": "4.4.3",
+    "com.unity-atoms.unity-atoms-scene-mgmt": "4.4.3",
     "com.unity.2d.animation": "5.0.9",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.1.2",
