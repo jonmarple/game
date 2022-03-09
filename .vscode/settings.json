@@ -53,5 +53,6 @@
         "Temp/": true,
         "*.csproj": true,
     },
-    "workbench.tree.indent": 16
+    "workbench.tree.indent": 16,
+    "editor.formatOnSave": true
 }
