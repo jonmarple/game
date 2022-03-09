@@ -19,9 +19,7 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate Item object.
-        /// </summary>
+        /// <summary> Generate Item object. </summary>
         public abstract T GenerateItem();
 
         #endregion

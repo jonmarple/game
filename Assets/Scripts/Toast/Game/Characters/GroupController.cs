@@ -20,9 +20,7 @@ namespace Toast.Game.Characters
         private List<CController> controllers;
 
         private void Start()
-        {
-            Spawn();
-        }
+        { Spawn(); }
 
         #region PUBLIC
 
@@ -31,12 +29,27 @@ namespace Toast.Game.Characters
         /// </summary>
         public void Spawn()
         {
+            Clear();
+
             controllers = new List<CController>();
             foreach (CharacterData character in group.Characters)
             {
                 CController controller = Instantiate(controllerPrefab, controllerContainer);
                 controller.Initialize(character);
                 controllers.Add(controller);
+            }
+        }
+
+        /// <summary>
+        /// Destroys instantiated CControllers.
+        /// </summary>
+        public void Clear()
+        {
+            if (controllers != null)
+            {
+                foreach (CController controller in controllers)
+                    Destroy(controller.gameObject);
+                controllers.Clear();
             }
         }
 

@@ -32,23 +32,13 @@ namespace Toast.Game.Stats
             this.apMax = apMax;
         }
 
-        /// <summary>
-        /// Set HP value.
-        /// Limited to {0 - HPMax}.
-        /// </summary>
+        /// <summary> Set HP value. </summary>
         public void SetHP(int hp)
-        {
-            this.hp = Mathf.Clamp(hp, 0, hpMax);
-        }
+        { this.hp = Mathf.Clamp(hp, 0, hpMax); }
 
-        /// <summary>
-        /// Set AP value.
-        /// Limited to {0 - APMax}.
-        /// </summary>
+        /// <summary> Set AP value. </summary>
         public void SetAP(int ap)
-        {
-            this.ap = Mathf.Clamp(ap, 0, apMax);
-        }
+        { this.ap = Mathf.Clamp(ap, 0, apMax); }
 
         #endregion
 

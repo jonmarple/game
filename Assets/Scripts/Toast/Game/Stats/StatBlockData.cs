@@ -23,13 +23,9 @@ namespace Toast.Game.Stats
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate StatBlock object.
-        /// </summary>
+        /// <summary> Generate StatBlock object. </summary>
         public StatBlock GenerateStatBlock()
-        {
-            return new StatBlock(hp, hpMax, ap, apMax);
-        }
+        { return new StatBlock(hp, hpMax, ap, apMax); }
 
         #endregion
 

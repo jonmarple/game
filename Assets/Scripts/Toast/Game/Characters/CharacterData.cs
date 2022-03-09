@@ -25,21 +25,13 @@ namespace Toast.Game.Characters
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate StatBlock object based on character's StatBlockData.
-        /// </summary>
+        /// <summary> Generate StatBlock object based on character's StatBlockData. </summary>
         public StatBlock GenerateStatBlock()
-        {
-            return statBlockData.GenerateStatBlock();
-        }
+        { return statBlockData.GenerateStatBlock(); }
 
-        /// <summary>
-        /// Generates Equipment object based on character's EquipmentData.
-        /// </summary>
+        /// <summary> Generates Equipment object based on character's EquipmentData. </summary>
         public Equipment GenerateEquipment()
-        {
-            return equipmentData.GenerateEquipment();
-        }
+        { return equipmentData.GenerateEquipment(); }
 
         #endregion
 

@@ -20,13 +20,9 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate Armor object.
-        /// </summary>
+        /// <summary> Generate Armor object. </summary>
         public override Armor GenerateItem()
-        {
-            return new Armor(itemName, defense);
-        }
+        { return new Armor(itemName, defense); }
 
         #endregion
 

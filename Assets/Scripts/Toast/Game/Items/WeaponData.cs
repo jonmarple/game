@@ -20,13 +20,9 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate Weapon object.
-        /// </summary>
+        /// <summary> Generate Weapon object. </summary>
         public override Weapon GenerateItem()
-        {
-            return new Weapon(itemName, damage);
-        }
+        { return new Weapon(itemName, damage); }
 
         #endregion
 

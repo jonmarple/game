@@ -20,13 +20,9 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        /// <summary>
-        /// Generate StatBlock object.
-        /// </summary>
+        /// <summary> Generate StatBlock object. </summary>
         public Equipment GenerateEquipment()
-        {
-            return new Equipment(armor.GenerateItem(), weapon.GenerateItem());
-        }
+        { return new Equipment(armor.GenerateItem(), weapon.GenerateItem()); }
 
         #endregion
 
