@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
-using Toast.Game.Skills;
+using Toast.Game.Actions;
 
 namespace Toast.Game.Items
 {
@@ -16,8 +16,8 @@ namespace Toast.Game.Items
 
         /* Serialized Fields */
         [SerializeField] private IntReference damage;
-        [SerializeField] private WeaponSkillData skillPrimary;
-        [SerializeField] private WeaponSkillData skillSecondary;
+        [SerializeField] private WeaponActionData actionPrimary;
+        [SerializeField] private WeaponActionData actionSecondary;
 
         /* Private Fields */
 
@@ -25,7 +25,7 @@ namespace Toast.Game.Items
 
         /// <summary> Generate Weapon object. </summary>
         public override Weapon GenerateItem()
-        { return new Weapon(itemName, damage, skillPrimary, skillSecondary); }
+        { return new Weapon(itemName, damage, actionPrimary, actionSecondary); }
 
         #endregion
 

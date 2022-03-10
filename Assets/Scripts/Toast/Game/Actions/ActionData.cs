@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityAtoms.BaseAtoms;
 
-namespace Toast.Game.Skills
+namespace Toast.Game.Actions
 {
     /// <summary>
-    /// Abstract data container for weapon-based skill information.
+    /// Abstract data container for action information.
     /// </summary>
-    public abstract class WeaponSkillData : SkillData
+    public abstract class ActionData : ScriptableObject
     {
         /* Public Fields */
 
         /* Serialized Fields */
+        [SerializeField] protected StringReference actionName;
 
         /* Private Fields */
 

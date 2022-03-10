@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Toast.Game.Skills;
+using Toast.Game.Actions;
 
 namespace Toast.Game.Items
 {
@@ -16,17 +16,17 @@ namespace Toast.Game.Items
 
         /* Private Fields */
         private int damage;
-        private WeaponSkillData skillPrimary;
-        private WeaponSkillData skillSecondary;
+        private WeaponActionData actionPrimary;
+        private WeaponActionData actionSecondary;
 
         #region PUBLIC
 
-        public Weapon(string name, int damage, WeaponSkillData skillPrimary, WeaponSkillData skillSecondary)
+        public Weapon(string name, int damage, WeaponActionData actionPrimary, WeaponActionData actionSecondary)
         {
             this.itemName = name;
             this.damage = damage;
-            this.skillPrimary = skillPrimary;
-            this.skillSecondary = skillSecondary;
+            this.actionPrimary = actionPrimary;
+            this.actionSecondary = actionSecondary;
         }
 
         #endregion

@@ -9,19 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06353e3454e64f4c861590d2e9ca284, type: 3}
-  m_Name: Sample AP Regen
+  m_Script: {fileID: 11500000, guid: 7972f978c7eb52f4aaf9c1159128ac18, type: 3}
+  m_Name: Movement Eight-Way
   m_EditorClassIdentifier: 
-  skillName:
+  actionName:
     _usage: 0
-    _value: AP Regen
+    _value: Eight-Way Movement
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  regenModifier:
-    _usage: 0
-    _value: 4
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  regenType: 1
+  movementType: 1

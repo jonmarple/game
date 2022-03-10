@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
 
-namespace Toast.Game.Skills
+namespace Toast.Game.Actions
 {
     /// <summary>
-    /// Data container for attack skill information.
+    /// Data container for attack action information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Attack", menuName = "Toast/Game/Skills/Attack")]
-    public class AttackData : WeaponSkillData
+    [CreateAssetMenu(fileName = "Attack", menuName = "Toast/Game/Actions/Attack")]
+    public class AttackActionData : WeaponActionData
     {
         /* Public Fields */
 

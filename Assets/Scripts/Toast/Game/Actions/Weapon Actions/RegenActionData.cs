@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
 
-namespace Toast.Game.Skills
+namespace Toast.Game.Actions
 {
     /// <summary>
-    /// Type of regenerative skill.
+    /// Type of regenerative action.
     /// Regenerate HP or AP.
     /// </summary>
     public enum RegenType
@@ -16,10 +16,10 @@ namespace Toast.Game.Skills
     }
 
     /// <summary>
-    /// Data container for regenerative skill information.
+    /// Data container for regenerative action information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Regen", menuName = "Toast/Game/Skills/Regen")]
-    public class RegenData : WeaponSkillData
+    [CreateAssetMenu(fileName = "Regen", menuName = "Toast/Game/Actions/Regen")]
+    public class RegenActionData : WeaponActionData
     {
         /* Public Fields */
 
