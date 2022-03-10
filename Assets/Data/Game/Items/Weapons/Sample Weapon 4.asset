@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1da5fb8653b3e244aa727da291cf747, type: 3}
-  m_Name: Sample Weapon 2
+  m_Name: Sample Weapon 4
   m_EditorClassIdentifier: 
   itemName:
     _usage: 0
-    _value: Weapon 2
+    _value: Weapon 4
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   damage:
     _usage: 0
-    _value: 2
+    _value: 1
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   skillPrimary: {fileID: 11400000, guid: f39d497cb8b31d44bb3c89abe9700b51, type: 2}
-  skillSecondary: {fileID: 11400000, guid: 97ebb62a83672c3438cf712b72da6cbb, type: 2}
+  skillSecondary: {fileID: 11400000, guid: 0add1f814baa5194983e31e4f6d7d54d, type: 2}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sample Equipment Set 4
   m_EditorClassIdentifier: 
   armor: {fileID: 11400000, guid: 3bc3fb1718ea167418eea921c9a7eaa6, type: 2}
-  weapon: {fileID: 11400000, guid: e4dbd210225c48849bc19dc5e27a18ae, type: 2}
+  weapon: {fileID: 11400000, guid: c8fcabe06cab9dc4597b709a1fa111f6, type: 2}

@@ -9,20 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1da5fb8653b3e244aa727da291cf747, type: 3}
-  m_Name: Sample Weapon 2
+  m_Script: {fileID: 11500000, guid: b06353e3454e64f4c861590d2e9ca284, type: 3}
+  m_Name: Sample HP Regen
   m_EditorClassIdentifier: 
-  itemName:
+  skillName:
     _usage: 0
-    _value: Weapon 2
+    _value: HP Regen
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  damage:
+  regenModifier:
     _usage: 0
-    _value: 2
+    _value: 4
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  skillPrimary: {fileID: 11400000, guid: f39d497cb8b31d44bb3c89abe9700b51, type: 2}
-  skillSecondary: {fileID: 11400000, guid: 97ebb62a83672c3438cf712b72da6cbb, type: 2}
+  regenType: 0
