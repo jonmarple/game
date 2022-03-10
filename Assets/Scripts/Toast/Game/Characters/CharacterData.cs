@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Toast.Game.Stats;
 using Toast.Game.Items;
+using Toast.Game.Actions;
 
 namespace Toast.Game.Characters
 {
@@ -20,6 +21,8 @@ namespace Toast.Game.Characters
         [SerializeField] private StringReference characterName;
         [SerializeField] private StatBlockData statBlockData;
         [SerializeField] private EquipmentData equipmentData;
+        [SerializeField] private MovementActionData movementData;
+        [SerializeField] private DefendActionData defendData;
 
         /* Private Fields */
 

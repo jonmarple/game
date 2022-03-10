@@ -3,7 +3,11 @@ guid: 760d7389150b7d74480b3675d064f162
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - statBlockData: {instanceID: 0}
+  - equipmentData: {instanceID: 0}
+  - movementData: {fileID: 11400000, guid: 840e0c093d4d107469149932f489dbfc, type: 2}
+  - defendData: {fileID: 11400000, guid: d09a179b2baef984fb4264e705286412, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
