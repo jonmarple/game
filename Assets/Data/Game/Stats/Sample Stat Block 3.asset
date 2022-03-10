@@ -14,25 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp:
     _usage: 0
-    _value: 12
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  hpMax:
-    _usage: 0
-    _value: 12
+    _value: 9
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   ap:
     _usage: 0
-    _value: 8
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  apMax:
-    _usage: 0
-    _value: 8
+    _value: 11
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}

@@ -15,9 +15,7 @@ namespace Toast.Game.Stats
 
         /* Serialized Fields */
         [SerializeField] private IntReference hp;
-        [SerializeField] private IntReference hpMax;
         [SerializeField] private IntReference ap;
-        [SerializeField] private IntReference apMax;
 
         /* Private Fields */
 
@@ -25,7 +23,7 @@ namespace Toast.Game.Stats
 
         /// <summary> Generate StatBlock object. </summary>
         public StatBlock GenerateStatBlock()
-        { return new StatBlock(hp, hpMax, ap, apMax); }
+        { return new StatBlock(hp, hp, ap / 2, ap); }
 
         #endregion
 
