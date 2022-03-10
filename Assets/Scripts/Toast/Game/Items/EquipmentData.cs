@@ -7,7 +7,7 @@ namespace Toast.Game.Items
     /// <summary>
     /// Data container for equipment information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Equipment Data", menuName = "Toast/Game/Items/Equipment Data")]
+    [CreateAssetMenu(fileName = "Equipment", menuName = "Toast/Game/Items/Equipment")]
     public class EquipmentData : ScriptableObject
     {
         /* Public Fields */

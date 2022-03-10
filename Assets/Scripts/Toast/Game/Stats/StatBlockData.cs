@@ -8,7 +8,7 @@ namespace Toast.Game.Stats
     /// <summary>
     /// Data container for stat information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Stat Block Data", menuName = "Toast/Game/Stats/Stat Block Data")]
+    [CreateAssetMenu(fileName = "Stat Block", menuName = "Toast/Game/Stats/Stat Block")]
     public class StatBlockData : ScriptableObject
     {
         /* Public Fields */

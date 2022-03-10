@@ -8,7 +8,7 @@ namespace Toast.Game.Items
     /// <summary>
     /// Data container for armor information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Armor Data", menuName = "Toast/Game/Items/Armor Data")]
+    [CreateAssetMenu(fileName = "Armor", menuName = "Toast/Game/Items/Armor")]
     public class ArmorData : ItemData<Armor>
     {
         /* Public Fields */

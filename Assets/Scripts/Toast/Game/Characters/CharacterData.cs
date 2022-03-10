@@ -10,7 +10,7 @@ namespace Toast.Game.Characters
     /// <summary>
     /// Data container for character information.
     /// </summary>
-    [CreateAssetMenu(fileName = "Character Data", menuName = "Toast/Game/Characters/Character Data")]
+    [CreateAssetMenu(fileName = "Character", menuName = "Toast/Game/Characters/Character")]
     public class CharacterData : ScriptableObject
     {
         /* Public Fields */
