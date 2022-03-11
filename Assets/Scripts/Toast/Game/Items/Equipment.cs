@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Toast.Game.Items
 {
     /// <summary>
-    /// System-serializable equipment information container.
+    /// Equipment container.
     /// </summary>
     [System.Serializable]
     public class Equipment
@@ -18,17 +18,10 @@ namespace Toast.Game.Items
         private Armor armor;
         private Weapon weapon;
 
-        #region PUBLIC
-
         public Equipment(Armor armor, Weapon weapon)
         {
             this.armor = armor;
             this.weapon = weapon;
         }
-
-        #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

@@ -5,21 +5,15 @@ using UnityEngine;
 namespace Toast.Game.Items
 {
     /// <summary>
-    /// System-serializable item information container.
+    /// Base Item.
     /// </summary>
     [System.Serializable]
-    public class Item
+    public abstract class Item
     {
         /* Public Fields */
-        public string Name { get { return itemName; } }
+        public string ItemName { get { return itemName; } }
 
         /* Private Fields */
         protected string itemName;
-
-        #region PUBLIC
-        #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

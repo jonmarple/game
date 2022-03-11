@@ -18,6 +18,8 @@ namespace Toast.Game.Characters
         public string CharacterName { get { return characterName; } }
         public MovementActionData Movement { get { return movementData; } }
         public DefendActionData Defend { get { return defendData; } }
+        public StatBlockData StatBlock { get { return statBlockData; } }
+        public EquipmentData Equipment { get { return equipmentData; } }
 
         /* Serialized Fields */
         [SerializeField] private StringReference characterName;
@@ -25,22 +27,5 @@ namespace Toast.Game.Characters
         [SerializeField] private DefendActionData defendData;
         [SerializeField] private StatBlockData statBlockData;
         [SerializeField] private EquipmentData equipmentData;
-
-        /* Private Fields */
-
-        #region PUBLIC
-
-        /// <summary> Generate StatBlock object based on character's StatBlockData. </summary>
-        public StatBlock GenerateStatBlock()
-        { return statBlockData.GenerateStatBlock(); }
-
-        /// <summary> Generates Equipment object based on character's EquipmentData. </summary>
-        public Equipment GenerateEquipment()
-        { return equipmentData.GenerateEquipment(); }
-
-        #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

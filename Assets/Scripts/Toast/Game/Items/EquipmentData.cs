@@ -10,23 +10,16 @@ namespace Toast.Game.Items
     [CreateAssetMenu(fileName = "Equipment", menuName = "Toast/Game/Items/Equipment")]
     public class EquipmentData : ScriptableObject
     {
-        /* Public Fields */
-
         /* Serialized Fields */
         [SerializeField] private ArmorData armor;
         [SerializeField] private WeaponData weapon;
 
-        /* Private Fields */
-
         #region PUBLIC
 
-        /// <summary> Generate StatBlock object. </summary>
-        public Equipment GenerateEquipment()
-        { return new Equipment(armor.GenerateItem(), weapon.GenerateItem()); }
+        /// <summary> Generate Equipment object. </summary>
+        public Equipment Generate()
+        { return new Equipment(armor.Generate(), weapon.Generate()); }
 
-        #endregion
-
-        #region PRIVATE
         #endregion
     }
 }

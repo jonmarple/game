@@ -9,20 +9,16 @@ namespace Toast.Game.Actions
     /// Data container for defense action information.
     /// </summary>
     [CreateAssetMenu(fileName = "Defend", menuName = "Toast/Game/Actions/Defend")]
-    public class DefendActionData : ActionData
+    public class DefendActionData : ActionData<Defend>
     {
-        /* Public Fields */
-        public int Modifier { get { return defenseModifier; } }
-
         /* Serialized Fields */
         [SerializeField] private IntReference defenseModifier;
 
-        /* Private Fields */
-
         #region PUBLIC
-        #endregion
 
-        #region PRIVATE
+        public override Defend Generate()
+        { return new Defend(actionName, cost, defenseModifier); }
+
         #endregion
     }
 }

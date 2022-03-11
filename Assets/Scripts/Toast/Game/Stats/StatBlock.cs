@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Toast.Game.Stats
 {
     /// <summary>
-    /// System-serializable stat information container.
+    /// Character Stats.
     /// </summary>
     [System.Serializable]
     public class StatBlock
@@ -24,8 +24,6 @@ namespace Toast.Game.Stats
         private int apMax;
         private int shield;
 
-        #region PUBLIC
-
         public StatBlock(int hp, int hpMax, int ap, int apMax)
         {
             this.hp = hp;
@@ -34,6 +32,17 @@ namespace Toast.Game.Stats
             this.apMax = apMax;
             this.shield = 0;
         }
+
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int shield)
+        {
+            this.hp = hp;
+            this.hpMax = hpMax;
+            this.ap = ap;
+            this.apMax = apMax;
+            this.shield = shield;
+        }
+
+        #region PUBLIC
 
         /// <summary> Set HP value. </summary>
         public void SetHP(int hp)

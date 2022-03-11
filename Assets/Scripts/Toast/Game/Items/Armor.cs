@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Toast.Game.Items
 {
     /// <summary>
-    /// System-serializable armor information container.
+    /// Armor item.
     /// </summary>
     [System.Serializable]
     public class Armor : Item
@@ -16,17 +16,10 @@ namespace Toast.Game.Items
         /* Private Fields */
         private int defense;
 
-        #region PUBLIC
-
         public Armor(string name, int defense)
         {
             this.itemName = name;
             this.defense = defense;
         }
-
-        #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

@@ -11,23 +11,16 @@ namespace Toast.Game.Stats
     [CreateAssetMenu(fileName = "Stat Block", menuName = "Toast/Game/Stats/Stat Block")]
     public class StatBlockData : ScriptableObject
     {
-        /* Public Fields */
-
         /* Serialized Fields */
         [SerializeField] private IntReference hp;
         [SerializeField] private IntReference ap;
 
-        /* Private Fields */
-
         #region PUBLIC
 
         /// <summary> Generate StatBlock object. </summary>
-        public StatBlock GenerateStatBlock()
+        public StatBlock Generate()
         { return new StatBlock(hp, hp, ap / 2, ap); }
 
-        #endregion
-
-        #region PRIVATE
         #endregion
     }
 }

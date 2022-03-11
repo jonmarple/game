@@ -15,13 +15,5 @@ namespace Toast.Game.Characters
 
         /* Serialized Fields */
         [SerializeField] private List<CharacterData> characters;
-
-        /* Private Fields */
-
-        #region PUBLIC
-        #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

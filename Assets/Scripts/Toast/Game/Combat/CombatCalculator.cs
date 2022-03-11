@@ -13,21 +13,31 @@ namespace Toast.Game.Combat
     {
         #region PUBLIC
 
-        /// <summary> Calculate attack damage based on source weapon, attack, and target defense. </summary>
-        public static int CalculateDamage(AttackActionData attack, CController source, CController target)
-        { return Mathf.Clamp((source.Weapon.Damage * attack.Modifier) - target.Armor.Defense, 0, int.MaxValue); }
+        /// <summary> Calculate attack damage. </summary>
+        public static int CalculateDamage(Attack attack, Character source, Character target)
+        { return Damage(source.Equipment.Weapon.Damage, attack.Modifier, target.Equipment.Armor.Defense); }
 
-        /// <summary> Calculate regen amount based on source weapon and regen action. </summary>
-        public static int CalculateRegen(RegenActionData regen, CController source)
-        { return Mathf.Clamp(source.Weapon.Damage * regen.Modifier, 0, int.MaxValue); }
+        /// <summary> Calculate regen amount. </summary>
+        public static int CalculateRegen(Regen regen, Character source)
+        { return Regen(source.Equipment.Weapon.Damage, regen.Modifier); }
 
-        /// <summary> Calculate shield boost based on target armor and defend action. </summary>
-        public static int CalculateShield(DefendActionData defend, CController target)
-        { return Mathf.Clamp(target.Armor.Defense * defend.Modifier, 0, int.MaxValue); }
+        /// <summary> Calculate shield boost. </summary>
+        public static int CalculateShield(Defend defend, Character target)
+        { return Shield(target.Equipment.Armor.Defense, defend.Modifier); }
 
         #endregion
 
         #region PRIVATE
+
+        private static int Damage(int damage, int modifier, int defense)
+        { return Mathf.Clamp((damage * modifier) - defense, 0, int.MaxValue); }
+
+        private static int Regen(int regen, int modifier)
+        { return Mathf.Clamp(regen * modifier, 0, int.MaxValue); }
+
+        private static int Shield(int defense, int modifier)
+        { return Mathf.Clamp(defense * modifier, 0, int.MaxValue); }
+
         #endregion
     }
 }

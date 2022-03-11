@@ -6,24 +6,19 @@ using UnityAtoms.BaseAtoms;
 namespace Toast.Game.Actions
 {
     /// <summary>
-    /// Abstract data container for action information.
+    /// Data container for action information.
     /// </summary>
-    public abstract class ActionData : ScriptableObject
+    public abstract class ActionData<T> : ScriptableObject
     {
-        /* Public Fields */
-        public string ActionName { get { return actionName; } }
-        public int Cost { get { return cost; } }
-
         /* Serialized Fields */
         [SerializeField] protected StringReference actionName;
         [SerializeField] protected IntReference cost;
 
-        /* Private Fields */
-
         #region PUBLIC
-        #endregion
 
-        #region PRIVATE
+        /// <summary> Generate Action object. </summary>
+        public abstract T Generate();
+
         #endregion
     }
 }

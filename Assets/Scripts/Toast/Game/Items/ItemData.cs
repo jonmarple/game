@@ -10,21 +10,14 @@ namespace Toast.Game.Items
     /// </summary>
     public abstract class ItemData<T> : ScriptableObject
     {
-        /* Public Fields */
-
         /* Serialized Fields */
         [SerializeField] protected StringReference itemName;
-
-        /* Private Fields */
 
         #region PUBLIC
 
         /// <summary> Generate Item object. </summary>
-        public abstract T GenerateItem();
+        public abstract T Generate();
 
-        #endregion
-
-        #region PRIVATE
         #endregion
     }
 }

@@ -9,8 +9,6 @@ namespace Toast.Game.Characters
     /// </summary>
     public class GroupController : MonoBehaviour
     {
-        /* Public Fields */
-
         /* Serialized Fields */
         [SerializeField] private CharacterGroup group;
         [SerializeField] private CController controllerPrefab;
@@ -53,9 +51,6 @@ namespace Toast.Game.Characters
             }
         }
 
-        #endregion
-
-        #region PRIVATE
         #endregion
     }
 }

@@ -11,22 +11,14 @@ namespace Toast.Game.Items
     [CreateAssetMenu(fileName = "Armor", menuName = "Toast/Game/Items/Armor")]
     public class ArmorData : ItemData<Armor>
     {
-        /* Public Fields */
-
         /* Serialized Fields */
         [SerializeField] private IntReference defense;
 
-        /* Private Fields */
-
         #region PUBLIC
 
-        /// <summary> Generate Armor object. </summary>
-        public override Armor GenerateItem()
+        public override Armor Generate()
         { return new Armor(itemName, defense); }
 
-        #endregion
-
-        #region PRIVATE
         #endregion
     }
 }
