@@ -16,13 +16,15 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public string CharacterName { get { return characterName; } }
+        public MovementActionData Movement { get { return movementData; } }
+        public DefendActionData Defend { get { return defendData; } }
 
         /* Serialized Fields */
         [SerializeField] private StringReference characterName;
-        [SerializeField] private StatBlockData statBlockData;
-        [SerializeField] private EquipmentData equipmentData;
         [SerializeField] private MovementActionData movementData;
         [SerializeField] private DefendActionData defendData;
+        [SerializeField] private StatBlockData statBlockData;
+        [SerializeField] private EquipmentData equipmentData;
 
         /* Private Fields */
 

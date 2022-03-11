@@ -12,6 +12,7 @@ namespace Toast.Game.Actions
     public class DefendActionData : ActionData
     {
         /* Public Fields */
+        public int Modifier { get { return defenseModifier; } }
 
         /* Serialized Fields */
         [SerializeField] private IntReference defenseModifier;

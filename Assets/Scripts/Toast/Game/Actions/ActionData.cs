@@ -11,6 +11,7 @@ namespace Toast.Game.Actions
     public abstract class ActionData : ScriptableObject
     {
         /* Public Fields */
+        public string ActionName { get { return actionName; } }
         public int Cost { get { return cost; } }
 
         /* Serialized Fields */

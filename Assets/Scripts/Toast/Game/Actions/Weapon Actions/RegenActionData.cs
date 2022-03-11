@@ -22,6 +22,8 @@ namespace Toast.Game.Actions
     public class RegenActionData : WeaponActionData
     {
         /* Public Fields */
+        public int Modifier { get { return regenModifier; } }
+        public RegenType Type { get { return regenType; } }
 
         /* Serialized Fields */
         [SerializeField] private IntReference regenModifier;
