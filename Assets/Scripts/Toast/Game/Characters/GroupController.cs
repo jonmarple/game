@@ -10,21 +10,23 @@ namespace Toast.Game.Characters
     public class GroupController : MonoBehaviour
     {
         /* Serialized Fields */
-        [SerializeField] private CharacterGroup group;
+        [SerializeField] private CharacterGroupData groupData;
         [SerializeField] private CController controllerPrefab;
         [SerializeField] private Transform controllerContainer;
 
         /* Private Fields */
+        private CharacterGroup group;
         private List<CController> controllers;
+
+        private void Awake()
+        { group = groupData.Generate(); }
 
         private void Start()
         { Spawn(); }
 
         #region PUBLIC
 
-        /// <summary>
-        /// Instantiates and initializes CControllers for group members.
-        /// </summary>
+        /// <summary> Instantiates and initializes CControllers for group members. </summary>
         public void Spawn()
         {
             Clear();
@@ -38,9 +40,7 @@ namespace Toast.Game.Characters
             }
         }
 
-        /// <summary>
-        /// Destroys instantiated CControllers.
-        /// </summary>
+        /// <summary> Destroys instantiated CControllers. </summary>
         public void Clear()
         {
             if (controllers != null)

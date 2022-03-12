@@ -7,13 +7,17 @@ namespace Toast.Game.Characters
     /// <summary>
     /// List of Characters.
     /// </summary>
-    [CreateAssetMenu(fileName = "Character Group", menuName = "Toast/Game/Characters/Character Group")]
-    public class CharacterGroup : ScriptableObject
+    public class CharacterGroup
     {
         /* Public Fields */
         public List<CharacterData> Characters { get { return characters; } }
 
-        /* Serialized Fields */
-        [SerializeField] private List<CharacterData> characters;
+        /* Private Fields */
+        private List<CharacterData> characters;
+
+        public CharacterGroup(List<CharacterData> characters)
+        {
+            this.characters = characters;
+        }
     }
 }
