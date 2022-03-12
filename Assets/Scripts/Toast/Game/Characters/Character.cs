@@ -50,7 +50,7 @@ namespace Toast.Game.Characters
 
         /// <summary> Whether this Character can afford the specified Action. </summary>
         public bool CanPerformAction(Action action)
-        { return stats.AP >= action.Cost; } // TODO: check if action exists on character
+        { return !stats.Dead && stats.AP >= action.Cost; } // TODO: check if action exists on character
 
         /// <summary> Perform specified action. </summary>
         public void PerformAction(Action action, Character target)
@@ -89,7 +89,6 @@ namespace Toast.Game.Characters
                 damage -= stats.Shield;
                 stats.AlterShield(-stats.Shield);
                 stats.AlterHP(-damage);
-                // TODO: Check HP for death conditions
             }
             else stats.AlterShield(-damage);
         }

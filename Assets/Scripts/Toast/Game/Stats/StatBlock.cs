@@ -16,6 +16,7 @@ namespace Toast.Game.Stats
         public int AP { get { return ap; } }
         public int APMax { get { return apMax; } }
         public int Shield { get { return shield; } }
+        public bool Dead { get { return hp <= 0; } }
 
         /* Private Fields */
         private int hp;
@@ -26,20 +27,20 @@ namespace Toast.Game.Stats
 
         public StatBlock(int hp, int hpMax, int ap, int apMax)
         {
-            this.hp = hp;
             this.hpMax = hpMax;
-            this.ap = ap;
             this.apMax = apMax;
             this.shield = 0;
+            SetHP(hp);
+            SetAP(ap);
         }
 
         public StatBlock(int hp, int hpMax, int ap, int apMax, int shield)
         {
-            this.hp = hp;
             this.hpMax = hpMax;
-            this.ap = ap;
             this.apMax = apMax;
             this.shield = shield;
+            SetHP(hp);
+            SetAP(ap);
         }
 
         #region PUBLIC
