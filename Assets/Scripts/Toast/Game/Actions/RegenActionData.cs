@@ -9,7 +9,7 @@ namespace Toast.Game.Actions
     /// Data container for regenerative action information.
     /// </summary>
     [CreateAssetMenu(fileName = "Regen", menuName = "Toast/Game/Actions/Regen")]
-    public class RegenActionData : ActionData<Regen>
+    public class RegenActionData : ActionData
     {
         /* Serialized Fields */
         [SerializeField] private IntReference regenModifier;
@@ -17,7 +17,7 @@ namespace Toast.Game.Actions
 
         #region PUBLIC
 
-        public override Regen Generate()
+        public override Action Generate()
         { return new Regen(actionName, cost, regenModifier, regenType); }
 
         #endregion

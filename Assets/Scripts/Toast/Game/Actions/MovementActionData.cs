@@ -8,14 +8,14 @@ namespace Toast.Game.Actions
     /// Data container for movement action information.
     /// </summary>
     [CreateAssetMenu(fileName = "Movement", menuName = "Toast/Game/Actions/Movement")]
-    public class MovementActionData : ActionData<Movement>
+    public class MovementActionData : ActionData
     {
         /* Serialized Fields */
         [SerializeField] private MovementType movementType;
 
         #region PUBLIC
 
-        public override Movement Generate()
+        public override Action Generate()
         { return new Movement(actionName, cost, movementType); }
 
         #endregion

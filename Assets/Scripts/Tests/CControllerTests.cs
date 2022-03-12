@@ -13,9 +13,9 @@ public class CControllerTests
     [Test]
     public void TestGeneralFlow()
     {
-        Character source = new Character("Source Char", null, null, new StatBlock(0, 0, 10, 10), new Equipment(null, new Weapon("", 3)));
-        Character target = new Character("Target Char", null, null, new StatBlock(10, 10, 0, 0, 10), new Equipment(new Armor("", 1), null));
         Attack attack = new Attack("Test Attack", 1, 2);
+        Character source = new Character("Source Char", null, null, new StatBlock(0, 0, 10, 10), new Equipment(null, new Weapon("", 3, attack, null)));
+        Character target = new Character("Target Char", null, null, new StatBlock(10, 10, 0, 0, 10), new Equipment(new Armor("", 1), null));
 
         Assert.AreEqual(10, source.Stats.AP);
         Assert.AreEqual(10, target.Stats.HP);

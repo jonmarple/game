@@ -31,8 +31,8 @@ namespace Toast.Game.Characters
         public Character(CharacterData data)
         {
             this.characterName = data.CharacterName;
-            this.movement = data.Movement.Generate();
-            this.defend = data.Defend.Generate();
+            this.movement = (Movement)data.Movement.Generate();
+            this.defend = (Defend)data.Defend.Generate();
             this.stats = data.StatBlock.Generate();
             this.equipment = data.Equipment.Generate();
         }

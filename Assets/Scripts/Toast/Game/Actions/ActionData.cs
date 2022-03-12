@@ -8,7 +8,7 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Data container for action information.
     /// </summary>
-    public abstract class ActionData<T> : ScriptableObject
+    public abstract class ActionData : ScriptableObject
     {
         /* Serialized Fields */
         [SerializeField] protected StringReference actionName;
@@ -17,7 +17,7 @@ namespace Toast.Game.Actions
         #region PUBLIC
 
         /// <summary> Generate Action object. </summary>
-        public abstract T Generate();
+        public abstract Action Generate();
 
         #endregion
     }

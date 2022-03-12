@@ -9,14 +9,14 @@ namespace Toast.Game.Actions
     /// Data container for attack action information.
     /// </summary>
     [CreateAssetMenu(fileName = "Attack", menuName = "Toast/Game/Actions/Attack")]
-    public class AttackActionData : ActionData<Attack>
+    public class AttackActionData : ActionData
     {
         /* Serialized Fields */
         [SerializeField] private IntReference damageModifier;
 
         #region PUBLIC
 
-        public override Attack Generate()
+        public override Action Generate()
         { return new Attack(actionName, cost, damageModifier); }
 
         #endregion
