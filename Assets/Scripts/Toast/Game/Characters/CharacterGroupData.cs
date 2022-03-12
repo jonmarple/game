@@ -10,14 +10,10 @@ namespace Toast.Game.Characters
     [CreateAssetMenu(fileName = "Character Group", menuName = "Toast/Game/Characters/Character Group")]
     public class CharacterGroupData : ScriptableObject
     {
+        /* Public Fields */
+        public List<CharacterData> Characters { get { return characters; } }
+
         /* Serialized Fields */
         [SerializeField] private List<CharacterData> characters;
-
-        #region PUBLIC
-
-        public CharacterGroup Generate()
-        { return new CharacterGroup(characters); }
-
-        #endregion
     }
 }

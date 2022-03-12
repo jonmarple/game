@@ -11,16 +11,13 @@ namespace Toast.Game.Actions
     public class Movement : Action
     {
         /* Public Fields */
-        public MovementType Type { get { return type; } }
-
-        /* Private Fields */
-        private MovementType type;
+        public MovementType Type { get; private set; }
 
         public Movement(string name, int cost, MovementType type)
         {
-            this.actionName = name;
-            this.cost = cost;
-            this.type = type;
+            ActionName = name;
+            Cost = cost;
+            Type = type;
         }
     }
 }

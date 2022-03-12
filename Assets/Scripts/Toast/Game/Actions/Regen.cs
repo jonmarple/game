@@ -11,19 +11,15 @@ namespace Toast.Game.Actions
     public class Regen : Action
     {
         /* Public Fields */
-        public int Modifier { get { return modifier; } }
-        public RegenType Type { get { return regenType; } }
-
-        /* Private Fields */
-        private int modifier;
-        private RegenType regenType;
+        public int Modifier { get; private set; }
+        public RegenType Type { get; private set; }
 
         public Regen(string name, int cost, int modifier, RegenType type)
         {
-            this.actionName = name;
-            this.cost = cost;
-            this.modifier = modifier;
-            this.regenType = type;
+            ActionName = name;
+            Cost = cost;
+            Modifier = modifier;
+            Type = type;
         }
     }
 }

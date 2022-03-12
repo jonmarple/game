@@ -11,16 +11,13 @@ namespace Toast.Game.Actions
     public class Defend : Action
     {
         /* Public Fields */
-        public int Modifier { get { return modifier; } }
-
-        /* Private Fields */
-        private int modifier;
+        public int Modifier { get; private set; }
 
         public Defend(string name, int cost, int modifier)
         {
-            this.actionName = name;
-            this.cost = cost;
-            this.modifier = modifier;
+            ActionName = name;
+            Cost = cost;
+            Modifier = modifier;
         }
     }
 }

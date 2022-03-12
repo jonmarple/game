@@ -15,54 +15,47 @@ namespace Toast.Game.Characters
     public class Character
     {
         /* Public Fields */
-        public string CharacterName { get { return characterName; } }
-        public Movement Movement { get { return movement; } }
-        public Defend Defend { get { return defend; } }
-        public StatBlock Stats { get { return stats; } }
-        public Equipment Equipment { get { return equipment; } }
-
-        /* Private Fields */
-        private string characterName;
-        private Movement movement;
-        private Defend defend;
-        private StatBlock stats;
-        private Equipment equipment;
+        public string CharacterName { get; private set; }
+        public Movement Movement { get; private set; }
+        public Defend Defend { get; private set; }
+        public StatBlock Stats { get; private set; }
+        public Equipment Equipment { get; private set; }
 
         public Character(CharacterData data)
         {
-            this.characterName = data.CharacterName;
-            this.movement = (Movement)data.Movement.Generate();
-            this.defend = (Defend)data.Defend.Generate();
-            this.stats = data.StatBlock.Generate();
-            this.equipment = data.Equipment.Generate();
+            CharacterName = data.CharacterName;
+            Movement = (Movement)data.Movement.Generate();
+            Defend = (Defend)data.Defend.Generate();
+            Stats = data.StatBlock.Generate();
+            Equipment = data.Equipment.Generate();
         }
 
         public Character(string name, Movement movement, Defend defend, StatBlock statBlock, Equipment equipment)
         {
-            this.characterName = name;
-            this.movement = movement;
-            this.defend = defend;
-            this.stats = statBlock;
-            this.equipment = equipment;
+            CharacterName = name;
+            Movement = movement;
+            Defend = defend;
+            Stats = statBlock;
+            Equipment = equipment;
         }
 
         #region PUBLIC
 
         /// <summary> Whether this Character can afford the specified Action. </summary>
         public bool CanPerformAction(Action action)
-        { return !stats.Dead && stats.AP >= action.Cost; } // TODO: check if action exists on character
+        { return !Stats.Dead && Stats.AP >= action.Cost; } // TODO: check if action exists on character
 
         /// <summary> Perform specified action. </summary>
         public void PerformAction(Action action, Character target)
         {
             if (action == null) Debug.LogWarning("Action missing.");
             else if (target == null) Debug.LogWarning("Target missing.");
-            else if (!CanPerformAction(action)) Debug.Log(characterName + " cannot perform action " + action.ActionName + ".");
+            else if (!CanPerformAction(action)) Debug.Log(CharacterName + " cannot perform action " + action.ActionName + ".");
             else
             {
-                Debug.Log(characterName + " performing action " + action.ActionName + ".");
+                Debug.Log(CharacterName + " performing action " + action.ActionName + ".");
 
-                stats.AlterAP(-action.Cost);
+                Stats.AlterAP(-action.Cost);
                 switch (action)
                 {
                     case Attack attack:
@@ -84,27 +77,27 @@ namespace Toast.Game.Characters
         /// <summary> Apply damage to character. </summary>
         public void ApplyDamage(int damage)
         {
-            if (stats.Shield < damage)
+            if (Stats.Shield < damage)
             {
-                damage -= stats.Shield;
-                stats.AlterShield(-stats.Shield);
-                stats.AlterHP(-damage);
+                damage -= Stats.Shield;
+                Stats.AlterShield(-Stats.Shield);
+                Stats.AlterHP(-damage);
             }
-            else stats.AlterShield(-damage);
+            else Stats.AlterShield(-damage);
         }
 
         /// <summary> Apply regen to character. </summary>
         public void ApplyRegen(int regen, RegenType type)
         {
             if (type == RegenType.HP)
-                stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue));
+                Stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue));
             else if (type == RegenType.AP)
-                stats.AlterAP(Mathf.Clamp(regen, 0, int.MaxValue));
+                Stats.AlterAP(Mathf.Clamp(regen, 0, int.MaxValue));
         }
 
         /// <summary> Apply shield to character. </summary>
         public void ApplyShield(int shield)
-        { stats.AlterShield(shield); }
+        { Stats.AlterShield(shield); }
 
         #endregion
 

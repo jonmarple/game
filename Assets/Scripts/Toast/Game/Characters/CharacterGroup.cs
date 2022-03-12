@@ -10,14 +10,9 @@ namespace Toast.Game.Characters
     public class CharacterGroup
     {
         /* Public Fields */
-        public List<CharacterData> Characters { get { return characters; } }
-
-        /* Private Fields */
-        private List<CharacterData> characters;
+        public List<CharacterData> Characters { get; private set; }
 
         public CharacterGroup(List<CharacterData> characters)
-        {
-            this.characters = characters;
-        }
+        { Characters = characters; }
     }
 }

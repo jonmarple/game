@@ -11,11 +11,7 @@ namespace Toast.Game.Actions
     public abstract class Action
     {
         /* Public Fields */
-        public string ActionName { get { return actionName; } }
-        public int Cost { get { return cost; } }
-
-        /* Private Fields */
-        protected string actionName;
-        protected int cost;
+        public string ActionName { get; protected set; }
+        public int Cost { get; protected set; }
     }
 }

@@ -12,21 +12,16 @@ namespace Toast.Game.Items
     public class Weapon : Item
     {
         /* Public Fields */
-        public int Damage { get { return damage; } }
-        public Action Primary { get { return primaryAction; } }
-        public Action Secondary { get { return secondaryAction; } }
-
-        /* Private Fields */
-        private int damage;
-        private Action primaryAction;
-        private Action secondaryAction;
+        public int Damage { get; private set; }
+        public Action Primary { get; private set; }
+        public Action Secondary { get; private set; }
 
         public Weapon(string name, int damage, Action primary, Action secondary)
         {
-            this.itemName = name;
-            this.damage = damage;
-            this.primaryAction = primary;
-            this.secondaryAction = secondary;
+            ItemName = name;
+            Damage = damage;
+            Primary = primary;
+            Secondary = secondary;
         }
     }
 }

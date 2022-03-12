@@ -19,7 +19,7 @@ namespace Toast.Game.Characters
         private List<CController> controllers;
 
         private void Awake()
-        { group = groupData.Generate(); }
+        { group = new CharacterGroup(groupData.Characters); }
 
         private void Start()
         { Spawn(); }

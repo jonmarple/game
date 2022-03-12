@@ -11,34 +11,27 @@ namespace Toast.Game.Stats
     public class StatBlock
     {
         /* Public Fields */
-        public int HP { get { return hp; } }
-        public int HPMax { get { return hpMax; } }
-        public int AP { get { return ap; } }
-        public int APMax { get { return apMax; } }
-        public int Shield { get { return shield; } }
-        public bool Dead { get { return hp <= 0; } }
-
-        /* Private Fields */
-        private int hp;
-        private int hpMax;
-        private int ap;
-        private int apMax;
-        private int shield;
+        public int HP { get; private set; }
+        public int HPMax { get; private set; }
+        public int AP { get; private set; }
+        public int APMax { get; private set; }
+        public int Shield { get; private set; }
+        public bool Dead { get { return HP <= 0; } }
 
         public StatBlock(int hp, int hpMax, int ap, int apMax)
         {
-            this.hpMax = hpMax;
-            this.apMax = apMax;
-            this.shield = 0;
+            HPMax = hpMax;
+            APMax = apMax;
+            Shield = 0;
             SetHP(hp);
             SetAP(ap);
         }
 
         public StatBlock(int hp, int hpMax, int ap, int apMax, int shield)
         {
-            this.hpMax = hpMax;
-            this.apMax = apMax;
-            this.shield = shield;
+            HPMax = hpMax;
+            APMax = apMax;
+            Shield = shield;
             SetHP(hp);
             SetAP(ap);
         }
@@ -47,27 +40,27 @@ namespace Toast.Game.Stats
 
         /// <summary> Set HP value. </summary>
         public void SetHP(int hp)
-        { this.hp = Mathf.Clamp(hp, 0, hpMax); }
+        { HP = Mathf.Clamp(hp, 0, HPMax); }
 
         /// <summary> Alter HP value. </summary>
         public void AlterHP(int diff)
-        { SetHP(this.hp + diff); }
+        { SetHP(HP + diff); }
 
         /// <summary> Set AP value. </summary>
         public void SetAP(int ap)
-        { this.ap = Mathf.Clamp(ap, 0, apMax); }
+        { AP = Mathf.Clamp(ap, 0, APMax); }
 
         /// <summary> Alter AP value. </summary>
         public void AlterAP(int diff)
-        { SetAP(this.ap + diff); }
+        { SetAP(AP + diff); }
 
         /// <summary> Set Shield value. </summary>
         public void SetShield(int shield)
-        { this.shield = Mathf.Clamp(shield, 0, int.MaxValue); }
+        { Shield = Mathf.Clamp(shield, 0, int.MaxValue); }
 
         /// <summary> Alter Shield value. </summary>
         public void AlterShield(int diff)
-        { SetShield(shield + diff); }
+        { SetShield(Shield + diff); }
 
         #endregion
 

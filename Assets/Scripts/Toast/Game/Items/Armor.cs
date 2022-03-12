@@ -11,15 +11,12 @@ namespace Toast.Game.Items
     public class Armor : Item
     {
         /* Public Fields */
-        public int Defense { get { return defense; } }
-
-        /* Private Fields */
-        private int defense;
+        public int Defense { get; private set; }
 
         public Armor(string name, int defense)
         {
-            this.itemName = name;
-            this.defense = defense;
+            ItemName = name;
+            Defense = defense;
         }
     }
 }

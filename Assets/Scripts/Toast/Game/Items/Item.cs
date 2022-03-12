@@ -11,9 +11,6 @@ namespace Toast.Game.Items
     public abstract class Item
     {
         /* Public Fields */
-        public string ItemName { get { return itemName; } }
-
-        /* Private Fields */
-        protected string itemName;
+        public string ItemName { get; protected set; }
     }
 }

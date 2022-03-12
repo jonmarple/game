@@ -10,15 +10,12 @@ namespace Toast.Game.Characters
     public class CController : MonoBehaviour
     {
         /* Public Fields */
-        public Character Character { get { return character; } }
-
-        /* Private Fields */
-        private Character character;
+        public Character Character { get; private set; }
 
         #region PUBLIC
 
         public void Initialize(CharacterData data)
-        { character = new Character(data); }
+        { Character = new Character(data); }
 
         #endregion
     }

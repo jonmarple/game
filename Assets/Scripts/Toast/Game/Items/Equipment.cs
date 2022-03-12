@@ -11,17 +11,13 @@ namespace Toast.Game.Items
     public class Equipment
     {
         /* Public Fields */
-        public Armor Armor { get { return armor; } }
-        public Weapon Weapon { get { return weapon; } }
-
-        /* Private Fields */
-        private Armor armor;
-        private Weapon weapon;
+        public Armor Armor { get; private set; }
+        public Weapon Weapon { get; private set; }
 
         public Equipment(Armor armor, Weapon weapon)
         {
-            this.armor = armor;
-            this.weapon = weapon;
+            Armor = armor;
+            Weapon = weapon;
         }
     }
 }
