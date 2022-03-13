@@ -11,13 +11,17 @@ namespace Toast.Game
     public struct Spread
     {
         /* Public Fields */
-        public int Value { get; private set; }
-        public int Variation { get; private set; }
+        public int Value { get { return value; } }
+        public int Variation { get { return variation; } }
+
+        /* Serialized Fields */
+        [SerializeField] private int value;
+        [SerializeField] private int variation;
 
         public Spread(int value, int variation)
         {
-            Value = value;
-            Variation = variation;
+            this.value = value;
+            this.variation = variation;
         }
 
         #region PUBLIC
@@ -25,8 +29,8 @@ namespace Toast.Game
         public int Roll()
         {
             return Random.Range(
-                Mathf.Clamp(Value - Variation, 0, int.MaxValue),
-                Mathf.Clamp(Value + Variation + 1, 0, int.MaxValue));
+                Mathf.Clamp(value - variation, 0, int.MaxValue),
+                Mathf.Clamp(value + variation + 1, 0, int.MaxValue));
         }
 
         #endregion
