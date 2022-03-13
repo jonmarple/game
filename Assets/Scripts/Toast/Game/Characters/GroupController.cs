@@ -19,7 +19,7 @@ namespace Toast.Game.Characters
         private List<CController> controllers;
 
         private void Awake()
-        { group = new CharacterGroup(groupData.Characters); }
+        { group = new CharacterGroup(groupData); }
 
         private void Start()
         { Spawn(); }
@@ -32,7 +32,7 @@ namespace Toast.Game.Characters
             Clear();
 
             controllers = new List<CController>();
-            foreach (CharacterData character in group.Characters)
+            foreach (Character character in group.Characters)
             {
                 CController controller = Instantiate(controllerPrefab, controllerContainer);
                 controller.Initialize(character);

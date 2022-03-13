@@ -14,8 +14,8 @@ namespace Toast.Game.Characters
 
         #region PUBLIC
 
-        public void Initialize(CharacterData data)
-        { Character = new Character(data); }
+        public void Initialize(Character character)
+        { Character = character; }
 
         #endregion
     }

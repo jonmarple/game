@@ -10,9 +10,16 @@ namespace Toast.Game.Characters
     public class CharacterGroup
     {
         /* Public Fields */
-        public List<CharacterData> Characters { get; private set; }
+        public List<Character> Characters { get; private set; }
 
-        public CharacterGroup(List<CharacterData> characters)
+        public CharacterGroup(List<Character> characters)
         { Characters = characters; }
+
+        public CharacterGroup(CharacterGroupData data)
+        {
+            Characters = new List<Character>();
+            foreach (CharacterData datum in data.Characters)
+                Characters.Add(new Character(datum));
+        }
     }
 }
