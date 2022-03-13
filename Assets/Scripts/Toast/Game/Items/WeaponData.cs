@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityAtoms.BaseAtoms;
 using Toast.Game.Actions;
 
 namespace Toast.Game.Items
@@ -13,14 +12,15 @@ namespace Toast.Game.Items
     public class WeaponData : ItemData<Weapon>
     {
         /* Serialized Fields */
-        [SerializeField] private IntReference damage;
+        [SerializeField] private Spread physical;
+        [SerializeField] private Spread magical;
         [SerializeField] private ActionData primaryAction;
         [SerializeField] private ActionData secondaryAction;
 
         #region PUBLIC
 
         public override Weapon Generate()
-        { return new Weapon(itemName, damage, primaryAction.Generate(), secondaryAction.Generate()); }
+        { return new Weapon(itemName, physical, magical, primaryAction.Generate(), secondaryAction.Generate()); }
 
         #endregion
     }

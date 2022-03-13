@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityAtoms.BaseAtoms;
 
 namespace Toast.Game.Items
 {
@@ -12,12 +11,13 @@ namespace Toast.Game.Items
     public class ArmorData : ItemData<Armor>
     {
         /* Serialized Fields */
-        [SerializeField] private IntReference defense;
+        [SerializeField] private Spread physical;
+        [SerializeField] private Spread magical;
 
         #region PUBLIC
 
         public override Armor Generate()
-        { return new Armor(itemName, defense); }
+        { return new Armor(itemName, physical, magical); }
 
         #endregion
     }

@@ -12,14 +12,16 @@ namespace Toast.Game.Items
     public class Weapon : Item
     {
         /* Public Fields */
-        public int Damage { get; private set; }
+        public Spread Physical { get; private set; }
+        public Spread Magical { get; private set; }
         public Action Primary { get; private set; }
         public Action Secondary { get; private set; }
 
-        public Weapon(string name, int damage, Action primary, Action secondary)
+        public Weapon(string name, Spread physical, Spread magical, Action primary, Action secondary)
         {
             ItemName = name;
-            Damage = damage;
+            Physical = physical;
+            Magical = magical;
             Primary = primary;
             Secondary = secondary;
         }

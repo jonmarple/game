@@ -15,15 +15,27 @@ namespace Toast.Game.Combat
 
         /// <summary> Calculate attack damage. </summary>
         public static int CalculateDamage(Attack attack, Character source, Character target)
-        { return Damage(source.Equipment.Weapon.Damage, attack.Modifier, target.Equipment.Armor.Defense); }
+        {
+            int physical = Damage(source.Equipment.Weapon.Physical.Roll(), attack.Modifier, target.Equipment.Armor.Physical.Roll());
+            int magical = Damage(source.Equipment.Weapon.Magical.Roll(), attack.Modifier, target.Equipment.Armor.Magical.Roll());
+            return physical + magical;
+        }
 
         /// <summary> Calculate regen amount. </summary>
         public static int CalculateRegen(Regen regen, Character source)
-        { return Regen(source.Equipment.Weapon.Damage, regen.Modifier); }
+        {
+            int physical = Regen(source.Equipment.Weapon.Physical.Roll(), regen.Modifier);
+            int magical = Regen(source.Equipment.Weapon.Magical.Roll(), regen.Modifier);
+            return physical + magical;
+        }
 
         /// <summary> Calculate shield boost. </summary>
         public static int CalculateShield(Defend defend, Character target)
-        { return Shield(target.Equipment.Armor.Defense, defend.Modifier); }
+        {
+            int physical = Shield(target.Equipment.Armor.Physical.Roll(), defend.Modifier);
+            int magical = Shield(target.Equipment.Armor.Magical.Roll(), defend.Modifier);
+            return physical + magical;
+        }
 
         #endregion
 

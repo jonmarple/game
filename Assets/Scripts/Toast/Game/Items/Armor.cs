@@ -11,12 +11,14 @@ namespace Toast.Game.Items
     public class Armor : Item
     {
         /* Public Fields */
-        public int Defense { get; private set; }
+        public Spread Physical { get; private set; }
+        public Spread Magical { get; private set; }
 
-        public Armor(string name, int defense)
+        public Armor(string name, Spread physical, Spread magical)
         {
             ItemName = name;
-            Defense = defense;
+            Physical = physical;
+            Magical = magical;
         }
     }
 }

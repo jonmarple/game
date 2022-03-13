@@ -3,58 +3,9 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Toast.Game.Actions;
-using Toast.Game.Characters;
-using Toast.Game.Items;
-using Toast.Game.Stats;
 
 public class CControllerTests
 {
-    [Test]
-    public void TestGeneralFlow()
-    {
-        Attack attack = new Attack("Test Attack", 1, 2);
-        Character source = new Character("Source Char", null, null, new StatBlock(1, 1, 10, 10), new Equipment(null, new Weapon("", 3, attack, null)));
-        Character target = new Character("Target Char", null, null, new StatBlock(10, 10, 0, 0, 10), new Equipment(new Armor("", 1), null));
-
-        Assert.AreEqual(10, source.Stats.AP);
-        Assert.AreEqual(10, target.Stats.HP);
-        Assert.AreEqual(10, target.Stats.Shield);
-
-        source.PerformAction(attack, target);
-
-        Assert.AreEqual(9, source.Stats.AP);
-        Assert.AreEqual(10, target.Stats.HP);
-        Assert.AreEqual(5, target.Stats.Shield);
-
-        source.PerformAction(attack, target);
-
-        Assert.AreEqual(8, source.Stats.AP);
-        Assert.AreEqual(10, target.Stats.HP);
-        Assert.AreEqual(0, target.Stats.Shield);
-
-        source.PerformAction(attack, target);
-
-        Assert.AreEqual(7, source.Stats.AP);
-        Assert.AreEqual(5, target.Stats.HP);
-        Assert.AreEqual(0, target.Stats.Shield);
-        Assert.IsFalse(target.Stats.Dead);
-
-        source.PerformAction(attack, target);
-
-        Assert.AreEqual(6, source.Stats.AP);
-        Assert.AreEqual(0, target.Stats.HP);
-        Assert.AreEqual(0, target.Stats.Shield);
-        Assert.IsTrue(target.Stats.Dead);
-
-        source.PerformAction(attack, target);
-
-        Assert.AreEqual(5, source.Stats.AP);
-        Assert.AreEqual(0, target.Stats.HP);
-        Assert.AreEqual(0, target.Stats.Shield);
-        Assert.IsTrue(target.Stats.Dead);
-    }
-
     [Test]
     public void TestCanPerformAction()
     {
