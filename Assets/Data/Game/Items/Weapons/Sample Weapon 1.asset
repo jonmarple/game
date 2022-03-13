@@ -18,11 +18,5 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  damage:
-    _usage: 0
-    _value: 1
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  actionPrimary: {fileID: 0}
-  actionSecondary: {fileID: 0}
+  primaryAction: {fileID: 11400000, guid: f39d497cb8b31d44bb3c89abe9700b51, type: 2}
+  secondaryAction: {fileID: 11400000, guid: 97ebb62a83672c3438cf712b72da6cbb, type: 2}
