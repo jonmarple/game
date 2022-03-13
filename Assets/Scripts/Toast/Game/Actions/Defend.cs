@@ -7,7 +7,6 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Defend action.
     /// </summary>
-    [System.Serializable]
     public class Defend : Action
     {
         /* Public Fields */

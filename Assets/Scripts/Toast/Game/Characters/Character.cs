@@ -9,9 +9,8 @@ using Toast.Game.Combat;
 namespace Toast.Game.Characters
 {
     /// <summary>
-    /// System-serializable character information container.
+    /// Character information container.
     /// </summary>
-    [System.Serializable]
     public class Character
     {
         /* Public Fields */

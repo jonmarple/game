@@ -7,7 +7,6 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Movement action.
     /// </summary>
-    [System.Serializable]
     public class Movement : Action
     {
         /* Public Fields */

@@ -7,7 +7,6 @@ namespace Toast.Game.Stats
     /// <summary>
     /// Character Stats.
     /// </summary>
-    [System.Serializable]
     public class StatBlock
     {
         /* Public Fields */

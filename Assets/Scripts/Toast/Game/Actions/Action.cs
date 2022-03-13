@@ -7,7 +7,6 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Base action.
     /// </summary>
-    [System.Serializable]
     public abstract class Action
     {
         /* Public Fields */

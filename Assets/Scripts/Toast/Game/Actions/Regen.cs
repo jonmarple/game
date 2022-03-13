@@ -7,7 +7,6 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Regen weapon action.
     /// </summary>
-    [System.Serializable]
     public class Regen : Action
     {
         /* Public Fields */

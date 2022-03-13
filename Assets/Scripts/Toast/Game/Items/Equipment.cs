@@ -7,7 +7,6 @@ namespace Toast.Game.Items
     /// <summary>
     /// Equipment container.
     /// </summary>
-    [System.Serializable]
     public class Equipment
     {
         /* Public Fields */

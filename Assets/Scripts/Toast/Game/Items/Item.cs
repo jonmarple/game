@@ -7,7 +7,6 @@ namespace Toast.Game.Items
     /// <summary>
     /// Base Item.
     /// </summary>
-    [System.Serializable]
     public abstract class Item
     {
         /* Public Fields */

@@ -7,7 +7,6 @@ namespace Toast.Game.Actions
     /// <summary>
     /// Attack weapon action.
     /// </summary>
-    [System.Serializable]
     public class Attack : Action
     {
         /* Public Fields */

@@ -8,7 +8,6 @@ namespace Toast.Game.Items
     /// <summary>
     /// Weapon item.
     /// </summary>
-    [System.Serializable]
     public class Weapon : Item
     {
         /* Public Fields */
