@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Toast.Game.Characters;
+using Toast.Utility;
 
 namespace Toast.Game.Combat
 {
@@ -72,11 +74,18 @@ namespace Toast.Game.Combat
         /// <summary> Determine order of combat based on initiative. </summary>
         private static void DetermineOrder()
         {
-            Order = new List<Character>();
+            Dictionary<Character, int> initiatives = new Dictionary<Character, int>();
             foreach (Character character in GroupA.Characters)
-                Order.Add(character);
+                initiatives.Add(character, character.Stats.Initiative.Roll());
             foreach (Character character in GroupB.Characters)
-                Order.Add(character);
+                initiatives.Add(character, character.Stats.Initiative.Roll());
+
+            List<KeyValuePair<Character, int>> sortedInitiatives = initiatives.ToList();
+            sortedInitiatives.Shuffle();
+            sortedInitiatives.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
+
+            Character[] sortedCharacters = (from kvp in sortedInitiatives select kvp.Key).ToArray();
+            Order = new List<Character>(sortedCharacters);
         }
 
         #endregion

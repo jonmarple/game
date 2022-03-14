@@ -14,12 +14,13 @@ namespace Toast.Game.Stats
         /* Serialized Fields */
         [SerializeField] private IntReference hp;
         [SerializeField] private IntReference ap;
+        [SerializeField] private Spread initiative;
 
         #region PUBLIC
 
         /// <summary> Generate StatBlock object. </summary>
         public StatBlock Generate()
-        { return new StatBlock(hp, hp, ap / 2, ap); }
+        { return new StatBlock(hp, hp, ap / 2, ap, initiative); }
 
         #endregion
     }
