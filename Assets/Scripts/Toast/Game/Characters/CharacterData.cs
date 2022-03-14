@@ -5,6 +5,7 @@ using UnityAtoms.BaseAtoms;
 using Toast.Game.Stats;
 using Toast.Game.Items;
 using Toast.Game.Actions;
+using Toast.Game.AI;
 
 namespace Toast.Game.Characters
 {
@@ -20,6 +21,7 @@ namespace Toast.Game.Characters
         public DefendActionData Defend { get { return defendData; } }
         public StatBlockData StatBlock { get { return statBlockData; } }
         public EquipmentData Equipment { get { return equipmentData; } }
+        public CharacterAIData AI { get { return characterAIData; } }
 
         /* Serialized Fields */
         [SerializeField] private StringReference characterName;
@@ -27,5 +29,6 @@ namespace Toast.Game.Characters
         [SerializeField] private DefendActionData defendData;
         [SerializeField] private StatBlockData statBlockData;
         [SerializeField] private EquipmentData equipmentData;
+        [SerializeField] private CharacterAIData characterAIData;
     }
 }

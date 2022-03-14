@@ -5,6 +5,7 @@ using Toast.Game.Stats;
 using Toast.Game.Items;
 using Toast.Game.Actions;
 using Toast.Game.Combat;
+using Toast.Game.AI;
 
 namespace Toast.Game.Characters
 {
@@ -19,6 +20,7 @@ namespace Toast.Game.Characters
         public Defend Defend { get; private set; }
         public StatBlock Stats { get; private set; }
         public Equipment Equipment { get; private set; }
+        public CharacterAI AI { get; private set; }
 
         public Character(CharacterData data)
         {
@@ -27,15 +29,17 @@ namespace Toast.Game.Characters
             Defend = (Defend)data.Defend.Generate();
             Stats = data.StatBlock.Generate();
             Equipment = data.Equipment.Generate();
+            AI = data.AI.Generate();
         }
 
-        public Character(string name, Movement movement, Defend defend, StatBlock statBlock, Equipment equipment)
+        public Character(string name, Movement movement, Defend defend, StatBlock statBlock, Equipment equipment, CharacterAI ai)
         {
             CharacterName = name;
             Movement = movement;
             Defend = defend;
             Stats = statBlock;
             Equipment = equipment;
+            AI = ai;
         }
 
         #region PUBLIC
