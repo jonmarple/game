@@ -18,8 +18,8 @@ namespace Toast.Game.Characters
         public CharacterGroup(CharacterGroupData data)
         {
             Characters = new List<Character>();
-            foreach (CharacterData datum in data.Characters)
-                Characters.Add(new Character(datum));
+            foreach (CharacterData character in data.Characters)
+                Characters.Add(character.Generate());
         }
     }
 }

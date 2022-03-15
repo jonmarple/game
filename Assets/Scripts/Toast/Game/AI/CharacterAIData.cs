@@ -8,7 +8,7 @@ namespace Toast.Game.AI
     /// Data container for character AI module information.
     /// </summary>
     [CreateAssetMenu(fileName = "Character AI", menuName = "Toast/Game/AI/Character AI")]
-    public class CharacterAIData : ScriptableObject
+    public class CharacterAIData : ScriptableObject, IData<CharacterAI>
     {
         #region PUBLIC
 

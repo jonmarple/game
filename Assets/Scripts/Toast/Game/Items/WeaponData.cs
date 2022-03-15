@@ -9,7 +9,7 @@ namespace Toast.Game.Items
     /// Data container for weapon information.
     /// </summary>
     [CreateAssetMenu(fileName = "Weapon", menuName = "Toast/Game/Items/Weapon")]
-    public class WeaponData : ItemData<Weapon>
+    public class WeaponData : ItemData, IData<Weapon>
     {
         /* Serialized Fields */
         [SerializeField] private Spread physical;
@@ -19,7 +19,7 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        public override Weapon Generate()
+        public Weapon Generate()
         { return new Weapon(itemName, physical, magical, primaryAction.Generate(), secondaryAction.Generate()); }
 
         #endregion

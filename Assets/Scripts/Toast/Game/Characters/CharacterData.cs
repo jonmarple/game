@@ -13,7 +13,7 @@ namespace Toast.Game.Characters
     /// Data container for character information.
     /// </summary>
     [CreateAssetMenu(fileName = "Character", menuName = "Toast/Game/Characters/Character")]
-    public class CharacterData : ScriptableObject
+    public class CharacterData : ScriptableObject, IData<Character>
     {
         /* Public Fields */
         public string CharacterName { get { return characterName; } }
@@ -30,5 +30,12 @@ namespace Toast.Game.Characters
         [SerializeField] private StatBlockData statBlockData;
         [SerializeField] private EquipmentData equipmentData;
         [SerializeField] private CharacterAIData characterAIData;
+
+        #region PUBLIC
+
+        public Character Generate()
+        { return new Character(this); }
+
+        #endregion
     }
 }

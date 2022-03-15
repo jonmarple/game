@@ -8,7 +8,7 @@ namespace Toast.Game.Items
     /// Data container for equipment information.
     /// </summary>
     [CreateAssetMenu(fileName = "Equipment", menuName = "Toast/Game/Items/Equipment")]
-    public class EquipmentData : ScriptableObject
+    public class EquipmentData : ScriptableObject, IData<Equipment>
     {
         /* Serialized Fields */
         [SerializeField] private ArmorData armor;
@@ -16,7 +16,6 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        /// <summary> Generate Equipment object. </summary>
         public Equipment Generate()
         { return new Equipment(armor.Generate(), weapon.Generate()); }
 

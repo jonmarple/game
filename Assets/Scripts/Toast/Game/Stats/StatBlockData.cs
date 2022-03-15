@@ -9,7 +9,7 @@ namespace Toast.Game.Stats
     /// Data container for stat information.
     /// </summary>
     [CreateAssetMenu(fileName = "Stat Block", menuName = "Toast/Game/Stats/Stat Block")]
-    public class StatBlockData : ScriptableObject
+    public class StatBlockData : ScriptableObject, IData<StatBlock>
     {
         /* Serialized Fields */
         [SerializeField] private IntReference hp;
@@ -18,7 +18,6 @@ namespace Toast.Game.Stats
 
         #region PUBLIC
 
-        /// <summary> Generate StatBlock object. </summary>
         public StatBlock Generate()
         { return new StatBlock(hp, hp, ap / 2, ap, initiative); }
 

@@ -8,7 +8,7 @@ namespace Toast.Game.Items
     /// Data container for armor information.
     /// </summary>
     [CreateAssetMenu(fileName = "Armor", menuName = "Toast/Game/Items/Armor")]
-    public class ArmorData : ItemData<Armor>
+    public class ArmorData : ItemData, IData<Armor>
     {
         /* Serialized Fields */
         [SerializeField] private Spread physical;
@@ -16,7 +16,7 @@ namespace Toast.Game.Items
 
         #region PUBLIC
 
-        public override Armor Generate()
+        public Armor Generate()
         { return new Armor(itemName, physical, magical); }
 
         #endregion
