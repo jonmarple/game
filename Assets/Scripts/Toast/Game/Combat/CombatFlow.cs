@@ -28,19 +28,20 @@ namespace Toast.Game.Combat
         public static void Reset()
         {
             Active = false;
-            Order = null;
+            Index = -1;
             GroupA = null;
             GroupB = null;
-            Index = -1;
+            Order = null;
         }
 
         /// <summary> Initialize combat with specified groups. </summary>
         public static void Initialize(CharacterGroup groupA, CharacterGroup groupB)
         {
             Active = true;
+            Index = -1;
             GroupA = groupA;
             GroupB = groupB;
-            Index = -1;
+            InitializeAI();
             DetermineOrder();
         }
 
@@ -51,7 +52,7 @@ namespace Toast.Game.Combat
             {
                 if (Index == -1) StartRound();
                 else if (Index >= Order.Count) FinishRound();
-                else if (InRange) StartTurn();
+                else if (InRange) ProcessTurn();
                 else Debug.LogError("This code should be unreachable.");
                 Index += 1;
             }
@@ -63,13 +64,30 @@ namespace Toast.Game.Combat
         #region PRIVATE
 
         private static void StartRound()
-        { Debug.Log("Starting combat round."); }
+        {
+            Debug.Log("Starting combat round.");
+        }
 
         private static void FinishRound()
-        { Index = -1; Debug.Log("Finishing combat round."); }
+        {
+            Debug.Log("Finishing combat round.");
+            Index = -1;
+        }
 
-        private static void StartTurn()
-        { Debug.Log("Starting turn for " + Order[Index].CharacterName + "."); }
+        private static void ProcessTurn()
+        {
+            Debug.Log("Processing turn for " + Order[Index].CharacterName + ".");
+            Order[Index].AI.Process();
+        }
+
+        /// <summary> Initialize Character AI modules. </summary>
+        private static void InitializeAI()
+        {
+            foreach (Character character in GroupA.Characters)
+                character.AI.Initialize(character, GroupA, GroupB);
+            foreach (Character character in GroupB.Characters)
+                character.AI.Initialize(character, GroupB, GroupA);
+        }
 
         /// <summary> Determine order of combat based on initiative. </summary>
         private static void DetermineOrder()

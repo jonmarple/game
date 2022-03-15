@@ -21,6 +21,7 @@ namespace Toast.Game.Characters
         public StatBlock Stats { get; private set; }
         public Equipment Equipment { get; private set; }
         public CharacterAI AI { get; private set; }
+        public List<Action> Actions { get; private set; }
 
         public Character(CharacterData data)
         {
@@ -30,6 +31,7 @@ namespace Toast.Game.Characters
             Stats = data.StatBlock.Generate();
             Equipment = data.Equipment.Generate();
             AI = data.AI.Generate();
+            BuildActionsList();
         }
 
         public Character(string name, Movement movement, Defend defend, StatBlock statBlock, Equipment equipment, CharacterAI ai)
@@ -40,13 +42,18 @@ namespace Toast.Game.Characters
             Stats = statBlock;
             Equipment = equipment;
             AI = ai;
+            BuildActionsList();
         }
 
         #region PUBLIC
 
         /// <summary> Whether this Character can afford the specified Action. </summary>
+        public bool CanAffordAction(Action action)
+        { return Stats.AP >= action.Cost; }
+
+        /// <summary> Whether this Character can perform the specified Action. </summary>
         public bool CanPerformAction(Action action)
-        { return !Stats.Dead && Stats.AP >= action.Cost; } // TODO: check if action exists on character
+        { return !Stats.Dead && CanAffordAction(action) && Actions.Contains(action); }
 
         /// <summary> Perform specified action. </summary>
         public void PerformAction(Action action, Character target)
@@ -114,6 +121,20 @@ namespace Toast.Game.Characters
 
         private void PerformDefend(Defend defend, Character target)
         { target.ApplyShield(CombatCalculator.CalculateShield(defend, target)); }
+
+        private void BuildActionsList()
+        {
+            Actions = new List<Action>();
+            if (Equipment != null && Equipment.Weapon != null)
+            {
+                if (Equipment.Weapon.Primary != null)
+                    Actions.Add(Equipment.Weapon.Primary);
+                if (Equipment.Weapon.Secondary != null)
+                    Actions.Add(Equipment.Weapon.Secondary);
+            }
+            if (Defend != null)
+                Actions.Add(Defend);
+        }
 
         #endregion
     }
