@@ -17,6 +17,7 @@ namespace Toast.Game.Combat
         public static CharacterGroup GroupA { get; private set; }
         public static CharacterGroup GroupB { get; private set; }
         public static bool Active { get; private set; }
+        public static bool Finished { get; private set; }
         public static int Index { get; private set; }
 
         /* Private Fields */
@@ -28,6 +29,7 @@ namespace Toast.Game.Combat
         public static void Reset()
         {
             Active = false;
+            Finished = false;
             Index = -1;
             GroupA = null;
             GroupB = null;
@@ -38,6 +40,7 @@ namespace Toast.Game.Combat
         public static void Initialize(CharacterGroup groupA, CharacterGroup groupB)
         {
             Active = true;
+            Finished = false;
             Index = -1;
             GroupA = groupA;
             GroupB = groupB;
@@ -48,13 +51,14 @@ namespace Toast.Game.Combat
         /// <summary> Advance combat to next step. </summary>
         public static void Step()
         {
-            if (Active)
+            if (Active && !Finished)
             {
                 if (Index == -1) StartRound();
                 else if (Index >= Order.Count) FinishRound();
                 else if (InRange) ProcessTurn();
-                else Debug.LogError("This code should be unreachable.");
                 Index += 1;
+
+                CheckFinished();
             }
             else Debug.LogWarning("Failed to advance combat--no active instance of combat present.");
         }
@@ -77,7 +81,19 @@ namespace Toast.Game.Combat
         private static void ProcessTurn()
         {
             Debug.Log("Processing turn for " + Order[Index].CharacterName + ".");
-            Order[Index].AI.Process();
+            Order[Index].Process();
+        }
+
+        private static void CheckFinished()
+        {
+            if (!GroupA.Active || !GroupB.Active)
+                FinishCombat();
+        }
+
+        private static void FinishCombat()
+        {
+            Finished = true;
+            Index = -1;
         }
 
         /// <summary> Initialize Character AI modules. </summary>

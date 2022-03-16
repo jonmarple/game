@@ -14,24 +14,27 @@ namespace Toast.Game.Stats
         public int HPMax { get; private set; }
         public int AP { get; private set; }
         public int APMax { get; private set; }
+        public int APRegen { get; private set; }
         public int Shield { get; private set; }
         public Spread Initiative { get; private set; }
         public bool Dead { get { return HP <= 0; } }
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, Spread initiative)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, Spread initiative)
         {
             HPMax = hpMax;
             APMax = apMax;
+            APRegen = apRegen;
             SetHP(hp);
             SetAP(ap);
             Initiative = initiative;
             Shield = 0;
         }
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, Spread initiative, int shield)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, Spread initiative, int shield)
         {
             HPMax = hpMax;
             APMax = apMax;
+            APRegen = apRegen;
             SetHP(hp);
             SetAP(ap);
             Initiative = initiative;

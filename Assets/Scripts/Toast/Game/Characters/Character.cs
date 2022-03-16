@@ -16,6 +16,8 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public string CharacterName { get; private set; }
+        public Action Primary { get { return Equipment?.Weapon?.Primary; } }
+        public Action Secondary { get { return Equipment?.Weapon?.Secondary; } }
         public Movement Movement { get; private set; }
         public Defend Defend { get; private set; }
         public StatBlock Stats { get; private set; }
@@ -63,7 +65,7 @@ namespace Toast.Game.Characters
             else if (!CanPerformAction(action)) Debug.Log(CharacterName + " cannot perform action " + action.ActionName + ".");
             else
             {
-                Debug.Log(CharacterName + " performing action " + action.ActionName + ".");
+                Debug.Log(CharacterName + " performing action " + action.ActionName + " against " + target.CharacterName + ".");
 
                 Stats.AlterAP(-action.Cost);
                 switch (action)
@@ -108,6 +110,13 @@ namespace Toast.Game.Characters
         /// <summary> Apply shield to character. </summary>
         public void ApplyShield(int shield)
         { Stats.AlterShield(shield); }
+
+        /// <summary> Process turn. </summary>
+        public void Process()
+        {
+            Stats.AlterAP(Stats.APRegen);
+            AI.Process();
+        }
 
         #endregion
 

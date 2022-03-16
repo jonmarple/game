@@ -11,6 +11,17 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public List<Character> Characters { get; private set; }
+        public bool Active
+        {
+            get
+            {
+                bool active = false;
+                foreach (Character character in Characters)
+                    if (!character.Stats.Dead)
+                        active = true;
+                return active;
+            }
+        }
 
         public CharacterGroup(List<Character> characters)
         { Characters = characters; }
