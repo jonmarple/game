@@ -18,7 +18,8 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  statBlockData: {fileID: 11400000, guid: 234d1045375b6924189bbe598bf0c717, type: 2}
-  equipmentData: {fileID: 11400000, guid: 4c546408de41ada4a93829405cf91f3d, type: 2}
   movementData: {fileID: 11400000, guid: 840e0c093d4d107469149932f489dbfc, type: 2}
   defendData: {fileID: 11400000, guid: d09a179b2baef984fb4264e705286412, type: 2}
+  statBlockData: {fileID: 11400000, guid: 234d1045375b6924189bbe598bf0c717, type: 2}
+  equipmentData: {fileID: 11400000, guid: 4c546408de41ada4a93829405cf91f3d, type: 2}
+  characterAIData: {fileID: 11400000, guid: e597b235d99003c4d9819afb738aa289, type: 2}
