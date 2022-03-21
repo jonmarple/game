@@ -117,6 +117,7 @@ namespace Toast.Game.Combat
             List<KeyValuePair<Character, int>> sortedInitiatives = initiatives.ToList();
             sortedInitiatives.Shuffle();
             sortedInitiatives.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
+            sortedInitiatives.Reverse();
 
             Character[] sortedCharacters = (from kvp in sortedInitiatives select kvp.Key).ToArray();
             Order = new List<Character>(sortedCharacters);

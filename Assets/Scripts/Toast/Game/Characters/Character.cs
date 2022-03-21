@@ -58,7 +58,7 @@ namespace Toast.Game.Characters
         { return !Stats.Dead && CanAffordAction(action) && Actions.Contains(action); }
 
         /// <summary> Perform specified action. </summary>
-        public void PerformAction(Action action, Character target)
+        public bool PerformAction(Action action, Character target)
         {
             if (action == null) Debug.LogWarning("Action missing.");
             else if (target == null) Debug.LogWarning("Target missing.");
@@ -66,36 +66,40 @@ namespace Toast.Game.Characters
             else
             {
                 Debug.Log(CharacterName + " performing action " + action.ActionName + " against " + target.CharacterName + ".");
-
                 Stats.AlterAP(-action.Cost);
                 switch (action)
                 {
                     case Attack attack:
                         PerformAttack(attack, target);
-                        break;
+                        return true;
                     case Regen regen:
                         PerformRegen(regen, target);
-                        break;
+                        return true;
                     case Defend defend:
                         PerformDefend(defend, target);
-                        break;
+                        return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");
-                        break;
+                        return false;
                 }
             }
+            return false;
         }
 
         /// <summary> Apply damage to character. </summary>
         public void ApplyDamage(int damage)
         {
-            if (Stats.Shield < damage)
+            if (!Stats.Dead)
             {
-                damage -= Stats.Shield;
-                Stats.AlterShield(-Stats.Shield);
-                Stats.AlterHP(-damage);
+                if (Stats.Shield < damage)
+                {
+                    damage -= Stats.Shield;
+                    Stats.AlterShield(-Stats.Shield);
+                    Stats.AlterHP(-damage);
+                    if (Stats.Dead) Debug.Log(CharacterName + " died.");
+                }
+                else Stats.AlterShield(-damage);
             }
-            else Stats.AlterShield(-damage);
         }
 
         /// <summary> Apply regen to character. </summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Actions;
 using Toast.Game.Characters;
+using Toast.Utility;
 
 namespace Toast.Game.AI
 {
@@ -33,11 +34,10 @@ namespace Toast.Game.AI
             // currently just running secondary and primary action as available
             while (!self.Stats.Dead && allies.Active && enemies.Active)
             {
-                if (self.CanPerformAction(self.Secondary))
-                    self.PerformAction(self.Secondary, GetTarget(self.Secondary));
-                else if (self.CanPerformAction(self.Primary))
-                    self.PerformAction(self.Primary, GetTarget(self.Primary));
-                else break;
+                bool didPerformSecondary = PerformAction(self.Secondary);
+                bool didPerformPrimary = false;
+                if (!didPerformSecondary) didPerformPrimary = PerformAction(self.Primary);
+                if (!didPerformPrimary && !didPerformSecondary) break;
             }
         }
 
@@ -50,9 +50,9 @@ namespace Toast.Game.AI
             switch (action)
             {
                 case Attack attack:
-                    return RandomCharacter(enemies);
+                    return WeakestCharacter(enemies);
                 case Regen regen:
-                    return RandomCharacter(allies);
+                    return RandomCharacterRequiringHealing(allies);
                 case Defend defend:
                     return self;
                 case Movement movement:
@@ -68,6 +68,44 @@ namespace Toast.Game.AI
             living.RemoveAll(c => c.Stats.Dead);
             if (living.Count <= 0) return null;
             return living[Random.Range(0, living.Count)];
+        }
+
+        private Character RandomCharacterRequiringHealing(CharacterGroup group)
+        {
+            List<Character> charactersRequiringHealing = new List<Character>();
+            foreach (Character character in group.Characters)
+                if (!character.Stats.Dead && character.Stats.HP <= character.Stats.HPMax / 2)
+                    charactersRequiringHealing.Add(character);
+            charactersRequiringHealing.Shuffle();
+            return charactersRequiringHealing.Count > 0 ? charactersRequiringHealing[0] : null;
+        }
+
+        private Character WeakestCharacter(CharacterGroup group)
+        {
+            List<Character> sortedCharacters = new List<Character>(group.Characters);
+            sortedCharacters.RemoveAll(character => character.Stats.Dead);
+            sortedCharacters.Sort((char1, char2) => char1.Stats.HP.CompareTo(char2.Stats.HP));
+            return sortedCharacters.Count > 0 ? sortedCharacters[0] : null;
+        }
+
+        private bool PerformAction(Action action)
+        {
+            bool didPerform = false;
+            if (self.CanPerformAction(action))
+            {
+                if (action is Regen)
+                {
+                    if (RandomCharacterRequiringHealing(allies) != null)
+                        didPerform = self.PerformAction(action, GetTarget(action));
+                }
+                else if (action is Attack)
+                {
+                    if (WeakestCharacter(enemies) != null)
+                        didPerform = self.PerformAction(action, GetTarget(action));
+                }
+                else didPerform = self.PerformAction(action, GetTarget(action));
+            }
+            return didPerform;
         }
 
         #endregion
