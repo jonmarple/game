@@ -47,8 +47,5 @@ namespace Toast.Game.Stats
         { SetAP(AP + diff); }
 
         #endregion
-
-        #region PRIVATE
-        #endregion
     }
 }

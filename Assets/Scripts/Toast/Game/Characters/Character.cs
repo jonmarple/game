@@ -67,10 +67,10 @@ namespace Toast.Game.Characters
                 switch (action)
                 {
                     case Attack attack:
-                        PerformAttack(attack, target);
+                        CombatHelper.PerformAttack(attack, this, target);
                         return true;
                     case Regen regen:
-                        PerformRegen(regen, target);
+                        CombatHelper.PerformRegen(regen, this, target);
                         return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");
@@ -79,20 +79,6 @@ namespace Toast.Game.Characters
             }
             return false;
         }
-
-        /// <summary> Apply damage to character. </summary>
-        public void ApplyDamage(int damage)
-        {
-            if (!Stats.Dead)
-            {
-                Stats.AlterHP(-damage);
-                if (Stats.Dead) Debug.Log(CharacterName + " died.");
-            }
-        }
-
-        /// <summary> Apply regen to character. </summary>
-        public void ApplyRegen(int regen)
-        { Stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue)); }
 
         /// <summary> Process turn. </summary>
         public void Process()
@@ -104,12 +90,6 @@ namespace Toast.Game.Characters
         #endregion
 
         #region PRIVATE
-
-        private void PerformAttack(Attack attack, Character target)
-        { target.ApplyDamage(CombatCalculator.CalculateDamage(attack, this, target)); }
-
-        private void PerformRegen(Regen regen, Character target)
-        { target.ApplyRegen(CombatCalculator.CalculateRegen(regen, this)); }
 
         private void BuildActionsList()
         {

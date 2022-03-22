@@ -47,7 +47,7 @@ namespace Toast.Game.AI
         private Character CharRequiringHP(CharacterGroup group)
         {
             Character character = CharWithLowestHP(group);
-            if (character != null && character.Stats.HP <= character.Stats.HPMax)
+            if (character != null && character.Stats.HP <= character.Stats.HPMax / 2)
                 return character;
             return null;
         }

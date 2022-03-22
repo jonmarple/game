@@ -11,8 +11,8 @@ namespace Toast.Game.Items
     public class ArmorData : ItemData, IData<Armor>
     {
         /* Serialized Fields */
-        [SerializeField] private Spread physical;
-        [SerializeField] private Spread magical;
+        [SerializeField] private int physical;
+        [SerializeField] private int magical;
 
         #region PUBLIC
 
