@@ -18,21 +18,24 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  hpMax:
-    _usage: 0
-    _value: 10
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
   ap:
     _usage: 0
     _value: 10
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  apMax:
+  apRegen:
+    _usage: 0
+    _value: 4
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+  crit:
     _usage: 0
     _value: 10
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
+  initiative:
+    value: 10
+    variation: 5
