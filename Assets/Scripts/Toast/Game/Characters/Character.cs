@@ -67,10 +67,10 @@ namespace Toast.Game.Characters
                 switch (action)
                 {
                     case Attack attack:
-                        CombatHelper.PerformAttack(attack, this, target);
+                        CombatHelper.PerformAttack(attack, this, target, Stats.RollCrit());
                         return true;
                     case Regen regen:
-                        CombatHelper.PerformRegen(regen, this, target);
+                        CombatHelper.PerformRegen(regen, this, target, Stats.RollCrit());
                         return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");

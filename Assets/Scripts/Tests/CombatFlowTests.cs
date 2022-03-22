@@ -17,12 +17,13 @@ public class CombatFlowTests
     public void TestFlow()
     {
         CombatFlow.Initialize(
-            new CharacterGroup(new List<Character>(new Character[] { new Character("a1", null, new StatBlock(10, 10, 0, 4, 2, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()),
-                                                                     new Character("a2", null, new StatBlock(10, 10, 0, 4, 2, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1), new Regen("reg1", 1, 1))), new CharacterAI()) })),
-            new CharacterGroup(new List<Character>(new Character[] { new Character("e1", null, new StatBlock(10, 10, 0, 4, 2, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()),
-                                                                     new Character("e2", null, new StatBlock(10, 10, 0, 4, 2, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()) })));
+            new CharacterGroup(new List<Character>(new Character[] { new Character("a1", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()),
+                                                                     new Character("a2", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1), new Regen("reg1", 1, 1))), new CharacterAI()) })),
+            new CharacterGroup(new List<Character>(new Character[] { new Character("e1", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()),
+                                                                     new Character("e2", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2)), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1), new Attack("att2", 2, 2))), new CharacterAI()) })));
 
-        while (!CombatFlow.Finished)
+        int i = 0;
+        while (!CombatFlow.Finished && i++ < 100)
             CombatFlow.Step();
 
         Debug.Log(CombatFlow.Active);

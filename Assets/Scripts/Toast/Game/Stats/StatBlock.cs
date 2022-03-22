@@ -15,16 +15,18 @@ namespace Toast.Game.Stats
         public int AP { get; private set; }
         public int APMax { get; private set; }
         public int APRegen { get; private set; }
+        public int Crit { get; private set; }
         public Spread Initiative { get; private set; }
         public bool Dead { get { return HP <= 0; } }
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, Spread initiative)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative)
         {
             HPMax = hpMax;
             APMax = apMax;
             APRegen = apRegen;
             SetHP(hp);
             SetAP(ap);
+            Crit = crit;
             Initiative = initiative;
         }
 
@@ -45,6 +47,10 @@ namespace Toast.Game.Stats
         /// <summary> Alter AP value. </summary>
         public void AlterAP(int diff)
         { SetAP(AP + diff); }
+
+        /// <summary> Check for a Critical. </summary>
+        public bool RollCrit()
+        { return Random.value <= Crit * 0.01f; }
 
         #endregion
     }

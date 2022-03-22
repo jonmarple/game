@@ -33,6 +33,14 @@ namespace Toast.Game
                 Mathf.Clamp(value + variation + 1, 0, int.MaxValue));
         }
 
+        public int Roll(bool crit)
+        {
+            if (crit)
+                return Roll() + Value + Variation;
+            else
+                return Roll();
+        }
+
         #endregion
     }
 }
