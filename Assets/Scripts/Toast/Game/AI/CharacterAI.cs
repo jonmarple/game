@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Actions;
 using Toast.Game.Characters;
-using Toast.Utility;
 
 namespace Toast.Game.AI
 {
@@ -45,46 +44,22 @@ namespace Toast.Game.AI
 
         #region PRIVATE
 
-        private Character GetTarget(Action action)
+        private Character CharRequiringHP(CharacterGroup group)
         {
-            switch (action)
-            {
-                case Attack attack:
-                    return WeakestCharacter(enemies);
-                case Regen regen:
-                    return RandomCharacterRequiringHealing(allies);
-                case Defend defend:
-                    return self;
-                case Movement movement:
-                    return self;
-                default:
-                    return null;
-            }
+            Character character = CharWithLowestHP(group);
+            if (character != null && character.Stats.HP <= character.Stats.HPMax)
+                return character;
+            return null;
         }
 
-        private Character RandomCharacter(CharacterGroup group)
-        {
-            List<Character> living = new List<Character>(group.Characters);
-            living.RemoveAll(c => c.Stats.Dead);
-            if (living.Count <= 0) return null;
-            return living[Random.Range(0, living.Count)];
-        }
+        private Character CharWithLowestHP(CharacterGroup group)
+        { return TopCharFromSort(group.Characters, (char1, char2) => char1.Stats.HP.CompareTo(char2.Stats.HP), true); }
 
-        private Character RandomCharacterRequiringHealing(CharacterGroup group)
+        private Character TopCharFromSort(List<Character> characters, System.Comparison<Character> comparison, bool ignoreDead)
         {
-            List<Character> charactersRequiringHealing = new List<Character>();
-            foreach (Character character in group.Characters)
-                if (!character.Stats.Dead && character.Stats.HP <= character.Stats.HPMax / 2)
-                    charactersRequiringHealing.Add(character);
-            charactersRequiringHealing.Shuffle();
-            return charactersRequiringHealing.Count > 0 ? charactersRequiringHealing[0] : null;
-        }
-
-        private Character WeakestCharacter(CharacterGroup group)
-        {
-            List<Character> sortedCharacters = new List<Character>(group.Characters);
-            sortedCharacters.RemoveAll(character => character.Stats.Dead);
-            sortedCharacters.Sort((char1, char2) => char1.Stats.HP.CompareTo(char2.Stats.HP));
+            List<Character> sortedCharacters = new List<Character>(characters);
+            if (ignoreDead) sortedCharacters.RemoveAll(character => character.Stats.Dead);
+            sortedCharacters.Sort(comparison);
             return sortedCharacters.Count > 0 ? sortedCharacters[0] : null;
         }
 
@@ -93,17 +68,23 @@ namespace Toast.Game.AI
             bool didPerform = false;
             if (self.CanPerformAction(action))
             {
-                if (action is Regen)
+                switch (action)
                 {
-                    if (RandomCharacterRequiringHealing(allies) != null)
-                        didPerform = self.PerformAction(action, GetTarget(action));
+                    case Attack attack:
+                        if (CharWithLowestHP(enemies) != null)
+                            didPerform = self.PerformAction(action, CharWithLowestHP(enemies));
+                        return didPerform;
+                    case Regen regen:
+                        if (CharRequiringHP(allies) != null)
+                            didPerform = self.PerformAction(action, CharRequiringHP(allies));
+                        return didPerform;
+                    case Defend defend:
+                    case Movement movement:
+                        didPerform = self.PerformAction(action, self);
+                        return didPerform;
+                    default:
+                        return didPerform;
                 }
-                else if (action is Attack)
-                {
-                    if (WeakestCharacter(enemies) != null)
-                        didPerform = self.PerformAction(action, GetTarget(action));
-                }
-                else didPerform = self.PerformAction(action, GetTarget(action));
             }
             return didPerform;
         }

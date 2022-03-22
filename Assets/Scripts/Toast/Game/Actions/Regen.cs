@@ -11,14 +11,12 @@ namespace Toast.Game.Actions
     {
         /* Public Fields */
         public int Modifier { get; private set; }
-        public RegenType Type { get; private set; }
 
-        public Regen(string name, int cost, int modifier, RegenType type)
+        public Regen(string name, int cost, int modifier)
         {
             ActionName = name;
             Cost = cost;
             Modifier = modifier;
-            Type = type;
         }
     }
 }

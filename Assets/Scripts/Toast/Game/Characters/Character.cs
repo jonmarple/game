@@ -103,13 +103,8 @@ namespace Toast.Game.Characters
         }
 
         /// <summary> Apply regen to character. </summary>
-        public void ApplyRegen(int regen, RegenType type)
-        {
-            if (type == RegenType.HP)
-                Stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue));
-            else if (type == RegenType.AP)
-                Stats.AlterAP(Mathf.Clamp(regen, 0, int.MaxValue));
-        }
+        public void ApplyRegen(int regen)
+        { Stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue)); }
 
         /// <summary> Apply shield to character. </summary>
         public void ApplyShield(int shield)
@@ -130,7 +125,7 @@ namespace Toast.Game.Characters
         { target.ApplyDamage(CombatCalculator.CalculateDamage(attack, this, target)); }
 
         private void PerformRegen(Regen regen, Character target)
-        { target.ApplyRegen(CombatCalculator.CalculateRegen(regen, this), regen.Type); }
+        { target.ApplyRegen(CombatCalculator.CalculateRegen(regen, this)); }
 
         private void PerformDefend(Defend defend, Character target)
         { target.ApplyShield(CombatCalculator.CalculateShield(defend, target)); }

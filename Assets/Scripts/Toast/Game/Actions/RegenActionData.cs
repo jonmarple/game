@@ -13,12 +13,11 @@ namespace Toast.Game.Actions
     {
         /* Serialized Fields */
         [SerializeField] private IntReference regenModifier;
-        [SerializeField] private RegenType regenType;
 
         #region PUBLIC
 
         public override Action Generate()
-        { return new Regen(actionName, cost, regenModifier, regenType); }
+        { return new Regen(actionName, cost, regenModifier); }
 
         #endregion
     }
