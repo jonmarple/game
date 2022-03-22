@@ -19,7 +19,6 @@ namespace Toast.Game.Characters
         public Action Primary { get { return Equipment?.Weapon?.Primary; } }
         public Action Secondary { get { return Equipment?.Weapon?.Secondary; } }
         public Movement Movement { get; private set; }
-        public Defend Defend { get; private set; }
         public StatBlock Stats { get; private set; }
         public Equipment Equipment { get; private set; }
         public CharacterAI AI { get; private set; }
@@ -29,18 +28,16 @@ namespace Toast.Game.Characters
         {
             CharacterName = data.CharacterName;
             Movement = (Movement)data.Movement.Generate();
-            Defend = (Defend)data.Defend.Generate();
             Stats = data.StatBlock.Generate();
             Equipment = data.Equipment.Generate();
             AI = data.AI.Generate();
             BuildActionsList();
         }
 
-        public Character(string name, Movement movement, Defend defend, StatBlock statBlock, Equipment equipment, CharacterAI ai)
+        public Character(string name, Movement movement, StatBlock statBlock, Equipment equipment, CharacterAI ai)
         {
             CharacterName = name;
             Movement = movement;
-            Defend = defend;
             Stats = statBlock;
             Equipment = equipment;
             AI = ai;
@@ -75,9 +72,6 @@ namespace Toast.Game.Characters
                     case Regen regen:
                         PerformRegen(regen, target);
                         return true;
-                    case Defend defend:
-                        PerformDefend(defend, target);
-                        return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");
                         return false;
@@ -91,24 +85,14 @@ namespace Toast.Game.Characters
         {
             if (!Stats.Dead)
             {
-                if (Stats.Shield < damage)
-                {
-                    damage -= Stats.Shield;
-                    Stats.AlterShield(-Stats.Shield);
-                    Stats.AlterHP(-damage);
-                    if (Stats.Dead) Debug.Log(CharacterName + " died.");
-                }
-                else Stats.AlterShield(-damage);
+                Stats.AlterHP(-damage);
+                if (Stats.Dead) Debug.Log(CharacterName + " died.");
             }
         }
 
         /// <summary> Apply regen to character. </summary>
         public void ApplyRegen(int regen)
         { Stats.AlterHP(Mathf.Clamp(regen, 0, int.MaxValue)); }
-
-        /// <summary> Apply shield to character. </summary>
-        public void ApplyShield(int shield)
-        { Stats.AlterShield(shield); }
 
         /// <summary> Process turn. </summary>
         public void Process()
@@ -127,9 +111,6 @@ namespace Toast.Game.Characters
         private void PerformRegen(Regen regen, Character target)
         { target.ApplyRegen(CombatCalculator.CalculateRegen(regen, this)); }
 
-        private void PerformDefend(Defend defend, Character target)
-        { target.ApplyShield(CombatCalculator.CalculateShield(defend, target)); }
-
         private void BuildActionsList()
         {
             Actions = new List<Action>();
@@ -140,8 +121,6 @@ namespace Toast.Game.Characters
                 if (Equipment.Weapon.Secondary != null)
                     Actions.Add(Equipment.Weapon.Secondary);
             }
-            if (Defend != null)
-                Actions.Add(Defend);
         }
 
         #endregion

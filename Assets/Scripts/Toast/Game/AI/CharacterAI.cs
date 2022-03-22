@@ -78,10 +78,6 @@ namespace Toast.Game.AI
                         if (CharRequiringHP(allies) != null)
                             didPerform = self.PerformAction(action, CharRequiringHP(allies));
                         return didPerform;
-                    case Defend defend:
-                    case Movement movement:
-                        didPerform = self.PerformAction(action, self);
-                        return didPerform;
                     default:
                         return didPerform;
                 }

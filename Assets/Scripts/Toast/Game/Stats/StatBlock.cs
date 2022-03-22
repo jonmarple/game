@@ -15,7 +15,6 @@ namespace Toast.Game.Stats
         public int AP { get; private set; }
         public int APMax { get; private set; }
         public int APRegen { get; private set; }
-        public int Shield { get; private set; }
         public Spread Initiative { get; private set; }
         public bool Dead { get { return HP <= 0; } }
 
@@ -27,18 +26,6 @@ namespace Toast.Game.Stats
             SetHP(hp);
             SetAP(ap);
             Initiative = initiative;
-            Shield = 0;
-        }
-
-        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, Spread initiative, int shield)
-        {
-            HPMax = hpMax;
-            APMax = apMax;
-            APRegen = apRegen;
-            SetHP(hp);
-            SetAP(ap);
-            Initiative = initiative;
-            Shield = shield;
         }
 
         #region PUBLIC
@@ -58,14 +45,6 @@ namespace Toast.Game.Stats
         /// <summary> Alter AP value. </summary>
         public void AlterAP(int diff)
         { SetAP(AP + diff); }
-
-        /// <summary> Set Shield value. </summary>
-        public void SetShield(int shield)
-        { Shield = Mathf.Clamp(shield, 0, int.MaxValue); }
-
-        /// <summary> Alter Shield value. </summary>
-        public void AlterShield(int diff)
-        { SetShield(Shield + diff); }
 
         #endregion
 

@@ -29,14 +29,6 @@ namespace Toast.Game.Combat
             return physical + magical;
         }
 
-        /// <summary> Calculate shield boost. </summary>
-        public static int CalculateShield(Defend defend, Character target)
-        {
-            int physical = Shield(target.Equipment.Armor.Physical.Roll(), defend.Modifier);
-            int magical = Shield(target.Equipment.Armor.Magical.Roll(), defend.Modifier);
-            return physical + magical;
-        }
-
         #endregion
 
         #region PRIVATE
@@ -46,9 +38,6 @@ namespace Toast.Game.Combat
 
         private static int Regen(int regen, int modifier)
         { return Mathf.Clamp(regen * modifier, 0, int.MaxValue); }
-
-        private static int Shield(int defense, int modifier)
-        { return Mathf.Clamp(defense * modifier, 0, int.MaxValue); }
 
         #endregion
     }

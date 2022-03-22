@@ -25,4 +25,4 @@ MonoBehaviour:
     value: 1
     variation: 0
   primaryAction: {fileID: 11400000, guid: f39d497cb8b31d44bb3c89abe9700b51, type: 2}
-  secondaryAction: {fileID: 11400000, guid: 0add1f814baa5194983e31e4f6d7d54d, type: 2}
+  secondaryAction: {fileID: 11400000, guid: 97ebb62a83672c3438cf712b72da6cbb, type: 2}
