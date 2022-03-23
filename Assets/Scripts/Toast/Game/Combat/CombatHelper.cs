@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Characters;
 using Toast.Game.Actions;
+using Toast.Game.Shards;
 
 namespace Toast.Game.Combat
 {
@@ -22,7 +23,7 @@ namespace Toast.Game.Combat
                 int damage = 0;
                 damage += ApplyDamage(attack, source, target, true, crit);
                 damage += ApplyDamage(attack, source, target, false, crit);
-                Debug.Log(attack.ActionName + ": " + damage + "dmg");
+                Debug.Log(attack.ActionName + ": " + damage + " dmg");
                 if (target.Stats.Dead) Debug.Log(target.CharacterName + " died.");
             }
         }
@@ -34,7 +35,17 @@ namespace Toast.Game.Combat
             {
                 if (crit) Debug.Log(regen.ActionName + " crit.");
                 int amount = ApplyRegen(regen, source, target, crit);
-                Debug.Log(regen.ActionName + ": " + amount + "hp");
+                Debug.Log(regen.ActionName + ": " + amount + " hp");
+            }
+        }
+
+        /// <summary> Perform a shard roll. </summary>
+        public static void PerformRoll(Roll roll, Character target)
+        {
+            if (!target.Stats.Dead)
+            {
+                int value = target.ShardBuffer.AddRoll(roll.Shard);
+                Debug.Log(roll.ActionName + ": " + value);
             }
         }
 
@@ -47,6 +58,8 @@ namespace Toast.Game.Combat
             int damage = GetDamage(attack, source, physical, crit);
             if (target.Stats.WeakTo(physical ? DamageType.PHYSICAL : DamageType.MAGICAL)) damage *= 2;
             if (target.Stats.ResistantTo(physical ? DamageType.PHYSICAL : DamageType.MAGICAL)) damage /= 2;
+            // TODO: apply shard buffers
+            // source AP/AM and target DP/DM
             int armor = GetArmor(target, physical);
             if (armor > 0)
             {

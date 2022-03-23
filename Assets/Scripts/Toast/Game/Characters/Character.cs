@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Stats;
 using Toast.Game.Items;
+using Toast.Game.Shards;
 using Toast.Game.Actions;
 using Toast.Game.Combat;
 using Toast.Game.AI;
@@ -22,7 +23,7 @@ namespace Toast.Game.Characters
         public StatBlock Stats { get; private set; }
         public Equipment Equipment { get; private set; }
         public CharacterAI AI { get; private set; }
-        public List<Action> Actions { get; private set; }
+        public ShardBuffer ShardBuffer { get; private set; }
 
         public Character(CharacterData data)
         {
@@ -31,7 +32,7 @@ namespace Toast.Game.Characters
             Stats = data.StatBlock.Generate();
             Equipment = data.Equipment.Generate();
             AI = data.AI.Generate();
-            BuildActionsList();
+            ShardBuffer = new ShardBuffer();
         }
 
         public Character(string name, Movement movement, StatBlock statBlock, Equipment equipment, CharacterAI ai)
@@ -41,18 +42,10 @@ namespace Toast.Game.Characters
             Stats = statBlock;
             Equipment = equipment;
             AI = ai;
-            BuildActionsList();
+            ShardBuffer = new ShardBuffer();
         }
 
         #region PUBLIC
-
-        /// <summary> Whether this Character can afford the specified Action. </summary>
-        public bool CanAffordAction(Action action)
-        { return Stats.AP >= action.Cost; }
-
-        /// <summary> Whether this Character can perform the specified Action. </summary>
-        public bool CanPerformAction(Action action)
-        { return !Stats.Dead && CanAffordAction(action) && Actions.Contains(action); }
 
         /// <summary> Perform specified action. </summary>
         public bool PerformAction(Action action, Character target)
@@ -72,6 +65,9 @@ namespace Toast.Game.Characters
                     case Regen regen:
                         CombatHelper.PerformRegen(regen, this, target, Stats.RollCrit());
                         return true;
+                    case Roll roll:
+                        CombatHelper.PerformRoll(roll, target);
+                        return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");
                         return false;
@@ -80,27 +76,35 @@ namespace Toast.Game.Characters
             return false;
         }
 
-        /// <summary> Process turn. </summary>
+        /// <summary> Start turn process. </summary>
         public void Process()
         {
             Stats.AlterAP(Stats.APRegen);
-            AI.Process();
+            ShardBuffer.Reset();
+            AI?.Process();
         }
 
-        #endregion
+        /// <summary> Whether this Character can perform the specified Action. </summary>
+        public bool CanPerformAction(Action action)
+        { return !Stats.Dead && CanAffordAction(action) && HasAction(action); }
 
-        #region PRIVATE
+        /// <summary> Whether this Character can afford the specified Action. </summary>
+        public bool CanAffordAction(Action action)
+        { return Stats.AP >= action.Cost; }
 
-        private void BuildActionsList()
+        /// <summary> Whether Character has access to specified Action. </summary>
+        public bool HasAction(Action action)
         {
-            Actions = new List<Action>();
-            if (Equipment != null && Equipment.Weapon != null)
-            {
-                if (Equipment.Weapon.Primary != null)
-                    Actions.Add(Equipment.Weapon.Primary);
-                if (Equipment.Weapon.Secondary != null)
-                    Actions.Add(Equipment.Weapon.Secondary);
-            }
+            if (Movement == action)
+                return true;
+            if (Equipment?.Weapon?.Primary == action)
+                return true;
+            if (Equipment?.Weapon?.Secondary == action)
+                return true;
+            foreach (Shard shard in Equipment.Shards)
+                if (shard.Roll == action)
+                    return true;
+            return false;
         }
 
         #endregion
