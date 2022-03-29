@@ -18,13 +18,12 @@ namespace Toast.Game.Stats
         [SerializeField] private IntReference apRegen;
         [SerializeField] private IntReference crit;
         [SerializeField] private Spread initiative;
-        [SerializeField] private List<DamageType> resistances;
-        [SerializeField] private List<DamageType> weaknesses;
+        [SerializeField] private List<DamageModifier> modifiers;
 
         #region PUBLIC
 
         public StatBlock Generate()
-        { return new StatBlock(hp, hp, ap / 2, ap, apRegen, crit, initiative, resistances, weaknesses); }
+        { return new StatBlock(hp, hp, ap / 2, ap, apRegen, crit, initiative, modifiers); }
 
         #endregion
     }

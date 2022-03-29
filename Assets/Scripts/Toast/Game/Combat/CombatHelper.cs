@@ -56,8 +56,7 @@ namespace Toast.Game.Combat
         private static int ApplyDamage(Attack attack, Character source, Character target, bool physical, bool crit)
         {
             int damage = GetDamage(attack, source, physical, crit);
-            if (target.Stats.WeakTo(physical ? DamageType.PHYSICAL : DamageType.MAGICAL)) damage *= 2;
-            if (target.Stats.ResistantTo(physical ? DamageType.PHYSICAL : DamageType.MAGICAL)) damage /= 2;
+            // TODO: apply resistances
             // TODO: apply shard buffers
             // source AP/AM and target DP/DM
             int armor = GetArmor(target, physical);

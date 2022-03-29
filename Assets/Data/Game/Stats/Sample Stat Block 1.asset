@@ -39,5 +39,6 @@ MonoBehaviour:
   initiative:
     value: 10
     variation: 5
-  resistances: 00000000
-  weaknesses: 
+  modifiers:
+  - type: 0
+    modifier: 0

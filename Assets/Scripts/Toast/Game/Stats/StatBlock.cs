@@ -18,11 +18,10 @@ namespace Toast.Game.Stats
         public int APRegen { get; private set; }
         public int Crit { get; private set; }
         public Spread Initiative { get; private set; }
-        public List<DamageType> Resistances { get; private set; }
-        public List<DamageType> Weaknesses { get; private set; }
+        public List<DamageModifier> DamageModifiers { get; private set; }
         public bool Dead { get { return HP <= 0; } }
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, List<DamageType> resistances, List<DamageType> weaknesses)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, List<DamageModifier> modifiers)
         {
             HPMax = hpMax;
             APMax = apMax;
@@ -31,8 +30,7 @@ namespace Toast.Game.Stats
             SetAP(ap);
             Crit = crit;
             Initiative = initiative;
-            Resistances = resistances;
-            Weaknesses = weaknesses;
+            DamageModifiers = modifiers;
         }
 
         #region PUBLIC
@@ -56,14 +54,6 @@ namespace Toast.Game.Stats
         /// <summary> Check for a Critical. </summary>
         public bool RollCrit()
         { return Random.value <= Crit * 0.01f; }
-
-        /// <summary> Whether resistance exists. </summary>
-        public bool ResistantTo(DamageType type)
-        { return Resistances.Contains(type); }
-
-        /// <summary> Whether weakness exists. </summary>
-        public bool WeakTo(DamageType type)
-        { return Weaknesses.Contains(type); }
 
         #endregion
     }
