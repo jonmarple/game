@@ -5,6 +5,7 @@ namespace Toast.Game.Combat
     /// </summary>
     public enum ModifierLevel
     {
+        NONE,
         RESISTANT,
         WEAK
     }

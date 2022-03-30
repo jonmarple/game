@@ -18,10 +18,11 @@ namespace Toast.Game.Stats
         public int APRegen { get; private set; }
         public int Crit { get; private set; }
         public Spread Initiative { get; private set; }
-        public List<DamageModifier> DamageModifiers { get; private set; }
+        public ModifierLevel PhysicalMod { get; private set; }
+        public ModifierLevel MagicalMod { get; private set; }
         public bool Dead { get { return HP <= 0; } }
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, List<DamageModifier> modifiers)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, ModifierLevel physicalMod, ModifierLevel magicalMod)
         {
             HPMax = hpMax;
             APMax = apMax;
@@ -30,7 +31,8 @@ namespace Toast.Game.Stats
             SetAP(ap);
             Crit = crit;
             Initiative = initiative;
-            DamageModifiers = modifiers;
+            PhysicalMod = physicalMod;
+            MagicalMod = magicalMod;
         }
 
         #region PUBLIC

@@ -39,5 +39,5 @@ MonoBehaviour:
   initiative:
     value: 10
     variation: 5
-  resistances: 
-  weaknesses: 01000000
+  physicalMod: 2
+  magicalMod: 1
