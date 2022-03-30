@@ -31,18 +31,26 @@ namespace Toast.Game.Shards
             MBuffer = 1;
         }
 
-        /// <summary> Set DP/DM Buffers. </summary>
-        public void SetDBuffers(int dp, int dm)
+        /// <summary> Get Attack Buffer. </summary>
+        public int GetAttackBuffer(bool physical)
+        { return physical ? APBuffer : AMBuffer; }
+
+        /// <summary> Get Defend Buffer. </summary>
+        public int GetDefendBuffer(bool physical)
+        { return physical ? DPBuffer : DMBuffer; }
+
+        /// <summary> Set Attack Buffer. </summary>
+        public void SetAttackBuffer(bool physical, int value)
         {
-            DPBuffer = dp;
-            DMBuffer = dm;
+            if (physical) APBuffer = value;
+            else AMBuffer = value;
         }
 
-        /// <summary> Set AP/AM Buffers. </summary>
-        public void SetABuffers(int ap, int am)
+        /// <summary> Set Defend Buffer. </summary>
+        public void SetDefendBuffer(bool physical, int value)
         {
-            APBuffer = ap;
-            AMBuffer = am;
+            if (physical) DPBuffer = value;
+            else DMBuffer = value;
         }
 
         /// <summary> Apply shard roll to buffer. </summary>

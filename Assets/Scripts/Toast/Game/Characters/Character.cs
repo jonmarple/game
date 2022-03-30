@@ -66,7 +66,7 @@ namespace Toast.Game.Characters
                         CombatHelper.PerformRegen(regen, this, target, Stats.RollCrit());
                         return true;
                     case Roll roll:
-                        CombatHelper.PerformRoll(roll, target);
+                        CombatHelper.PerformRoll(roll, this, target);
                         return true;
                     default:
                         Debug.LogWarning("Implementation for " + action.ActionName + " missing.");

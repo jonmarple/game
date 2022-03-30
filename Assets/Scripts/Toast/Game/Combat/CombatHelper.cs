@@ -40,11 +40,12 @@ namespace Toast.Game.Combat
         }
 
         /// <summary> Perform a shard roll. </summary>
-        public static void PerformRoll(Roll roll, Character target)
+        public static void PerformRoll(Roll roll, Character source, Character target)
         {
-            if (!target.Stats.Dead)
+            if (!source.Stats.Dead && !target.Stats.Dead)
             {
                 int value = target.ShardBuffer.AddRoll(roll.Shard);
+                source.Equipment.Shards.Remove(roll.Shard);
                 Debug.Log(roll.ActionName + ": " + value);
             }
         }
@@ -55,16 +56,35 @@ namespace Toast.Game.Combat
 
         private static int ApplyDamage(Attack attack, Character source, Character target, bool physical, bool crit)
         {
+            // get attack damage and add attack shard buffer
             int damage = GetDamage(attack, source, physical, crit);
-            // TODO: apply resistances
-            // TODO: apply shard buffers
-            // source AP/AM and target DP/DM
-            int armor = GetArmor(target, physical);
-            if (armor > 0)
+            int aShard = source.ShardBuffer.GetAttackBuffer(physical);
+            source.ShardBuffer.SetAttackBuffer(physical, 0);
+            damage += aShard;
+
+            // apply modifier
+            int half = damage / 2;
+            switch (physical ? target.Stats.PhysicalMod : target.Stats.MagicalMod)
             {
-                if (damage > armor) AlterArmorHP(target, -armor, -(damage - armor), physical);
-                else AlterArmor(target, -damage, physical);
+                case ModifierLevel.RESISTANT:
+                    damage -= half;
+                    break;
+                case ModifierLevel.WEAK:
+                    damage += half;
+                    break;
+                default:
+                    break;
             }
+
+            // get armor points and add defense shard buffer
+            int armor = GetArmor(target, physical);
+            int dShard = target.ShardBuffer.GetDefendBuffer(physical);
+            target.ShardBuffer.SetDefendBuffer(physical, 0);
+            armor += dShard;
+
+            // apply damage to armor and hp
+            if (armor > 0 && damage > armor) AlterArmorHP(target, -armor, -(damage - armor), physical);
+            else if (armor > 0) AlterArmor(target, -damage, physical);
             else AlterHP(target, -damage);
             return damage;
         }
