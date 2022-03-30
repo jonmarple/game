@@ -40,5 +40,5 @@ MonoBehaviour:
     value: 10
     variation: 5
   modifiers:
-  - type: 4
+  - type: 1
     modifier: 1
