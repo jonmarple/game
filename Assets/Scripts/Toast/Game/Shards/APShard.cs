@@ -12,7 +12,7 @@ namespace Toast.Game.Shards
     {
         public APShard()
         {
-            Spread = new Spread();
+            Spread = new Spread(5, 2);
             Roll = new Roll("APShard Roll", 1, this);
         }
 

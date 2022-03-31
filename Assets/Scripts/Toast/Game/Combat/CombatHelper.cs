@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Characters;
 using Toast.Game.Actions;
-using Toast.Game.Shards;
 
 namespace Toast.Game.Combat
 {
@@ -48,7 +47,7 @@ namespace Toast.Game.Combat
             {
                 roll.Perform();
                 int value = target.ShardBuffer.AddRoll(roll.Shard);
-                source.Equipment.Shards.Remove(roll.Shard);
+                source.Equipment.Shards.Hand.Remove(roll.Shard);
                 Debug.Log(roll.ActionName + ": " + value);
             }
         }

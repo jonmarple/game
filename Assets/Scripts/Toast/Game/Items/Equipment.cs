@@ -13,13 +13,13 @@ namespace Toast.Game.Items
         /* Public Fields */
         public Armor Armor { get; private set; }
         public Weapon Weapon { get; private set; }
-        public List<Shard> Shards { get; private set; }
+        public ShardBag Shards { get; private set; }
 
-        public Equipment(Armor armor, Weapon weapon, List<Shard> shards)
+        public Equipment(Armor armor, Weapon weapon, ShardBag shards)
         {
             Armor = armor;
             Weapon = weapon;
-            Shards = shards == null ? new List<Shard>() : shards;
+            Shards = shards;
         }
     }
 }

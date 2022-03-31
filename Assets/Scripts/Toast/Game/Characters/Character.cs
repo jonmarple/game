@@ -81,10 +81,11 @@ namespace Toast.Game.Characters
         public void Process()
         {
             Stats.AlterAP(Stats.APRegen);
+            Equipment.Shards.FillHand();
             ShardBuffer.Reset();
+            Equipment.Weapon.Primary.Turn();
+            Equipment.Weapon.Secondary.Turn();
             AI?.Process();
-            Equipment?.Weapon?.Primary?.Turn();
-            Equipment?.Weapon?.Secondary?.Turn();
         }
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
@@ -104,7 +105,7 @@ namespace Toast.Game.Characters
                 return true;
             if (Equipment?.Weapon?.Secondary == action)
                 return true;
-            foreach (Shard shard in Equipment.Shards)
+            foreach (Shard shard in Equipment.Shards.Hand)
                 if (shard.Roll == action)
                     return true;
             return false;

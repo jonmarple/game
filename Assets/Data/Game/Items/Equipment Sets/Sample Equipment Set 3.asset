@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armor: {fileID: 11400000, guid: d317910598ea8ab49b1b12b38515c0e7, type: 2}
   weapon: {fileID: 11400000, guid: 0ce6e9cc28404c140838c5d20601fc8d, type: 2}
-  shardListSize:
+  shardCount:
+    _usage: 0
+    _value: 30
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+  shardHandSize:
     _usage: 0
     _value: 5
     _constant: {fileID: 0}
