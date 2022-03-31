@@ -13,6 +13,7 @@ namespace Toast.Game.Actions
         /* Serialized Fields */
         [SerializeField] protected StringReference actionName;
         [SerializeField] protected IntReference cost;
+        [SerializeField] protected IntReference cooldown;
 
         #region PUBLIC
 

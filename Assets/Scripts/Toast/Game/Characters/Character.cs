@@ -51,6 +51,7 @@ namespace Toast.Game.Characters
         public bool PerformAction(Action action, Character target)
         {
             if (action == null) Debug.LogWarning("Action missing.");
+            else if (!action.CanPerform()) Debug.LogWarning("Action not available.");
             else if (target == null) Debug.LogWarning("Target missing.");
             else if (!CanPerformAction(action)) Debug.Log(CharacterName + " cannot perform action " + action.ActionName + ".");
             else
@@ -82,11 +83,13 @@ namespace Toast.Game.Characters
             Stats.AlterAP(Stats.APRegen);
             ShardBuffer.Reset();
             AI?.Process();
+            Equipment?.Weapon?.Primary?.Turn();
+            Equipment?.Weapon?.Secondary?.Turn();
         }
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
         public bool CanPerformAction(Action action)
-        { return !Stats.Dead && CanAffordAction(action) && HasAction(action); }
+        { return !Stats.Dead && HasAction(action) && CanAffordAction(action) && action.CanPerform(); }
 
         /// <summary> Whether this Character can afford the specified Action. </summary>
         public bool CanAffordAction(Action action)

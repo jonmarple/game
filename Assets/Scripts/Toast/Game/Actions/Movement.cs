@@ -12,10 +12,9 @@ namespace Toast.Game.Actions
         /* Public Fields */
         public MovementType Type { get; private set; }
 
-        public Movement(string name, int cost, MovementType type)
+        public Movement(string name, int cost, int cooldown, MovementType type)
         {
-            ActionName = name;
-            Cost = cost;
+            InitBaseFields(name, cost, cooldown);
             Type = type;
         }
     }

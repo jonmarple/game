@@ -17,7 +17,7 @@ namespace Toast.Game.Actions
         #region PUBLIC
 
         public override Action Generate()
-        { return new Attack(actionName, cost, damageModifier); }
+        { return new Attack(actionName, cost, cooldown, damageModifier); }
 
         #endregion
     }

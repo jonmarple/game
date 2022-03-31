@@ -19,6 +19,7 @@ namespace Toast.Game.Combat
         {
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
+                attack.Perform();
                 if (crit) Debug.Log(attack.ActionName + " crit.");
                 int damage = 0;
                 damage += ApplyDamage(attack, source, target, true, crit);
@@ -33,6 +34,7 @@ namespace Toast.Game.Combat
         {
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
+                regen.Perform();
                 if (crit) Debug.Log(regen.ActionName + " crit.");
                 int amount = ApplyRegen(regen, source, target, crit);
                 Debug.Log(regen.ActionName + ": " + amount + " hp");
@@ -44,6 +46,7 @@ namespace Toast.Game.Combat
         {
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
+                roll.Perform();
                 int value = target.ShardBuffer.AddRoll(roll.Shard);
                 source.Equipment.Shards.Remove(roll.Shard);
                 Debug.Log(roll.ActionName + ": " + value);

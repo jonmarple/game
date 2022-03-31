@@ -12,10 +12,9 @@ namespace Toast.Game.Actions
         /* Public Fields */
         public int Modifier { get; private set; }
 
-        public Attack(string name, int cost, int modifier)
+        public Attack(string name, int cost, int cooldown, int modifier)
         {
-            ActionName = name;
-            Cost = cost;
+            InitBaseFields(name, cost, cooldown);
             Modifier = modifier;
         }
     }

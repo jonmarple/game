@@ -15,8 +15,7 @@ namespace Toast.Game.Actions
 
         public Roll(string name, int cost, Shard shard)
         {
-            ActionName = name;
-            Cost = cost;
+            InitBaseFields(name, cost, 0);
             Shard = shard;
         }
     }
