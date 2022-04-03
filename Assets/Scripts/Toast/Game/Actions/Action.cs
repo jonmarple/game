@@ -23,7 +23,7 @@ namespace Toast.Game.Actions
 
         /// <summary> Perform action. </summary>
         public void Perform()
-        { CooldownCounter = Cooldown; }
+        { if (CanPerform()) CooldownCounter = Cooldown; }
 
         /// <summary> Process action turn. </summary>
         public void Turn()

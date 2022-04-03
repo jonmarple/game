@@ -30,7 +30,7 @@ public class SpreadTests
         for (int i = 0; i < attempts; i++)
         {
             int roll = spread.Roll();
-            Assert.True(5 <= roll && roll <= 15);
+            Assert.IsTrue(5 <= roll && roll <= 15);
         }
     }
 
