@@ -18,14 +18,16 @@ public class SpreadTests
     [Test]
     public void TestRollBadValue()
     {
-        Spread spreadneg = new Spread(-1, 0);
-        Assert.Zero(spreadneg.Roll());
+        Spread spread = new Spread(-1, 0);
+
+        Assert.Zero(spread.Roll());
     }
 
     [Test]
     public void TestRollVariation()
     {
         Spread spread = new Spread(10, 5);
+
         int attempts = 100;
         for (int i = 0; i < attempts; i++)
         {
@@ -38,6 +40,7 @@ public class SpreadTests
     public void TestRollCrit()
     {
         Spread spread = new Spread(1, 0);
+
         Assert.AreEqual(1, spread.Roll(false));
         Assert.AreEqual(2, spread.Roll(true));
     }
@@ -46,6 +49,7 @@ public class SpreadTests
     public void TestEmptySpread()
     {
         Spread spread = new Spread();
+
         Assert.Zero(spread.Value);
         Assert.Zero(spread.Variation);
     }

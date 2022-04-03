@@ -12,6 +12,7 @@ public class ActionTests
     public void TestAction()
     {
         Action action = new Attack("Test Action", 1, 2, 3);
+
         Assert.AreEqual("Test Action", action.ActionName);
         Assert.AreEqual(1, action.Cost);
         Assert.AreEqual(2, action.Cooldown);
@@ -22,6 +23,7 @@ public class ActionTests
     public void TestAttack()
     {
         Attack attack = new Attack("Test Attack", 1, 0, 2);
+
         Assert.AreEqual(2, attack.Modifier);
     }
 
@@ -29,6 +31,7 @@ public class ActionTests
     public void TestRegen()
     {
         Regen regen = new Regen("Test Regen", 1, 0, 2);
+
         Assert.AreEqual(2, regen.Modifier);
     }
 
@@ -36,6 +39,7 @@ public class ActionTests
     public void TestMovement()
     {
         Movement movement = new Movement("Test Movement", 1, 0, MovementType.FOUR);
+
         Assert.AreEqual(MovementType.FOUR, movement.Type);
     }
 
@@ -44,6 +48,7 @@ public class ActionTests
     {
         MShard mShard = new MShard();
         Roll roll = new Roll("Test Roll", 1, mShard);
+
         Assert.AreEqual(mShard, roll.Shard);
     }
 
@@ -51,26 +56,32 @@ public class ActionTests
     public void TestCooldown()
     {
         Action action = new Attack("Test Action", 1, 2, 3);
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
 
         action.Perform();
+
         Assert.AreEqual(2, action.CooldownCounter);
         Assert.IsFalse(action.CanPerform());
 
         action.Turn();
+
         Assert.AreEqual(1, action.CooldownCounter);
         Assert.IsFalse(action.CanPerform());
 
         action.Perform();
+
         Assert.AreEqual(1, action.CooldownCounter);
         Assert.IsFalse(action.CanPerform());
 
         action.Turn();
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
 
         action.Turn();
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
     }
@@ -79,14 +90,17 @@ public class ActionTests
     public void TestZeroCooldown()
     {
         Action action = new Attack("Test Action", 1, 0, 3);
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
 
         action.Perform();
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
 
         action.Turn();
+
         Assert.Zero(action.CooldownCounter);
         Assert.IsTrue(action.CanPerform());
     }
