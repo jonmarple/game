@@ -24,9 +24,7 @@ namespace Toast.Game.Shards
 
         public ShardBag(int shardCount, int handSize)
         {
-            Bag = new List<Shard>();
-            for (int i = 0; i < shardCount; i++)
-                Bag.Add(Shard.Generate());
+            Bag = GenerateShards(shardCount);
             Hand = new List<Shard>();
             HandSize = handSize;
             FillHand();
@@ -43,6 +41,14 @@ namespace Toast.Game.Shards
                 Bag.RemoveAt(index);
                 Hand.Add(shard);
             }
+        }
+
+        public static List<Shard> GenerateShards(int shardCount)
+        {
+            List<Shard> shards = new List<Shard>();
+            for (int i = 0; i < shardCount; i++)
+                shards.Add(Shard.Generate());
+            return shards;
         }
 
         #endregion

@@ -16,6 +16,12 @@ namespace Toast.Game.Shards
             Roll = new Roll("DPShard Roll", 1, this);
         }
 
+        public DPShard(Spread spread)
+        {
+            Spread = spread;
+            Roll = new Roll("DPShard Roll", 1, this);
+        }
+
         #region PUBLIC
 
         /// <summary> Generate random DPShard. </summary>
