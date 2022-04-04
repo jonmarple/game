@@ -100,9 +100,9 @@ namespace Toast.Game.Combat
         private static void InitializeAI()
         {
             foreach (Character character in GroupA.Characters)
-                character.AI.Initialize(character, GroupA, GroupB);
+                character.AI?.Initialize(character, GroupA, GroupB);
             foreach (Character character in GroupB.Characters)
-                character.AI.Initialize(character, GroupB, GroupA);
+                character.AI?.Initialize(character, GroupB, GroupA);
         }
 
         /// <summary> Determine order of combat based on initiative. </summary>

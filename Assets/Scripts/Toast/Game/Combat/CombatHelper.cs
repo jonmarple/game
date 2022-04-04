@@ -20,9 +20,8 @@ namespace Toast.Game.Combat
             {
                 attack.Perform();
                 if (crit) Debug.Log(attack.ActionName + " crit.");
-                int damage = 0;
-                damage += ApplyDamage(attack, source, target, true, crit);
-                damage += ApplyDamage(attack, source, target, false, crit);
+                int damage = ApplyDamage(attack, source, target, true, crit)
+                           + ApplyDamage(attack, source, target, false, crit);
                 Debug.Log(attack.ActionName + ": " + damage + " dmg");
                 if (target.Stats.Dead) Debug.Log(target.CharacterName + " died.");
             }
@@ -93,8 +92,7 @@ namespace Toast.Game.Combat
 
         private static int ApplyRegen(Regen regen, Character source, Character target, bool crit)
         {
-            int amount = GetRegen(regen, source, true, crit);
-            amount += GetRegen(regen, source, false, crit);
+            int amount = GetRegen(regen, source, true, crit) + GetRegen(regen, source, false, crit);
             AlterHP(target, amount);
             return amount;
         }

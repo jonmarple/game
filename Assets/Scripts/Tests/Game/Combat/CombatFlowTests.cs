@@ -3,37 +3,75 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Toast.Game;
-using Toast.Game.AI;
-using Toast.Game.Actions;
 using Toast.Game.Characters;
-using Toast.Game.Items;
 using Toast.Game.Combat;
-using Toast.Game.Stats;
-using Toast.Game.Shards;
 
 public class CombatFlowTests
 {
     [Test]
     public void TestFlow()
     {
-        /*
-        CombatFlow.Initialize(
-            new CharacterGroup(new List<Character>(new Character[] { new Character("a1", null, new StatBlock(10, 10, 10, 10, 2, 10, new Spread(5, 2), ModifierLevel.NONE, ModifierLevel.NONE), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1, 0), new Attack("att2", 2, 2, 1)), new ShardBag(30, 5)), new CharacterAI()),
-                                                                     new Character("a2", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2), ModifierLevel.NONE, ModifierLevel.NONE), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1, 0), new Regen("reg1", 1, 1, 0)),  new ShardBag(30, 5)), new CharacterAI()) })),
-            new CharacterGroup(new List<Character>(new Character[] { new Character("e1", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2), ModifierLevel.NONE, ModifierLevel.NONE), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(4, 1), new Spread(0, 0), new Attack("att1", 1, 1, 0), new Attack("att2", 2, 2, 1)), new ShardBag(30, 5)), new CharacterAI()),
-                                                                     new Character("e2", null, new StatBlock(10, 10, 0, 4, 2, 10, new Spread(5, 2), ModifierLevel.NONE, ModifierLevel.NONE), new Equipment(new Armor("", 10, 5), new Weapon("", new Spread(0, 0), new Spread(3, 1), new Attack("att1", 1, 1, 0), new Attack("att2", 2, 2, 1)), new ShardBag(30, 5)), new CharacterAI()) })));
+        CharacterGroup a = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter(), Factory.GenerateCharacter() });
+        CharacterGroup b = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter() });
 
-        int i = 0;
-        while (!CombatFlow.Finished && i++ < 100)
-            CombatFlow.Step();
+        CombatFlow.Reset();
+        CombatFlow.Initialize(a, b);
 
-        Debug.Log(CombatFlow.Active);
-        Debug.Log(CombatFlow.Finished);
-        Debug.Log(CombatFlow.GroupA.Active);
-        Debug.Log(CombatFlow.GroupB.Active);
-        */
+        CombatFlow.Step();
+        Assert.AreEqual(0, CombatFlow.Index);
+        CombatFlow.Step();
+        Assert.AreEqual(1, CombatFlow.Index);
+        CombatFlow.Step();
+        Assert.AreEqual(2, CombatFlow.Index);
+        CombatFlow.Step();
+        Assert.AreEqual(3, CombatFlow.Index);
+        CombatFlow.Step();
+        Assert.AreEqual(4, CombatFlow.Index);
+        CombatFlow.Step();
+        Assert.AreEqual(0, CombatFlow.Index);
+    }
 
-        Assert.IsTrue(true);
+    [Test]
+    public void TestInit()
+    {
+        CharacterGroup a = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter(), Factory.GenerateCharacter() });
+        CharacterGroup b = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter() });
+
+        CombatFlow.Reset();
+
+        Assert.IsFalse(CombatFlow.Active);
+        Assert.IsFalse(CombatFlow.Finished);
+        Assert.AreEqual(-1, CombatFlow.Index);
+        Assert.AreEqual(null, CombatFlow.GroupA);
+        Assert.AreEqual(null, CombatFlow.GroupB);
+        Assert.AreEqual(null, CombatFlow.Order);
+
+        CombatFlow.Initialize(a, b);
+
+        Assert.IsTrue(CombatFlow.Active);
+        Assert.IsFalse(CombatFlow.Finished);
+        Assert.AreEqual(-1, CombatFlow.Index);
+        Assert.AreEqual(a, CombatFlow.GroupA);
+        Assert.AreEqual(b, CombatFlow.GroupB);
+    }
+
+    [Test]
+    public void TestOrder()
+    {
+        Character a1 = Factory.GenerateCharacter(initiativeValue: 1, initiativeVariation: 0);
+        Character a2 = Factory.GenerateCharacter(initiativeValue: 3, initiativeVariation: 0);
+        Character a3 = Factory.GenerateCharacter(initiativeValue: 2, initiativeVariation: 0);
+        Character b1 = Factory.GenerateCharacter(initiativeValue: 4, initiativeVariation: 0);
+
+        CharacterGroup a = new CharacterGroup(new List<Character>() { a1, a2, a3 });
+        CharacterGroup b = new CharacterGroup(new List<Character>() { b1 });
+
+        CombatFlow.Reset();
+        CombatFlow.Initialize(a, b);
+
+        Assert.AreEqual(b1, CombatFlow.Order[0]);
+        Assert.AreEqual(a2, CombatFlow.Order[1]);
+        Assert.AreEqual(a3, CombatFlow.Order[2]);
+        Assert.AreEqual(a1, CombatFlow.Order[3]);
     }
 }
