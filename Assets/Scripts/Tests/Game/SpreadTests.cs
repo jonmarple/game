@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -62,5 +63,26 @@ public class SpreadTests
 
         Assert.Zero(spread.Value);
         Assert.Zero(spread.Variation);
+    }
+
+    [Test]
+    public void TestGenerate()
+    {
+        int value = 15;
+
+        //Dictionary<int, int> counts = new Dictionary<int, int>();
+
+        int attempts = 100;
+        for (int i = 0; i < attempts; i++)
+        {
+            Spread spread = Spread.Generate(value);
+            //if (!counts.ContainsKey(spread.Variation))
+            //    counts.Add(spread.Variation, 0);
+            //counts[spread.Variation]++;
+            Assert.IsTrue(Mathf.RoundToInt(value * 0.25f) <= spread.Variation && spread.Variation <= Mathf.RoundToInt(value * 0.5f));
+        }
+
+        //foreach (KeyValuePair<int, int> kv in counts.OrderBy(x => x.Key))
+        //    Debug.Log(kv.Key + "\t" + Mathf.RoundToInt(((float)kv.Value / attempts) * 100) + "\t" + kv.Value);
     }
 }

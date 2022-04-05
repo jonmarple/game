@@ -26,6 +26,10 @@ namespace Toast.Game
 
         #region PUBLIC
 
+        /// <summary> Generates a Spread with Variation approximately 25%-50% of its Value. </summary>
+        public static Spread Generate(int value)
+        { return new Spread(value, Mathf.Clamp(Mathf.RoundToInt(RandomGaussian(value * 0.25f, value * 0.5f)), 0, int.MaxValue)); }
+
         public int Roll()
         { return Mathf.Clamp(Mathf.RoundToInt(RandomGaussian(value - variation, value + variation)), 0, int.MaxValue); }
 
