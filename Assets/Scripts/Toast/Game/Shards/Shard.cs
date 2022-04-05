@@ -17,18 +17,18 @@ namespace Toast.Game.Shards
         #region PUBLIC
 
         /// <summary> Generate random Shard. </summary>
-        public static Shard Generate()
+        public static Shard Generate(int value)
         {
             switch (Random.Range(1, 6))
             {
                 case 1:
-                    return APShard.Generate();
+                    return APShard.Generate(value);
                 case 2:
-                    return AMShard.Generate();
+                    return AMShard.Generate(value);
                 case 3:
-                    return DPShard.Generate();
+                    return DPShard.Generate(value);
                 case 4:
-                    return DMShard.Generate();
+                    return DMShard.Generate(value);
                 case 5:
                     return MShard.Generate();
             }

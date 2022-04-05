@@ -62,7 +62,9 @@ public class Factory
         Action weaponPrimary = null,
         Action weaponSecondary = null,
         List<Shard> shards = null,
+        int shardCount = 30,
         int handSize = 5,
+        int shardTargetValue = 10,
         CharacterAI ai = null
     )
     {
@@ -79,7 +81,7 @@ public class Factory
                     new Spread(weaponMagicalValue, weaponMagicalVariation),
                     weaponPrimary != null ? weaponPrimary : new Attack("Primary", 1, 0, 1),
                     weaponSecondary != null ? weaponSecondary : new Attack("Secondary", 2, 1, 2)),
-                new ShardBag(shards != null ? shards : ShardBag.GenerateShards(30), handSize)),
+                new ShardBag(shards != null ? shards : ShardBag.GenerateShards(shardCount, Spread.Generate(shardTargetValue)), handSize)),
             ai
         );
     }

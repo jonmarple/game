@@ -10,12 +10,6 @@ namespace Toast.Game.Shards
     /// </summary>
     public class APShard : Shard
     {
-        public APShard()
-        {
-            Spread = new Spread(5, 2);
-            Roll = new Roll("APShard Roll", 1, this);
-        }
-
         public APShard(Spread spread)
         {
             Spread = spread;
@@ -25,8 +19,8 @@ namespace Toast.Game.Shards
         #region PUBLIC
 
         /// <summary> Generate random APShard. </summary>
-        new public static APShard Generate()
-        { return new APShard(); }
+        new public static APShard Generate(int value)
+        { return new APShard(Spread.Generate(value)); }
 
         #endregion
     }

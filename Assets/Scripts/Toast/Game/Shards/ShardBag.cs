@@ -22,9 +22,9 @@ namespace Toast.Game.Shards
             FillHand();
         }
 
-        public ShardBag(int shardCount, int handSize)
+        public ShardBag(int shardCount, int handSize, Spread targetValue)
         {
-            Bag = GenerateShards(shardCount);
+            Bag = GenerateShards(shardCount, targetValue);
             Hand = new List<Shard>();
             HandSize = handSize;
             FillHand();
@@ -43,11 +43,11 @@ namespace Toast.Game.Shards
             }
         }
 
-        public static List<Shard> GenerateShards(int shardCount)
+        public static List<Shard> GenerateShards(int shardCount, Spread targetValue)
         {
             List<Shard> shards = new List<Shard>();
             for (int i = 0; i < shardCount; i++)
-                shards.Add(Shard.Generate());
+                shards.Add(Shard.Generate(targetValue.Roll()));
             return shards;
         }
 

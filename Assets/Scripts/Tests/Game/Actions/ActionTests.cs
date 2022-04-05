@@ -46,7 +46,7 @@ public class ActionTests
     [Test]
     public void TestRoll()
     {
-        MShard mShard = new MShard();
+        MShard mShard = MShard.Generate();
         Roll roll = new Roll("Test Roll", 1, mShard);
 
         Assert.AreEqual(mShard, roll.Shard);

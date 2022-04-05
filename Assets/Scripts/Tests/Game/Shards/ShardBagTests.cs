@@ -11,13 +11,13 @@ public class ShardBagTests
     [Test]
     public void TestShardBag()
     {
-        ShardBag shards = new ShardBag(30, 5);
+        ShardBag shards = new ShardBag(30, 5, Spread.Generate(10));
 
         Assert.AreEqual(5, shards.HandSize);
         Assert.AreEqual(5, shards.Hand.Count);
         Assert.AreEqual(25, shards.Bag.Count);
 
-        shards = new ShardBag(new List<Shard>() { Shard.Generate(), Shard.Generate(), Shard.Generate() }, 1);
+        shards = new ShardBag(new List<Shard>() { Shard.Generate(10), Shard.Generate(10), Shard.Generate(10) }, 1);
 
         Assert.AreEqual(1, shards.HandSize);
         Assert.AreEqual(1, shards.Hand.Count);
@@ -27,7 +27,7 @@ public class ShardBagTests
     [Test]
     public void TestFillHand()
     {
-        ShardBag shards = new ShardBag(30, 5);
+        ShardBag shards = new ShardBag(30, 5, Spread.Generate(10));
         shards.Hand.RemoveAt(0);
         shards.Hand.RemoveAt(0);
 
@@ -41,7 +41,7 @@ public class ShardBagTests
     [Test]
     public void TestGenerateShards()
     {
-        List<Shard> shards = ShardBag.GenerateShards(5);
+        List<Shard> shards = ShardBag.GenerateShards(5, Spread.Generate(10));
 
         Assert.AreEqual(5, shards.Count);
     }

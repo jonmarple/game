@@ -17,11 +17,12 @@ namespace Toast.Game.Items
         [SerializeField] private WeaponData weapon;
         [SerializeField] private IntReference shardCount;
         [SerializeField] private IntReference shardHandSize;
+        [SerializeField] private Spread targetValue;
 
         #region PUBLIC
 
         public Equipment Generate()
-        { return new Equipment(armor.Generate(), weapon.Generate(), new ShardBag(shardCount, shardHandSize)); }
+        { return new Equipment(armor.Generate(), weapon.Generate(), new ShardBag(shardCount, shardHandSize, targetValue)); }
 
         #endregion
     }

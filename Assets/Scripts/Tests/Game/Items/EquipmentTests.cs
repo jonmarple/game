@@ -14,7 +14,7 @@ public class EquipmentTests
     {
         Armor armor = new Armor("Armor", 10, 10);
         Weapon weapon = new Weapon("Weapon", new Spread(), new Spread(), null, null);
-        ShardBag shards = new ShardBag(30, 5);
+        ShardBag shards = new ShardBag(30, 5, Spread.Generate(10));
         Equipment equipment = new Equipment(armor, weapon, shards);
 
         Assert.AreEqual(armor, equipment.Armor);

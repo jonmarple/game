@@ -10,12 +10,6 @@ namespace Toast.Game.Shards
     /// </summary>
     public class DMShard : Shard
     {
-        public DMShard()
-        {
-            Spread = new Spread(5, 2);
-            Roll = new Roll("DMShard Roll", 1, this);
-        }
-
         public DMShard(Spread spread)
         {
             Spread = spread;
@@ -25,8 +19,8 @@ namespace Toast.Game.Shards
         #region PUBLIC
 
         /// <summary> Generate random DMShard. </summary>
-        new public static DMShard Generate()
-        { return new DMShard(); }
+        new public static DMShard Generate(int value)
+        { return new DMShard(Spread.Generate(value)); }
 
         #endregion
     }
