@@ -26,14 +26,24 @@ public class SpreadTests
     [Test]
     public void TestRollVariation()
     {
-        Spread spread = new Spread(10, 5);
+        int value = 10;
+        int variation = 5;
+        Spread spread = new Spread(value, variation);
+
+        //Dictionary<int, int> counts = new Dictionary<int, int>();
+        //for (int i = spread.Value - spread.Variation; i <= spread.Value + spread.Variation; i++)
+        //    counts.Add(i, 0);
 
         int attempts = 100;
         for (int i = 0; i < attempts; i++)
         {
             int roll = spread.Roll();
-            Assert.IsTrue(5 <= roll && roll <= 15);
+            //counts[roll]++;
+            Assert.IsTrue((value - variation) <= roll && roll <= (value + variation));
         }
+
+        //foreach (KeyValuePair<int, int> kv in counts)
+        //    Debug.Log(kv.Key + "\t" + Mathf.RoundToInt(((float)kv.Value / attempts) * 100) + "\t" + kv.Value);
     }
 
     [Test]
