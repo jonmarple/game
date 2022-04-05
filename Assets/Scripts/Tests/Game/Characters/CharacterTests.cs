@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Toast.Game;
 using Toast.Game.Actions;
+using Toast.Game.Combat;
 using Toast.Game.Characters;
 using Toast.Game.Shards;
 
@@ -13,8 +14,15 @@ public class CharacterTests
     [Test]
     public void TestPerformAction()
     {
-        Character character = Factory.GenerateCharacter(ap: 3);
-        Character target = Factory.GenerateCharacter(hp: 100, hpMax: 100);
+        Character character = Factory.GenerateCharacter(ap: 3, initiativeValue: 1, initiativeVariation: 0);
+        Character target = Factory.GenerateCharacter(hp: 100, hpMax: 100, initiativeValue: 10, initiativeVariation: 0);
+
+        CombatFlow.Initialize(new CharacterGroup(new List<Character>() { character }), new CharacterGroup(new List<Character>() { target }));
+        CombatFlow.Step();
+
+        Assert.IsFalse(character.PerformAction(character.Primary, target)); // fail due to character inactivity
+
+        CombatFlow.Step();
 
         Assert.IsTrue(character.PerformAction(character.Secondary, target));
         Assert.IsFalse(character.PerformAction(character.Secondary, target)); // fail due to cooldown

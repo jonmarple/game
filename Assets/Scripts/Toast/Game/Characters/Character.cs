@@ -24,6 +24,7 @@ namespace Toast.Game.Characters
         public Equipment Equipment { get; private set; }
         public CharacterAI AI { get; private set; }
         public ShardBuffer ShardBuffer { get; private set; }
+        public bool Active { get { return CombatFlow.CurrentCharacter == this; } }
 
         public Character(CharacterData data)
         {
@@ -90,7 +91,7 @@ namespace Toast.Game.Characters
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
         public bool CanPerformAction(Action action)
-        { return !Stats.Dead && HasAction(action) && CanAffordAction(action) && action.CanPerform(); }
+        { return !Stats.Dead && (!CombatFlow.Active || Active) && HasAction(action) && CanAffordAction(action) && action.CanPerform(); }
 
         /// <summary> Whether this Character can afford the specified Action. </summary>
         public bool CanAffordAction(Action action)

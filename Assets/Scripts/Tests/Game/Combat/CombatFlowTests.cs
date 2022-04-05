@@ -19,16 +19,21 @@ public class CombatFlowTests
 
         CombatFlow.Step();
         Assert.AreEqual(0, CombatFlow.Index);
+        Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
         CombatFlow.Step();
         Assert.AreEqual(1, CombatFlow.Index);
+        Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
         CombatFlow.Step();
         Assert.AreEqual(2, CombatFlow.Index);
+        Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
         CombatFlow.Step();
         Assert.AreEqual(3, CombatFlow.Index);
+        Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
         CombatFlow.Step();
         Assert.AreEqual(4, CombatFlow.Index);
         CombatFlow.Step();
         Assert.AreEqual(0, CombatFlow.Index);
+        Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
     }
 
     [Test]

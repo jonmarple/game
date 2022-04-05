@@ -16,6 +16,7 @@ namespace Toast.Game.Combat
         public static List<Character> Order { get; private set; }
         public static CharacterGroup GroupA { get; private set; }
         public static CharacterGroup GroupB { get; private set; }
+        public static Character CurrentCharacter { get { return GetCurrentCharacter(); } }
         public static bool Active { get; private set; }
         public static bool Finished { get; private set; }
         public static int Index { get; private set; }
@@ -121,6 +122,13 @@ namespace Toast.Game.Combat
 
             Character[] sortedCharacters = (from kvp in sortedInitiatives select kvp.Key).ToArray();
             Order = new List<Character>(sortedCharacters);
+        }
+
+        private static Character GetCurrentCharacter()
+        {
+            if (0 <= Index && Index < Order.Count)
+                return Order[Index];
+            return null;
         }
 
         #endregion
