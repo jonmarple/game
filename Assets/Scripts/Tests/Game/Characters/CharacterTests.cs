@@ -27,9 +27,12 @@ public class CharacterTests
         Assert.IsTrue(character.PerformAction(character.Secondary, target));
         Assert.IsFalse(character.PerformAction(character.Secondary, target)); // fail due to cooldown
         Assert.IsTrue(character.PerformAction(character.Primary, target));
-        Assert.IsFalse(character.PerformAction(character.Primary, target)); // fail due to ap cost
         Assert.IsFalse(character.PerformAction(null, target)); // fail due to missing action
         Assert.IsFalse(character.PerformAction(new Attack("Test Attack", 0, 0, 1), target)); // fail due to unattached action
+
+        character.Stats.SetAP(0);
+
+        Assert.IsFalse(character.PerformAction(character.Primary, target)); // fail due to ap cost
     }
 
     [Test]
@@ -65,8 +68,12 @@ public class CharacterTests
         Character dead = Factory.GenerateCharacter(hp: 0);
         Attack attack = new Attack("Attack", 1, 0, 1);
 
+        CombatFlow.Reset();
+
         Assert.IsTrue(character.CanPerformAction(character.Primary));
+
         character.Primary.Perform();
+
         Assert.IsFalse(character.CanPerformAction(character.Primary)); // fail due to cooldown
         Assert.IsFalse(character.CanPerformAction(character.Secondary)); // fail due to ap cost
         Assert.IsFalse(character.CanPerformAction(attack)); // fail due to unattached action

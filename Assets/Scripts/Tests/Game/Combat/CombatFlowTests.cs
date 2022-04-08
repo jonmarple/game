@@ -17,6 +17,7 @@ public class CombatFlowTests
         CombatFlow.Reset();
         CombatFlow.Initialize(a, b);
 
+        Assert.AreEqual(-1, CombatFlow.Index);
         CombatFlow.Step();
         Assert.AreEqual(0, CombatFlow.Index);
         Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
@@ -29,8 +30,6 @@ public class CombatFlowTests
         CombatFlow.Step();
         Assert.AreEqual(3, CombatFlow.Index);
         Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
-        CombatFlow.Step();
-        Assert.AreEqual(4, CombatFlow.Index);
         CombatFlow.Step();
         Assert.AreEqual(0, CombatFlow.Index);
         Assert.AreEqual(CombatFlow.Order[CombatFlow.Index], CombatFlow.CurrentCharacter);
@@ -78,5 +77,24 @@ public class CombatFlowTests
         Assert.AreEqual(a2, CombatFlow.Order[1]);
         Assert.AreEqual(a3, CombatFlow.Order[2]);
         Assert.AreEqual(a1, CombatFlow.Order[3]);
+    }
+
+    [Test]
+    public void TestDeadSkip()
+    {
+        CharacterGroup a = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(initiativeValue: 4, initiativeVariation: 0), Factory.GenerateCharacter(initiativeValue: 3, initiativeVariation: 0), Factory.GenerateCharacter(initiativeValue: 2, initiativeVariation: 0) });
+        CharacterGroup b = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(initiativeValue: 1, initiativeVariation: 0) });
+
+        a.Characters[1].Stats.SetHP(0);
+
+        CombatFlow.Reset();
+        CombatFlow.Initialize(a, b);
+
+        CombatFlow.Step();
+        Assert.AreEqual(0, CombatFlow.Index);
+        Assert.AreEqual(a.Characters[0], CombatFlow.CurrentCharacter);
+        CombatFlow.Step();
+        Assert.AreEqual(2, CombatFlow.Index);
+        Assert.AreEqual(a.Characters[2], CombatFlow.CurrentCharacter);
     }
 }

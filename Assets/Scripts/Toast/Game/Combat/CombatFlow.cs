@@ -47,6 +47,7 @@ namespace Toast.Game.Combat
             GroupB = groupB;
             InitializeAI();
             DetermineOrder();
+            Debug.Log("Starting Combat.");
         }
 
         /// <summary> Advance combat to next step. </summary>
@@ -54,11 +55,10 @@ namespace Toast.Game.Combat
         {
             if (Active && !Finished)
             {
-                if (Index == -1) StartRound();
-                else if (Index >= Order.Count) FinishRound();
-                else if (InRange) ProcessTurn();
-                Index += 1;
-
+                CheckFinished();
+                do Index = (Index + 1) % Order.Count;
+                while (CurrentCharacter.Stats.Dead);
+                ProcessTurn();
                 CheckFinished();
             }
             else Debug.LogWarning("Failed to advance combat--no active instance of combat present.");
@@ -68,19 +68,9 @@ namespace Toast.Game.Combat
 
         #region PRIVATE
 
-        private static void StartRound()
-        {
-            Debug.Log("Starting combat round.");
-        }
-
-        private static void FinishRound()
-        {
-            Debug.Log("Finishing combat round.");
-            Index = -1;
-        }
-
         private static void ProcessTurn()
         {
+            Debug.Log("");
             Debug.Log("Processing turn for " + Order[Index].CharacterName + ".");
             Order[Index].Process();
         }
@@ -93,6 +83,8 @@ namespace Toast.Game.Combat
 
         private static void FinishCombat()
         {
+            Debug.Log("");
+            Debug.Log("Finishing Combat.");
             Finished = true;
             Index = -1;
         }
@@ -124,10 +116,10 @@ namespace Toast.Game.Combat
             Order = new List<Character>(sortedCharacters);
         }
 
+        /// <summary> Return currently active character. </summary>
         private static Character GetCurrentCharacter()
         {
-            if (0 <= Index && Index < Order.Count)
-                return Order[Index];
+            if (InRange) return Order[Index];
             return null;
         }
 
