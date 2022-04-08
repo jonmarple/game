@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Toast.UI.Console
         /* Serialized Fields */
         [SerializeField] private ConsoleController controller;
 
+        #region PRIVATE
+
         private void OnEnable()
         { Application.logMessageReceived += HandleLog; }
 
@@ -19,6 +22,8 @@ namespace Toast.UI.Console
         { Application.logMessageReceived -= HandleLog; }
 
         private void HandleLog(string logString, string stackTrace, LogType type)
-        { controller?.LogMessage(logString, type); }
+        { controller?.LogMessage(logString, DateTime.Now, type); }
+
+        #endregion
     }
 }

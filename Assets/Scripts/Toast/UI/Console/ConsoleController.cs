@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,9 @@ namespace Toast.UI.Console
     {
         /* Serialized Fields */
         [SerializeField] private int messageCountMax = 10;
-        [SerializeField] private float messageDelay = 1f;
+        [SerializeField] private float messageDelay = 0f;
         [SerializeField] private VerticalLayoutGroup messageContainer;
+        [SerializeField] private InactivityFader inactivityFader;
         [SerializeField] private RectTransform messagePrefab;
 
         /* Private Fields */
@@ -32,8 +34,8 @@ namespace Toast.UI.Console
 
         #region PUBLIC
 
-        public void LogMessage(string message, LogType type)
-        { incomingMessages.Enqueue(new MSG(message, type)); }
+        public void LogMessage(string message, DateTime time, LogType type)
+        { incomingMessages.Enqueue(new MSG(message, time, type)); }
 
         #endregion
 
@@ -67,8 +69,10 @@ namespace Toast.UI.Console
             if (consoleMessages.Count > messageCountMax)
                 Destroy(consoleMessages.Dequeue().gameObject);
 
-            tmp.text = msg.Message;
+            tmp.text = String.Format("[{0:00}:{1:00}:{2:00}] {3}", msg.Time.Hour, msg.Time.Minute, msg.Time.Second, msg.Message);
             tmp.color = GetColor(msg.Type);
+
+            inactivityFader.RegisterEvent();
         }
 
         private Color GetColor(LogType type)
@@ -91,11 +95,13 @@ namespace Toast.UI.Console
         private struct MSG
         {
             public string Message;
+            public DateTime Time;
             public LogType Type;
 
-            public MSG(string message, LogType type)
+            public MSG(string message, DateTime time, LogType type)
             {
                 Message = message;
+                Time = time;
                 Type = type;
             }
         }
