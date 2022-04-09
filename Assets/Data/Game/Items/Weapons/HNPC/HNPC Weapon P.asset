@@ -19,8 +19,8 @@ MonoBehaviour:
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   physical:
-    value: 5
-    variation: 2
+    value: 15
+    variation: 5
   magical:
     value: 0
     variation: 0

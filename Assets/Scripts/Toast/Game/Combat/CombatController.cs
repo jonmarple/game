@@ -16,26 +16,27 @@ namespace Toast.Game.Combat
         [SerializeField] private GroupController mob;
         [SerializeField] private VoidEvent combatStart;
         [SerializeField] private VoidEvent combatFinish;
-        [SerializeField] private VoidEvent combatTurn;
+        [SerializeField] private VoidEvent turnStart;
+        [SerializeField] private VoidEvent turnFinish;
 
         private void Start()
-        { Initialize(); }
+        { StartCombat(); }
 
         #region PUBLIC
 
-        /// <summary> Initialize parties and CombatFlow. </summary>
-        public void Initialize()
+        /// <summary> Initialize parties and start CombatFlow. </summary>
+        public void StartCombat()
         {
             party.Clear();
             party.Spawn();
             mob.Clear();
             mob.Spawn();
-            CombatFlow.Initialize(party.Group, mob.Group, combatStart, combatFinish, combatTurn);
+            CombatFlow.Start(party.Group, mob.Group, combatStart, combatFinish, turnStart, turnFinish);
         }
 
-        /// <summary> Execute Combat Step. </summary>
-        public void Step()
-        { CombatFlow.Step(); }
+        /// <summary> End current combat turn. </summary>
+        public void FinishTurn()
+        { CombatFlow.FinishTurn(); }
 
         #endregion
     }

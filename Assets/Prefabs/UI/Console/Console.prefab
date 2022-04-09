@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageCountMax: 1000
-  messageDelay: 0.05
+  messageDelay: 0.025
   messageContainer: {fileID: 1068281044774893433}
   inactivityFader: {fileID: 7861663606512203561}
   messagePrefab: {fileID: 1027985317683125004, guid: 9e893994082b41c4cac84995442cdaa8, type: 3}
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617fca1319aa81f47aae66e9bf932f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeout: 5
+  timeout: 1
   fadeSpeed: 10
   maxAlpha: 1
   minAlpha: 0.25

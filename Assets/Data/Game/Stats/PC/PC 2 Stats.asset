@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp:
     _usage: 0
-    _value: 12
+    _value: 100
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   ap:
     _usage: 0
-    _value: 6
+    _value: 4
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   apRegen:
     _usage: 0
-    _value: 3
+    _value: 2
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}

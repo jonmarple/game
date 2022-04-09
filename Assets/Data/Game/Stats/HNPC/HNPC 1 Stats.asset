@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp:
     _usage: 0
-    _value: 10
+    _value: 80
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
     _variableInstancer: {fileID: 0}
   apRegen:
     _usage: 0
-    _value: 2
+    _value: 1
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}

@@ -25,13 +25,24 @@ namespace Toast.Game.UI
         public void Initialize()
         {
             Clear();
+
             cards = new List<InitiativeCardController>();
-            foreach (Character character in CombatFlow.Order)
+
+            foreach (Character character in CombatFlow.GroupA.Characters)
             {
                 InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
-                card.Initialize(character);
+                card.Initialize(character, true);
                 cards.Add(card);
             }
+
+            foreach (Character character in CombatFlow.GroupB.Characters)
+            {
+                InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
+                card.Initialize(character, false);
+                cards.Add(card);
+            }
+
+            Refresh();
         }
 
         /// <summary> Clear list. </summary>
@@ -40,15 +51,40 @@ namespace Toast.Game.UI
             if (cards != null)
             {
                 foreach (InitiativeCardController card in cards)
-                    Destroy(card.gameObject);
+                    if (card) Destroy(card.gameObject);
                 cards.Clear();
             }
         }
 
-        /// <summary> Turn update. </summary>
-        public void Turn()
+        /// <summary> Refresh cards. </summary>
+        public void Refresh()
         {
-            // TODO: move cards
+            if (CombatFlow.Order != null)
+            {
+                foreach (Character character in CombatFlow.Order)
+                {
+                    InitiativeCardController card = GetCard(character);
+                    if (card)
+                    {
+                        if (character.Stats.Dead)
+                            Destroy(card.gameObject);
+                        else
+                            ((RectTransform)card.transform).SetAsLastSibling();
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        private InitiativeCardController GetCard(Character character)
+        {
+            foreach (InitiativeCardController card in cards)
+                if (character == card.Character)
+                    return card;
+            return null;
         }
 
         #endregion

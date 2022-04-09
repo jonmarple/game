@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66bd302e0c522404ab03e2c3832de4fc, type: 3}
-  m_Name: Light Armor
+  m_Name: Mixed Armor
   m_EditorClassIdentifier: 
   itemName:
     _usage: 0
-    _value: Light Armor
+    _value: Mixed Armor
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  physical: 8
-  magical: 8
+  physical: 25
+  magical: 25

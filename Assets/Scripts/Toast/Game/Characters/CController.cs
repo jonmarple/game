@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Combat;
 
 namespace Toast.Game.Characters
 {
@@ -15,7 +16,23 @@ namespace Toast.Game.Characters
         #region PUBLIC
 
         public void Initialize(Character character)
-        { Character = character; }
+        {
+            Character = character;
+            Character.PostProcessCallback = PostProcessCallback;
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        private void PostProcessCallback()
+        { StartCoroutine(HandlePostProcessCallback()); }
+
+        private IEnumerator HandlePostProcessCallback()
+        {
+            yield return new WaitForSeconds(1f);
+            CombatFlow.FinishTurn();
+        }
 
         #endregion
     }

@@ -14,19 +14,18 @@ namespace Toast.Game.Combat
     public static class CombatFlow
     {
         /* Public Fields */
-        public static List<Character> Order { get; private set; }
+        public static LinkedList<Character> Order { get; private set; }
         public static CharacterGroup GroupA { get; private set; }
         public static CharacterGroup GroupB { get; private set; }
-        public static Character CurrentCharacter { get { return GetCurrentCharacter(); } }
+        public static Character CurrentCharacter { get { return Order.First(); } }
         public static bool Active { get; private set; }
         public static bool Finished { get; private set; }
-        public static int Index { get; private set; }
 
         /* Private Fields */
-        private static bool InRange { get { return Order != null && 0 <= Index && Index < Order.Count; } }
         private static VoidEvent combatStart;
         private static VoidEvent combatFinish;
-        private static VoidEvent combatTurn;
+        private static VoidEvent turnStart;
+        private static VoidEvent turnFinish;
 
         #region PUBLIC
 
@@ -35,53 +34,67 @@ namespace Toast.Game.Combat
         {
             Active = false;
             Finished = false;
-            Index = -1;
             GroupA = null;
             GroupB = null;
             Order = null;
         }
 
         /// <summary> Initialize combat with specified groups. </summary>
-        public static void Initialize(CharacterGroup groupA, CharacterGroup groupB, VoidEvent start = null, VoidEvent finish = null, VoidEvent turn = null)
+        public static void Start(CharacterGroup groupA, CharacterGroup groupB, VoidEvent combatStart = null, VoidEvent combatFinish = null, VoidEvent turnStart = null, VoidEvent turnFinish = null)
         {
             Active = true;
             Finished = false;
-            Index = -1;
             GroupA = groupA;
             GroupB = groupB;
             InitializeAI();
             DetermineOrder();
-            combatStart = start;
-            combatFinish = finish;
-            combatTurn = turn;
+            CombatFlow.combatStart = combatStart;
+            CombatFlow.combatFinish = combatFinish;
+            CombatFlow.turnStart = turnStart;
+            CombatFlow.turnFinish = turnFinish;
             Debug.Log("Starting Combat.");
             combatStart?.Raise();
+            // move last character to first place so it is skipped in the first Step() call
+            Order.AddFirst(Order.Last());
+            Order.RemoveLast();
+            Step();
         }
 
-        /// <summary> Advance combat to next step. </summary>
-        public static void Step()
+        /// <summary> Finish processing turn. </summary>
+        public static void FinishTurn()
         {
             if (Active && !Finished)
             {
+                turnFinish?.Raise();
                 CheckFinished();
-                do Index = (Index + 1) % Order.Count;
-                while (CurrentCharacter.Stats.Dead);
-                ProcessTurn();
-                CheckFinished();
+                if (Active && !Finished) Step();
             }
-            else Debug.LogWarning("Failed to advance combat--no active instance of combat present.");
         }
 
         #endregion
 
         #region PRIVATE
 
+        private static void Step()
+        {
+            CheckFinished();
+            if (Active && !Finished)
+            {
+                do
+                {
+                    Order.AddLast(Order.First());
+                    Order.RemoveFirst();
+                } while (CurrentCharacter.Stats.Dead);
+                ProcessTurn();
+            }
+        }
+
         private static void ProcessTurn()
         {
             Debug.Log("");
-            Debug.Log("Processing turn for " + Order[Index].CharacterName + ".");
-            combatTurn?.Raise();
-            Order[Index].Process();
+            Debug.Log("Processing turn for " + CurrentCharacter.CharacterName + ".");
+            turnStart?.Raise();
+            CurrentCharacter.Process();
         }
 
         private static void CheckFinished()
@@ -96,7 +109,6 @@ namespace Toast.Game.Combat
             Debug.Log("Finishing Combat.");
             combatFinish?.Raise();
             Finished = true;
-            Index = -1;
         }
 
         /// <summary> Initialize Character AI modules. </summary>
@@ -123,14 +135,7 @@ namespace Toast.Game.Combat
             sortedInitiatives.Reverse();
 
             Character[] sortedCharacters = (from kvp in sortedInitiatives select kvp.Key).ToArray();
-            Order = new List<Character>(sortedCharacters);
-        }
-
-        /// <summary> Return currently active character. </summary>
-        private static Character GetCurrentCharacter()
-        {
-            if (InRange) return Order[Index];
-            return null;
+            Order = new LinkedList<Character>(sortedCharacters);
         }
 
         #endregion

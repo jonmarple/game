@@ -25,6 +25,7 @@ namespace Toast.Game.Characters
         public CharacterAI AI { get; private set; }
         public ShardBuffer ShardBuffer { get; private set; }
         public bool Active { get { return CombatFlow.CurrentCharacter == this; } }
+        public System.Action PostProcessCallback = CombatFlow.FinishTurn;
 
         public Character(CharacterData data)
         {
@@ -32,7 +33,7 @@ namespace Toast.Game.Characters
             Movement = (Movement)data.Movement.Generate();
             Stats = data.StatBlock.Generate();
             Equipment = data.Equipment.Generate();
-            AI = data.AI.Generate();
+            AI = data.AI?.Generate();
             ShardBuffer = new ShardBuffer();
         }
 

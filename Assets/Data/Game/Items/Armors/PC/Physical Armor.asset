@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66bd302e0c522404ab03e2c3832de4fc, type: 3}
-  m_Name: HNPC 3 Armor
+  m_Name: Physical Armor
   m_EditorClassIdentifier: 
   itemName:
     _usage: 0
-    _value: HNPC 3 Armor
+    _value: Physical Armor
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
-  physical: 0
-  magical: 40
+  physical: 40
+  magical: 10

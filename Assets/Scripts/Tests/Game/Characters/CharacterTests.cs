@@ -17,12 +17,11 @@ public class CharacterTests
         Character character = Factory.GenerateCharacter(ap: 3, initiativeValue: 1, initiativeVariation: 0);
         Character target = Factory.GenerateCharacter(hp: 100, hpMax: 100, initiativeValue: 10, initiativeVariation: 0);
 
-        CombatFlow.Initialize(new CharacterGroup(new List<Character>() { character }), new CharacterGroup(new List<Character>() { target }));
-        CombatFlow.Step();
+        CombatFlow.Start(new CharacterGroup(new List<Character>() { character }), new CharacterGroup(new List<Character>() { target }));
 
         Assert.IsFalse(character.PerformAction(character.Primary, target)); // fail due to character inactivity
 
-        CombatFlow.Step();
+        CombatFlow.FinishTurn();
 
         Assert.IsTrue(character.PerformAction(character.Secondary, target));
         Assert.IsFalse(character.PerformAction(character.Secondary, target)); // fail due to cooldown
