@@ -4,7 +4,9 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Toast"
+        "Toast",
+        "UnityAtoms.UnityAtomsBaseAtoms.Runtime",
+        "UnityAtoms.UnityAtomsCore.Runtime"
     ],
     "includePlatforms": [
         "Editor"

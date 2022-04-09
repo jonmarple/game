@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityAtoms.BaseAtoms;
 using Toast.Game.Characters;
 
 namespace Toast.Game.Combat
@@ -13,6 +14,9 @@ namespace Toast.Game.Combat
         /* Serialized Fields */
         [SerializeField] private GroupController party;
         [SerializeField] private GroupController mob;
+        [SerializeField] private VoidEvent combatStart;
+        [SerializeField] private VoidEvent combatFinish;
+        [SerializeField] private VoidEvent combatTurn;
 
         private void Start()
         { Initialize(); }
@@ -26,7 +30,7 @@ namespace Toast.Game.Combat
             party.Spawn();
             mob.Clear();
             mob.Spawn();
-            CombatFlow.Initialize(party.Group, mob.Group);
+            CombatFlow.Initialize(party.Group, mob.Group, combatStart, combatFinish, combatTurn);
         }
 
         /// <summary> Execute Combat Step. </summary>

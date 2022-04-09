@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityAtoms.BaseAtoms;
 using Toast.Game.Characters;
 using Toast.Utility;
 
@@ -23,6 +24,9 @@ namespace Toast.Game.Combat
 
         /* Private Fields */
         private static bool InRange { get { return Order != null && 0 <= Index && Index < Order.Count; } }
+        private static VoidEvent combatStart;
+        private static VoidEvent combatFinish;
+        private static VoidEvent combatTurn;
 
         #region PUBLIC
 
@@ -38,7 +42,7 @@ namespace Toast.Game.Combat
         }
 
         /// <summary> Initialize combat with specified groups. </summary>
-        public static void Initialize(CharacterGroup groupA, CharacterGroup groupB)
+        public static void Initialize(CharacterGroup groupA, CharacterGroup groupB, VoidEvent start = null, VoidEvent finish = null, VoidEvent turn = null)
         {
             Active = true;
             Finished = false;
@@ -47,7 +51,11 @@ namespace Toast.Game.Combat
             GroupB = groupB;
             InitializeAI();
             DetermineOrder();
+            combatStart = start;
+            combatFinish = finish;
+            combatTurn = turn;
             Debug.Log("Starting Combat.");
+            combatStart?.Raise();
         }
 
         /// <summary> Advance combat to next step. </summary>
@@ -72,6 +80,7 @@ namespace Toast.Game.Combat
         {
             Debug.Log("");
             Debug.Log("Processing turn for " + Order[Index].CharacterName + ".");
+            combatTurn?.Raise();
             Order[Index].Process();
         }
 
@@ -85,6 +94,7 @@ namespace Toast.Game.Combat
         {
             Debug.Log("");
             Debug.Log("Finishing Combat.");
+            combatFinish?.Raise();
             Finished = true;
             Index = -1;
         }
