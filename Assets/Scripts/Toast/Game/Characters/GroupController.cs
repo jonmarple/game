@@ -18,16 +18,13 @@ namespace Toast.Game.Characters
         [SerializeField] private CController controllerPrefab;
         [SerializeField] private Transform controllerContainer;
 
-        private void Awake()
-        { Group = groupData.Generate(); }
-
         #region PUBLIC
 
-        /// <summary> Instantiates and initializes CControllers for group members. </summary>
+        /// <summary> Generates CharacterGroup and instantiates CControllers for group members. </summary>
         public void Spawn()
         {
             Clear();
-
+            Group = groupData.Generate();
             Controllers = new List<CController>();
             foreach (Character character in Group.Characters)
             {
@@ -37,9 +34,10 @@ namespace Toast.Game.Characters
             }
         }
 
-        /// <summary> Destroys instantiated CControllers. </summary>
+        /// <summary> Clears CharacterGroup and Destroys CControllers. </summary>
         public void Clear()
         {
+            Group = null;
             if (Controllers != null)
             {
                 foreach (CController controller in Controllers)

@@ -14,28 +14,24 @@ namespace Toast.Game.Combat
         [SerializeField] private GroupController party;
         [SerializeField] private GroupController mob;
 
-        private void Awake()
-        { CombatFlow.Reset(); }
-
         private void Start()
-        { StartCombat(); }
+        { Initialize(); }
 
         #region PUBLIC
+
+        /// <summary> Initialize parties and CombatFlow. </summary>
+        public void Initialize()
+        {
+            party.Clear();
+            party.Spawn();
+            mob.Clear();
+            mob.Spawn();
+            CombatFlow.Initialize(party.Group, mob.Group);
+        }
 
         /// <summary> Execute Combat Step. </summary>
         public void Step()
         { CombatFlow.Step(); }
-
-        #endregion
-
-        #region PRIVATE
-
-        private void StartCombat()
-        {
-            party.Spawn();
-            mob.Spawn();
-            CombatFlow.Initialize(party.Group, mob.Group);
-        }
 
         #endregion
     }
