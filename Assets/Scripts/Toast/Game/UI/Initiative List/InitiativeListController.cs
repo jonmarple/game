@@ -72,7 +72,15 @@ namespace Toast.Game.UI
                             ((RectTransform)card.transform).SetAsLastSibling();
                     }
                 }
+                RefreshOutlines();
             }
+        }
+
+        /// <summary> Refresh card outlines. </summary>
+        public void RefreshOutlines()
+        {
+            foreach (InitiativeCardController card in cards)
+                card.RefreshOutline();
         }
 
         #endregion

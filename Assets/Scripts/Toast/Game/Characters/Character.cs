@@ -25,6 +25,8 @@ namespace Toast.Game.Characters
         public CharacterAI AI { get; private set; }
         public ShardBuffer ShardBuffer { get; private set; }
         public bool Active { get { return CombatFlow.CurrentCharacter == this; } }
+        public bool Selected { get; private set; }
+        public bool Hovered { get; private set; }
         public System.Action PostProcessCallback = CombatFlow.FinishTurn;
 
         /* Private Fields */
@@ -39,6 +41,8 @@ namespace Toast.Game.Characters
             Equipment = data.Equipment.Generate();
             AI = data.AI?.Generate();
             ShardBuffer = new ShardBuffer();
+            Selected = false;
+            Hovered = false;
         }
 
         public Character(string name, Movement movement, StatBlock statBlock, Equipment equipment, CharacterAI ai)
@@ -50,6 +54,8 @@ namespace Toast.Game.Characters
             Equipment = equipment;
             AI = ai;
             ShardBuffer = new ShardBuffer();
+            Selected = false;
+            Hovered = false;
         }
 
         #region PUBLIC
@@ -125,6 +131,20 @@ namespace Toast.Game.Characters
         /// <summary> Kill this character. </summary>
         public void Kill()
         { controller?.Disable(); }
+
+        /// <summary> Select this character. </summary>
+        public void Select(bool active)
+        {
+            Selected = active;
+            controller?.RefreshOutline();
+        }
+
+        /// <summary> Hover this character. </summary>
+        public void Hover(bool active)
+        {
+            Hovered = active;
+            controller?.RefreshOutline();
+        }
 
         #endregion
     }

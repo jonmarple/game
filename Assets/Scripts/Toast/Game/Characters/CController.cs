@@ -15,9 +15,13 @@ namespace Toast.Game.Characters
         public Faction Faction { get; private set; }
 
         /* Serialized Fields */
+        [SerializeField] private SpriteRenderer outline;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
+
+        private void Start()
+        { RefreshOutline(); }
 
         #region PUBLIC
 
@@ -30,8 +34,28 @@ namespace Toast.Game.Characters
             sprite.color = faction == Faction.A ? factionAColor : factionBColor;
         }
 
+        /// <summary> Disable this character. </summary>
         public void Disable()
         { gameObject.SetActive(false); }
+
+        /// <summary> Refresh outline. </summary>
+        public void RefreshOutline()
+        {
+            if (Character.Selected)
+                SetOutline(1.0f);
+            else if (Character.Hovered)
+                SetOutline(0.5f);
+            else
+                SetOutline(0.0f);
+        }
+
+        /// <summary> Set hover status. </summary>
+        public void Hover(bool active)
+        { CharacterSelector.Hover(active, Character); }
+
+        /// <summary> Select this character. </summary>
+        public void Select()
+        { CharacterSelector.ToggleSelect(Character); }
 
         #endregion
 
@@ -44,6 +68,20 @@ namespace Toast.Game.Characters
         {
             yield return new WaitForSeconds(1f);
             CombatFlow.FinishTurn();
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        private void SetOutline(float alpha)
+        {
+            if (outline)
+            {
+                Color c = outline.color;
+                c.a = alpha;
+                outline.color = c;
+            }
         }
 
         #endregion

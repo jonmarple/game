@@ -18,6 +18,14 @@ namespace Toast.Game.Combat
         [SerializeField] private VoidEvent combatFinish;
         [SerializeField] private VoidEvent turnStart;
         [SerializeField] private VoidEvent turnFinish;
+        [SerializeField] private BoolEvent characterSelect;
+        [SerializeField] private BoolEvent characterHover;
+
+        private void Awake()
+        {
+            CharacterSelector.SetSelectionEvent(characterSelect);
+            CharacterSelector.SetHoverEvent(characterHover);
+        }
 
         private void Start()
         { StartCombat(); }
