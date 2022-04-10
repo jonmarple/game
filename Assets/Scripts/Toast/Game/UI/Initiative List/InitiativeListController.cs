@@ -31,14 +31,14 @@ namespace Toast.Game.UI
             foreach (Character character in CombatFlow.GroupA.Characters)
             {
                 InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
-                card.Initialize(character, true);
+                card.Initialize(character, CombatFlow.GroupA.Faction);
                 cards.Add(card);
             }
 
             foreach (Character character in CombatFlow.GroupB.Characters)
             {
                 InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
-                card.Initialize(character, false);
+                card.Initialize(character, CombatFlow.GroupB.Faction);
                 cards.Add(card);
             }
 

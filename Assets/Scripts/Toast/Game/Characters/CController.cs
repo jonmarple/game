@@ -12,14 +12,26 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public Character Character { get; private set; }
+        public Faction Faction { get; private set; }
+
+        /* Serialized Fields */
+        [SerializeField] private SpriteRenderer sprite;
+        [SerializeField] private Color factionAColor;
+        [SerializeField] private Color factionBColor;
 
         #region PUBLIC
 
-        public void Initialize(Character character)
+        public void Initialize(Character character, Faction faction)
         {
             Character = character;
+            Character.Register(this);
             Character.PostProcessCallback = PostProcessCallback;
+            Faction = faction;
+            sprite.color = faction == Faction.A ? factionAColor : factionBColor;
         }
+
+        public void Disable()
+        { gameObject.SetActive(false); }
 
         #endregion
 

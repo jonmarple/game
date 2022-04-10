@@ -12,8 +12,9 @@ public class CharacterGroupTests
     {
         Character c1 = Factory.GenerateCharacter();
         Character c2 = Factory.GenerateCharacter();
-        CharacterGroup group = new CharacterGroup(new List<Character>() { c1, c2 });
+        CharacterGroup group = new CharacterGroup(Faction.A, new List<Character>() { c1, c2 });
 
+        Assert.AreEqual(Faction.A, group.Faction);
         Assert.AreEqual(2, group.Characters.Count);
         Assert.AreEqual(c1, group.Characters[0]);
         Assert.AreEqual(c2, group.Characters[1]);
@@ -22,8 +23,8 @@ public class CharacterGroupTests
     [Test]
     public void TestActive()
     {
-        CharacterGroup group = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter() });
-        CharacterGroup dead = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(hp: 0), Factory.GenerateCharacter(hp: 0) });
+        CharacterGroup group = new CharacterGroup(Faction.A, new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter() });
+        CharacterGroup dead = new CharacterGroup(Faction.B, new List<Character>() { Factory.GenerateCharacter(hp: 0), Factory.GenerateCharacter(hp: 0) });
 
         Assert.IsTrue(group.Active);
         Assert.IsFalse(dead.Active);

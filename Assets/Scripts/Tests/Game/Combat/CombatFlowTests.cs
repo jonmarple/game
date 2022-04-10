@@ -11,8 +11,8 @@ public class CombatFlowTests
     [Test]
     public void TestInit()
     {
-        CharacterGroup a = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter(), Factory.GenerateCharacter() });
-        CharacterGroup b = new CharacterGroup(new List<Character>() { Factory.GenerateCharacter() });
+        CharacterGroup a = new CharacterGroup(Faction.A, new List<Character>() { Factory.GenerateCharacter(), Factory.GenerateCharacter(), Factory.GenerateCharacter() });
+        CharacterGroup b = new CharacterGroup(Faction.B, new List<Character>() { Factory.GenerateCharacter() });
 
         CombatFlow.Reset();
 
@@ -38,8 +38,8 @@ public class CombatFlowTests
         Character a3 = Factory.GenerateCharacter(initiativeValue: 2, initiativeVariation: 0);
         Character b1 = Factory.GenerateCharacter(initiativeValue: 4, initiativeVariation: 0);
 
-        CharacterGroup a = new CharacterGroup(new List<Character>() { a1, a2, a3 });
-        CharacterGroup b = new CharacterGroup(new List<Character>() { b1 });
+        CharacterGroup a = new CharacterGroup(Faction.A, new List<Character>() { a1, a2, a3 });
+        CharacterGroup b = new CharacterGroup(Faction.B, new List<Character>() { b1 });
 
         CombatFlow.Reset();
         CombatFlow.Start(a, b);
@@ -63,8 +63,8 @@ public class CombatFlowTests
         Character a3 = Factory.GenerateCharacter(initiativeValue: 2, initiativeVariation: 0);
         Character b1 = Factory.GenerateCharacter(initiativeValue: 1, initiativeVariation: 0);
 
-        CharacterGroup a = new CharacterGroup(new List<Character>() { a1, a2, a3 });
-        CharacterGroup b = new CharacterGroup(new List<Character>() { b1 });
+        CharacterGroup a = new CharacterGroup(Faction.A, new List<Character>() { a1, a2, a3 });
+        CharacterGroup b = new CharacterGroup(Faction.B, new List<Character>() { b1 });
 
         CombatFlow.Reset();
         CombatFlow.Start(a, b);

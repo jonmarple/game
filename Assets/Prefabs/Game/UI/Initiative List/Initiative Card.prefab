@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab8da282fc58934581cd95b6ad42ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0.25, b: 1, a: 0.2509804}
-  secondaryColor: {r: 1, g: 0, b: 0.25, a: 0.2509804}
+  factionAColor: {r: 0.5019608, g: 1, b: 0.5019608, a: 0.5019608}
+  factionBColor: {r: 1, g: 0.5, b: 0.5, a: 0.5019608}
   outline: {fileID: 2330116526228786916}
   nameField: {fileID: 2430668486188165158}
 --- !u!1 &1358533513054852591
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9490196}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.98039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

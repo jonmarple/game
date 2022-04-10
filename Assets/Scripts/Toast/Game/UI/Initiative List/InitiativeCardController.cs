@@ -16,19 +16,19 @@ namespace Toast.Game.UI
         public Character Character { get; private set; }
 
         /* Serialized Fields */
-        [SerializeField] private Color primaryColor;
-        [SerializeField] private Color secondaryColor;
+        [SerializeField] private Color factionAColor;
+        [SerializeField] private Color factionBColor;
         [SerializeField] private Outline outline;
         [SerializeField] private TextMeshProUGUI nameField;
 
         #region PUBLIC
 
         /// <summary> Initialize card with character info. </summary>
-        public void Initialize(Character character, bool primaryGroup)
+        public void Initialize(Character character, Faction faction)
         {
             Character = character;
             nameField.text = Character.CharacterName;
-            outline.effectColor = primaryGroup ? primaryColor : secondaryColor;
+            outline.effectColor = faction == Faction.A ? factionAColor : factionBColor;
         }
 
         #endregion

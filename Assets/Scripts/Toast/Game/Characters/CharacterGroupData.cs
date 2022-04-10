@@ -11,9 +11,11 @@ namespace Toast.Game.Characters
     public class CharacterGroupData : ScriptableObject, IData<CharacterGroup>
     {
         /* Public Fields */
+        public Faction Faction { get { return faction; } }
         public List<CharacterData> Characters { get { return characters; } }
 
         /* Serialized Fields */
+        [SerializeField] private Faction faction;
         [SerializeField] private List<CharacterData> characters;
 
         #region PUBLIC

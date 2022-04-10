@@ -27,11 +27,15 @@ namespace Toast.Game.Characters
         public bool Active { get { return CombatFlow.CurrentCharacter == this; } }
         public System.Action PostProcessCallback = CombatFlow.FinishTurn;
 
+        /* Private Fields */
+        private CController controller;
+
         public Character(CharacterData data)
         {
             CharacterName = data.CharacterName;
             Movement = (Movement)data.Movement.Generate();
             Stats = data.StatBlock.Generate();
+            Stats.Register(this);
             Equipment = data.Equipment.Generate();
             AI = data.AI?.Generate();
             ShardBuffer = new ShardBuffer();
@@ -42,6 +46,7 @@ namespace Toast.Game.Characters
             CharacterName = name;
             Movement = movement;
             Stats = statBlock;
+            Stats.Register(this);
             Equipment = equipment;
             AI = ai;
             ShardBuffer = new ShardBuffer();
@@ -112,6 +117,14 @@ namespace Toast.Game.Characters
                     return true;
             return false;
         }
+
+        /// <summary> Register a CController. </summary>
+        public void Register(CController controller)
+        { this.controller = controller; }
+
+        /// <summary> Kill this character. </summary>
+        public void Kill()
+        { controller?.Disable(); }
 
         #endregion
     }

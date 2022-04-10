@@ -11,6 +11,7 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public List<Character> Characters { get; private set; }
+        public Faction Faction;
         public bool Active
         {
             get
@@ -23,11 +24,15 @@ namespace Toast.Game.Characters
             }
         }
 
-        public CharacterGroup(List<Character> characters)
-        { Characters = characters; }
+        public CharacterGroup(Faction faction, List<Character> characters)
+        {
+            Faction = faction;
+            Characters = characters;
+        }
 
         public CharacterGroup(CharacterGroupData data)
         {
+            Faction = data.Faction;
             Characters = new List<Character>();
             foreach (CharacterData character in data.Characters)
                 Characters.Add(character.Generate());

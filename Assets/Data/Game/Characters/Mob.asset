@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4290aa8d2cef35f42bbb0e0074d1363f, type: 3}
   m_Name: Mob
   m_EditorClassIdentifier: 
+  faction: 1
   characters:
   - {fileID: 11400000, guid: 871788e7a140b8c4687839ca97fb52a5, type: 2}
   - {fileID: 11400000, guid: 871788e7a140b8c4687839ca97fb52a5, type: 2}

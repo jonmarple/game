@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Spawns;
 
 namespace Toast.Game.Characters
 {
@@ -26,11 +27,17 @@ namespace Toast.Game.Characters
             Clear();
             Group = groupData.Generate();
             Controllers = new List<CController>();
+            int count = 0;
             foreach (Character character in Group.Characters)
             {
-                CController controller = Instantiate(controllerPrefab, controllerContainer);
-                controller.Initialize(character);
+                CController controller;
+                if (SpawnList.HasSpawns(Group.Faction))
+                    controller = Instantiate(controllerPrefab, SpawnList.Get(Group.Faction)[count].transform.position, Quaternion.identity, controllerContainer);
+                else
+                    controller = Instantiate(controllerPrefab, controllerContainer);
+                controller.Initialize(character, Group.Faction);
                 Controllers.Add(controller);
+                count = (count + 1) % SpawnList.Get(Group.Faction).Count;
             }
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Characters;
 using Toast.Game.Combat;
 
 namespace Toast.Game.Stats
@@ -20,7 +21,10 @@ namespace Toast.Game.Stats
         public Spread Initiative { get; private set; }
         public ModifierLevel PhysicalMod { get; private set; }
         public ModifierLevel MagicalMod { get; private set; }
-        public bool Dead { get { return HP <= 0; } }
+        public bool Dead { get; private set; }
+
+        /* Private Fields */
+        private Character owner;
 
         public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, ModifierLevel physicalMod, ModifierLevel magicalMod)
         {
@@ -39,7 +43,16 @@ namespace Toast.Game.Stats
 
         /// <summary> Set HP value. </summary>
         public void SetHP(int hp)
-        { HP = Mathf.Clamp(hp, 0, HPMax); }
+        {
+            HP = Mathf.Clamp(hp, 0, HPMax);
+
+            bool prev = Dead;
+            Dead = HP <= 0;
+            bool curr = Dead;
+
+            if (!prev && curr)
+                owner?.Kill();
+        }
 
         /// <summary> Alter HP value. </summary>
         public void AlterHP(int diff)
@@ -56,6 +69,10 @@ namespace Toast.Game.Stats
         /// <summary> Check for a Critical. </summary>
         public bool RollCrit()
         { return Random.value <= Crit * 0.01f; }
+
+        /// <summary> Register character owner. </summary>
+        public void Register(Character owner)
+        { this.owner = owner; }
 
         #endregion
     }

@@ -17,7 +17,7 @@ public class CharacterTests
         Character character = Factory.GenerateCharacter(ap: 3, initiativeValue: 1, initiativeVariation: 0);
         Character target = Factory.GenerateCharacter(hp: 100, hpMax: 100, initiativeValue: 10, initiativeVariation: 0);
 
-        CombatFlow.Start(new CharacterGroup(new List<Character>() { character }), new CharacterGroup(new List<Character>() { target }));
+        CombatFlow.Start(new CharacterGroup(Faction.A, new List<Character>() { character }), new CharacterGroup(Faction.B, new List<Character>() { target }));
 
         Assert.IsFalse(character.PerformAction(character.Primary, target)); // fail due to character inactivity
 
