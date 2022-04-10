@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: -7362472625976960994, guid: a04a93befc31cf34b940bee269491f72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 6723055987477260254}
-  factionAColor: {r: 0.5, g: 1, b: 0.5, a: 1}
-  factionBColor: {r: 1, g: 0.5, b: 0.5, a: 1}
+  factionAColor: {r: 0.19607843, g: 0.4509804, b: 0.27058825, a: 1}
+  factionBColor: {r: 0.61960787, g: 0.15686275, b: 0.20784314, a: 1}

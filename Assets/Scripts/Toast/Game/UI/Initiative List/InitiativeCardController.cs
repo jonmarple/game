@@ -18,7 +18,7 @@ namespace Toast.Game.UI
         /* Serialized Fields */
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
-        [SerializeField] private Outline outline;
+        [SerializeField] private Image factionOutline;
         [SerializeField] private TextMeshProUGUI nameField;
 
         #region PUBLIC
@@ -28,7 +28,7 @@ namespace Toast.Game.UI
         {
             Character = character;
             nameField.text = Character.CharacterName;
-            outline.effectColor = faction == Faction.A ? factionAColor : factionBColor;
+            factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
         }
 
         #endregion
