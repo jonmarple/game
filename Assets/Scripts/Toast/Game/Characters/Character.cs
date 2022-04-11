@@ -27,7 +27,7 @@ namespace Toast.Game.Characters
         public bool Active { get { return CombatFlow.CurrentCharacter == this; } }
         public bool Selected { get; private set; }
         public bool Hovered { get; private set; }
-        public System.Action PostProcessCallback = CombatFlow.FinishTurn;
+        public System.Action TurnProcessHandler;
 
         /* Private Fields */
         private CController controller;
@@ -43,6 +43,7 @@ namespace Toast.Game.Characters
             ShardBuffer = new ShardBuffer();
             Selected = false;
             Hovered = false;
+            TurnProcessHandler = HandleTurnProcess;
         }
 
         public Character(string name, Movement movement, StatBlock statBlock, Equipment equipment, CharacterAI ai)
@@ -56,6 +57,7 @@ namespace Toast.Game.Characters
             ShardBuffer = new ShardBuffer();
             Selected = false;
             Hovered = false;
+            TurnProcessHandler = HandleTurnProcess;
         }
 
         #region PUBLIC
@@ -93,12 +95,16 @@ namespace Toast.Game.Characters
         /// <summary> Start turn process. </summary>
         public void Process()
         {
+            // update stats
             Stats.AlterAP(Stats.APRegen);
             Equipment.Shards.FillHand();
             ShardBuffer.Reset();
             Equipment.Weapon.Primary.Turn();
             Equipment.Weapon.Secondary.Turn();
-            AI?.Process();
+
+            // run AI
+            if (AI != null)
+                TurnProcessHandler();
         }
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
@@ -139,6 +145,16 @@ namespace Toast.Game.Characters
         /// <summary> Hover this character. </summary>
         public void Hover(bool active)
         { Hovered = active; }
+
+        #endregion
+
+        #region PRIVATE
+
+        private void HandleTurnProcess()
+        {
+            AI.Process();
+            CombatFlow.FinishTurn();
+        }
 
         #endregion
     }

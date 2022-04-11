@@ -16,7 +16,6 @@ namespace Toast.Game.AI
         private Character self;
         private CharacterGroup allies;
         private CharacterGroup enemies;
-        private System.Action postProcessCallback;
 
         #region PUBLIC
 
@@ -26,7 +25,6 @@ namespace Toast.Game.AI
             this.self = character;
             this.allies = allies;
             this.enemies = enemies;
-            this.postProcessCallback = self.PostProcessCallback;
         }
 
         /// <summary> Process Character's Turn. </summary>
@@ -41,8 +39,6 @@ namespace Toast.Game.AI
                 if (!didPerformSecondary) didPerformPrimary = PerformAction(self.Primary);
                 if (!didPerformPrimary && !didPerformSecondary) break;
             }
-
-            postProcessCallback.Invoke();
         }
 
         #endregion

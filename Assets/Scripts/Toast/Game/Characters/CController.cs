@@ -32,7 +32,7 @@ namespace Toast.Game.Characters
         {
             Character = character;
             Character.Register(this);
-            Character.PostProcessCallback = PostProcessCallback;
+            Character.TurnProcessHandler = TurnProcessHandler;
             Faction = faction;
             sprite.color = faction == Faction.A ? factionAColor : factionBColor;
         }
@@ -53,12 +53,17 @@ namespace Toast.Game.Characters
 
         #region PRIVATE
 
-        private void PostProcessCallback()
-        { StartCoroutine(HandlePostProcessCallback()); }
+        private void TurnProcessHandler()
+        { StartCoroutine(RunTurnProcessHandler()); }
 
-        private IEnumerator HandlePostProcessCallback()
+        private IEnumerator RunTurnProcessHandler()
         {
-            yield return new WaitForSeconds(1f);
+            if (Character.AI != null)
+            {
+                yield return new WaitForSeconds(0.5f);
+                Character.AI.Process();
+            }
+            yield return new WaitForSeconds(0.5f);
             CombatFlow.FinishTurn();
         }
 
