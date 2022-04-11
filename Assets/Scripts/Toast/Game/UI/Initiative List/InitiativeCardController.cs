@@ -19,11 +19,14 @@ namespace Toast.Game.UI
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
         [SerializeField] private Image factionOutline;
-        [SerializeField] private Outline selectOutline;
         [SerializeField] private TextMeshProUGUI nameField;
+        [SerializeField] private Animator animator;
 
-        private void Start()
-        { RefreshOutline(); }
+        private void Update()
+        {
+            animator?.SetBool("Selected", Character.Selected);
+            animator?.SetBool("Hovered", Character.Hovered);
+        }
 
         #region PUBLIC
 
@@ -35,17 +38,6 @@ namespace Toast.Game.UI
             factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
         }
 
-        /// <summary> Refresh card outline. </summary>
-        public void RefreshOutline()
-        {
-            if (Character.Selected)
-                SetOutline(1.0f);
-            else if (Character.Hovered)
-                SetOutline(0.5f);
-            else
-                SetOutline(0.0f);
-        }
-
         /// <summary> Hover Character. </summary>
         public void Hover(bool active)
         { CharacterSelector.Hover(active, Character); }
@@ -53,20 +45,6 @@ namespace Toast.Game.UI
         /// <summary> Select Character. </summary>
         public void Select()
         { CharacterSelector.ToggleSelect(Character); }
-
-        #endregion
-
-        #region PRIVATE
-
-        private void SetOutline(float alpha)
-        {
-            if (selectOutline)
-            {
-                Color c = selectOutline.effectColor;
-                c.a = alpha;
-                selectOutline.effectColor = c;
-            }
-        }
 
         #endregion
     }

@@ -134,17 +134,11 @@ namespace Toast.Game.Characters
 
         /// <summary> Select this character. </summary>
         public void Select(bool active)
-        {
-            Selected = active;
-            controller?.RefreshOutline();
-        }
+        { Selected = active; }
 
         /// <summary> Hover this character. </summary>
         public void Hover(bool active)
-        {
-            Hovered = active;
-            controller?.RefreshOutline();
-        }
+        { Hovered = active; }
 
         #endregion
     }

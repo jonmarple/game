@@ -18,6 +18,10 @@ namespace Toast.Game.UI
 
         /* Private Fields */
         private List<InitiativeCardController> cards;
+        private RectTransform rect;
+
+        private void Awake()
+        { rect = (RectTransform)transform; }
 
         #region PUBLIC
 
@@ -56,7 +60,7 @@ namespace Toast.Game.UI
             }
         }
 
-        /// <summary> Refresh cards. </summary>
+        /// <summary> Refresh cards and list. </summary>
         public void Refresh()
         {
             if (CombatFlow.Order != null)
@@ -67,20 +71,18 @@ namespace Toast.Game.UI
                     if (card)
                     {
                         if (character.Stats.Dead)
+                        {
+                            cards.Remove(card);
                             Destroy(card.gameObject);
-                        else
-                            ((RectTransform)card.transform).SetAsLastSibling();
+                        }
+                        else ((RectTransform)card.transform).SetAsLastSibling();
                     }
                 }
-                RefreshOutlines();
             }
-        }
 
-        /// <summary> Refresh card outlines. </summary>
-        public void RefreshOutlines()
-        {
-            foreach (InitiativeCardController card in cards)
-                card.RefreshOutline();
+            float padding = 30f;
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (cards.Count * ((RectTransform)cardControllerPrefab.transform).sizeDelta.x) + ((cards.Count + 1) * padding));
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ((RectTransform)cardControllerPrefab.transform).sizeDelta.x + (2f * padding));
         }
 
         #endregion

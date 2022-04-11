@@ -15,13 +15,16 @@ namespace Toast.Game.Characters
         public Faction Faction { get; private set; }
 
         /* Serialized Fields */
-        [SerializeField] private SpriteRenderer outline;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
+        [SerializeField] private Animator animator;
 
-        private void Start()
-        { RefreshOutline(); }
+        private void Update()
+        {
+            animator?.SetBool("Selected", Character.Selected);
+            animator?.SetBool("Hovered", Character.Hovered);
+        }
 
         #region PUBLIC
 
@@ -37,17 +40,6 @@ namespace Toast.Game.Characters
         /// <summary> Disable this character. </summary>
         public void Disable()
         { gameObject.SetActive(false); }
-
-        /// <summary> Refresh outline. </summary>
-        public void RefreshOutline()
-        {
-            if (Character.Selected)
-                SetOutline(1.0f);
-            else if (Character.Hovered)
-                SetOutline(0.5f);
-            else
-                SetOutline(0.0f);
-        }
 
         /// <summary> Set hover status. </summary>
         public void Hover(bool active)
@@ -68,20 +60,6 @@ namespace Toast.Game.Characters
         {
             yield return new WaitForSeconds(1f);
             CombatFlow.FinishTurn();
-        }
-
-        #endregion
-
-        #region PRIVATE
-
-        private void SetOutline(float alpha)
-        {
-            if (outline)
-            {
-                Color c = outline.color;
-                c.a = alpha;
-                outline.color = c;
-            }
         }
 
         #endregion

@@ -174,8 +174,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4316338042535786112}
   - component: {fileID: 4316338042535786239}
-  - component: {fileID: 6048291473119401466}
+  - component: {fileID: 8139939819555574587}
   - component: {fileID: 8255731478555121206}
+  - component: {fileID: 6048291473119401466}
   m_Layer: 0
   m_Name: Character Controller
   m_TagString: Untagged
@@ -211,10 +212,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e155ca72d0c0d34bb7c633254f1667d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 8079667243644883722}
   sprite: {fileID: 6723055987477260254}
   factionAColor: {r: 0.19607843, g: 0.4509804, b: 0.27058825, a: 1}
   factionBColor: {r: 0.61960787, g: 0.15686275, b: 0.20784314, a: 1}
+  animator: {fileID: 8139939819555574587}
+--- !u!95 &8139939819555574587
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316338042535786238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4017ce42bf196584bbe893a199c7aed7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &8255731478555121206
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316338042535786238}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &6048291473119401466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,19 +312,3 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
---- !u!58 &8255731478555121206
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4316338042535786238}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

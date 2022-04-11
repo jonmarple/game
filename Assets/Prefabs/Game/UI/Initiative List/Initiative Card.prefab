@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248124608923276851}
   - component: {fileID: 3273121046162571464}
+  - component: {fileID: 6528924389046801362}
   - component: {fileID: 5206479747646517050}
   m_Layer: 5
   m_Name: Initiative Card
@@ -53,8 +54,27 @@ MonoBehaviour:
   factionAColor: {r: 0.19607843, g: 0.4509804, b: 0.27058825, a: 1}
   factionBColor: {r: 0.61960787, g: 0.15686275, b: 0.20784314, a: 1}
   factionOutline: {fileID: 4440161575369970028}
-  selectOutline: {fileID: 8028540786940752370}
   nameField: {fileID: 2430668486188165158}
+  animator: {fileID: 6528924389046801362}
+--- !u!95 &6528924389046801362
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536434109911460032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf02916d0cdbe38489a83387d4888e53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5206479747646517050
 MonoBehaviour:
   m_ObjectHideFlags: 0
