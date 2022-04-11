@@ -26,7 +26,7 @@ namespace Toast.UI
 
         #region PUBLIC
 
-        /// <summary> Set RectTransform's Lerp target</summary>
+        /// <summary> Set RectTransform's Lerp target. </summary>
         public void SetTarget(RectTransform target)
         {
             this.target = target;

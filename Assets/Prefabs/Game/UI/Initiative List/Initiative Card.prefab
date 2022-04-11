@@ -55,6 +55,7 @@ MonoBehaviour:
   factionBColor: {r: 0.61960787, g: 0.15686275, b: 0.20784314, a: 1}
   factionOutline: {fileID: 4440161575369970028}
   nameField: {fileID: 2430668486188165158}
+  rectLerp: {fileID: 7887687698619045939}
   animator: {fileID: 6528924389046801362}
 --- !u!95 &6528924389046801362
 Animator:
@@ -223,7 +224,6 @@ GameObject:
   - component: {fileID: 3025257808833295305}
   - component: {fileID: 5051476031398858125}
   - component: {fileID: 4440161575369970028}
-  - component: {fileID: 9031729734299256800}
   - component: {fileID: 8028540786940752370}
   m_Layer: 5
   m_Name: BG
@@ -289,20 +289,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9031729734299256800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911282396988613677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f991414c6b1c9b041853c8d15ebf5e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  target: {fileID: 4248124608923276851}
 --- !u!114 &8028540786940752370
 MonoBehaviour:
   m_ObjectHideFlags: 0
