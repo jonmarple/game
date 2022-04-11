@@ -20,6 +20,7 @@ namespace Toast.Game.UI
         [SerializeField] private Color factionBColor;
         [SerializeField] private Image factionOutline;
         [SerializeField] private TextMeshProUGUI nameField;
+        [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
 
         private void Update()
@@ -37,6 +38,14 @@ namespace Toast.Game.UI
             nameField.text = Character.CharacterName;
             factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
         }
+
+        /// <summary> Show Card. </summary>
+        public void Show()
+        { container.gameObject.SetActive(true); }
+
+        /// <summary> Hide Card. </summary>
+        public void Hide()
+        { container.gameObject.SetActive(false); }
 
         /// <summary> Hover Character. </summary>
         public void Hover(bool active)

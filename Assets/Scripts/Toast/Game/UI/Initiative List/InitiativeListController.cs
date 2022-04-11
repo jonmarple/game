@@ -62,6 +62,21 @@ namespace Toast.Game.UI
 
         /// <summary> Refresh cards and list. </summary>
         public void Refresh()
+        { StartCoroutine(HandleRefresh()); }
+
+        #endregion
+
+        #region PRIVATE
+
+        private InitiativeCardController GetCard(Character character)
+        {
+            foreach (InitiativeCardController card in cards)
+                if (character == card.Character)
+                    return card;
+            return null;
+        }
+
+        private IEnumerator HandleRefresh()
         {
             if (CombatFlow.Order != null)
             {
@@ -83,18 +98,12 @@ namespace Toast.Game.UI
             float padding = 30f;
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (cards.Count * ((RectTransform)cardControllerPrefab.transform).sizeDelta.x) + ((cards.Count + 1) * padding));
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ((RectTransform)cardControllerPrefab.transform).sizeDelta.x + (2f * padding));
-        }
 
-        #endregion
-
-        #region PRIVATE
-
-        private InitiativeCardController GetCard(Character character)
-        {
-            foreach (InitiativeCardController card in cards)
-                if (character == card.Character)
-                    return card;
-            return null;
+            InitiativeCardController lastCard = GetCard(CombatFlow.Order.Last.Value);
+            lastCard?.Hide();
+            for (int i = 0; i < 10; i++)
+                yield return null;
+            lastCard?.Show();
         }
 
         #endregion

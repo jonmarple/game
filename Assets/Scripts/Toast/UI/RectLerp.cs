@@ -16,7 +16,6 @@ namespace Toast.UI
         /* Private Fields */
         private RectTransform rect;
         private Vector3 pos;
-        private Coroutine lerp;
 
         private void Awake()
         { rect = (RectTransform)transform; }
@@ -24,27 +23,26 @@ namespace Toast.UI
         private void Start()
         { if (target) SetTarget(target); }
 
+        private void Update()
+        { HandleLerp(); }
+
         #region PUBLIC
 
         /// <summary> Set RectTransform's Lerp target. </summary>
         public void SetTarget(RectTransform target)
         {
             this.target = target;
-            if (lerp == null)
-                lerp = StartCoroutine(HandleLerp());
+            pos = target.position;
         }
 
         #endregion
 
         #region PRIVATE
 
-        private IEnumerator HandleLerp()
+        private void HandleLerp()
         {
-            yield return null;
-            pos = target.position;
-            while (target)
+            if (target)
             {
-                yield return new WaitForEndOfFrame();
                 pos = Vector3.Lerp(pos, target.position, speed * Time.deltaTime);
                 rect.position = pos;
             }
