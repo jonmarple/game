@@ -24,6 +24,7 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI hpField;
         [SerializeField] private TextMeshProUGUI paField;
         [SerializeField] private TextMeshProUGUI maField;
+        [SerializeField] private TextMeshProUGUI apField;
         [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
         [SerializeField] private RectLerp lerp;
@@ -54,6 +55,7 @@ namespace Toast.Game.UI
             hpField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.HP, Character.Stats.HPMax));
             paField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax));
             maField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax));
+            apField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.AP, Character.Stats.APMax));
         }
 
         /// <summary> Show Card. </summary>
