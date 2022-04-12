@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab8da282fc58934581cd95b6ad42ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factionAColor: {r: 0.19607843, g: 0.4509804, b: 0.27058825, a: 1}
-  factionBColor: {r: 0.61960787, g: 0.15686275, b: 0.20784314, a: 1}
+  factionAColor: {r: 0.015686275, g: 0.5176471, b: 0.81960785, a: 1}
+  factionBColor: {r: 0.8980392, g: 0.23137255, b: 0.26666668, a: 1}
   factionOutline: {fileID: 4440161575369970028}
   nameField: {fileID: 2430668486188165158}
   hpField: {fileID: 3140909053785239860}
@@ -1252,15 +1252,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.20784314
+      value: 0.26666668
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.15686275
+      value: 0.23137255
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.61960787
+      value: 0.8980392
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_fontSizeBase
@@ -1268,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4281673886
+      value: 4282661861
       objectReference: {fileID: 0}
     - target: {fileID: 8969098762088924172, guid: 2b80b8d52b28ed049ab3b47f1846e1d5, type: 3}
       propertyPath: m_HorizontalAlignment
