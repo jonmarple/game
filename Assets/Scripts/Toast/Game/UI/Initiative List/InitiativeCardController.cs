@@ -34,9 +34,6 @@ namespace Toast.Game.UI
             animator?.SetBool("Hovered", Character.Hovered);
         }
 
-        private void FixedUpdate()
-        { Refresh(); }
-
         #region PUBLIC
 
         /// <summary> Initialize card with character info. </summary>
@@ -46,15 +43,17 @@ namespace Toast.Game.UI
             nameField.text = Character.CharacterName;
             factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
             lerp.SetTarget(target);
+            character.Stats.ValueUpdated += Refresh;
+            character.Equipment.Armor.ValueUpdated += Refresh;
             Refresh();
         }
 
         /// <summary> Select Character. </summary>
         public void Refresh()
         {
-            hpField.SetText(Character.Stats.HP + " / " + Character.Stats.HPMax);
-            paField.SetText(Character.Equipment.Armor.Physical + " / " + Character.Equipment.Armor.PhysicalMax);
-            maField.SetText(Character.Equipment.Armor.Magical + " / " + Character.Equipment.Armor.MagicalMax);
+            hpField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.HP, Character.Stats.HPMax));
+            paField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax));
+            maField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax));
         }
 
         /// <summary> Show Card. </summary>

@@ -26,6 +26,10 @@ namespace Toast.Game.Stats
         /* Private Fields */
         private Character owner;
 
+        /* Value Update Delegate/Event */
+        public delegate void Updated();
+        public event Updated ValueUpdated;
+
         public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, ModifierLevel physicalMod, ModifierLevel magicalMod)
         {
             HPMax = hpMax;
@@ -37,6 +41,7 @@ namespace Toast.Game.Stats
             Initiative = initiative;
             PhysicalMod = physicalMod;
             MagicalMod = magicalMod;
+            ValueUpdated?.Invoke();
         }
 
         #region PUBLIC
@@ -52,6 +57,8 @@ namespace Toast.Game.Stats
 
             if (!prev && curr)
                 owner?.Kill();
+
+            ValueUpdated?.Invoke();
         }
 
         /// <summary> Alter HP value. </summary>
@@ -60,7 +67,10 @@ namespace Toast.Game.Stats
 
         /// <summary> Set AP value. </summary>
         public void SetAP(int ap)
-        { AP = Mathf.Clamp(ap, 0, APMax); }
+        {
+            AP = Mathf.Clamp(ap, 0, APMax);
+            ValueUpdated?.Invoke();
+        }
 
         /// <summary> Alter AP value. </summary>
         public void AlterAP(int diff)
@@ -72,7 +82,10 @@ namespace Toast.Game.Stats
 
         /// <summary> Register character owner. </summary>
         public void Register(Character owner)
-        { this.owner = owner; }
+        {
+            this.owner = owner;
+            ValueUpdated?.Invoke();
+        }
 
         #endregion
     }
