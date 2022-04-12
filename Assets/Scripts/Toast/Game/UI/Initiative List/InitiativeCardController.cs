@@ -21,6 +21,9 @@ namespace Toast.Game.UI
         [SerializeField] private Color factionBColor;
         [SerializeField] private Image factionOutline;
         [SerializeField] private TextMeshProUGUI nameField;
+        [SerializeField] private TextMeshProUGUI hpField;
+        [SerializeField] private TextMeshProUGUI paField;
+        [SerializeField] private TextMeshProUGUI maField;
         [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
         [SerializeField] private RectLerp lerp;
@@ -31,6 +34,9 @@ namespace Toast.Game.UI
             animator?.SetBool("Hovered", Character.Hovered);
         }
 
+        private void FixedUpdate()
+        { Refresh(); }
+
         #region PUBLIC
 
         /// <summary> Initialize card with character info. </summary>
@@ -40,6 +46,15 @@ namespace Toast.Game.UI
             nameField.text = Character.CharacterName;
             factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
             lerp.SetTarget(target);
+            Refresh();
+        }
+
+        /// <summary> Select Character. </summary>
+        public void Refresh()
+        {
+            hpField.SetText(Character.Stats.HP + " / " + Character.Stats.HPMax);
+            paField.SetText(Character.Equipment.Armor.Physical + " / " + Character.Equipment.Armor.PhysicalMax);
+            maField.SetText(Character.Equipment.Armor.Magical + " / " + Character.Equipment.Armor.MagicalMax);
         }
 
         /// <summary> Show Card. </summary>
