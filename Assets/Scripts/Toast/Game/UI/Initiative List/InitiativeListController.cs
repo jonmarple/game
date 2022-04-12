@@ -14,14 +14,12 @@ namespace Toast.Game.UI
     {
         /* Serialized Fields */
         [SerializeField] private InitiativeCardController cardControllerPrefab;
-        [SerializeField] private HorizontalLayoutGroup container;
+        [SerializeField] private RectTransform targetPrefab;
+        [SerializeField] private RectTransform cardContainer;
+        [SerializeField] private RectTransform targetContainer;
 
         /* Private Fields */
-        private List<InitiativeCardController> cards;
-        private RectTransform rect;
-
-        private void Awake()
-        { rect = (RectTransform)transform; }
+        private Dictionary<InitiativeCardController, RectTransform> cardTargets;
 
         #region PUBLIC
 
@@ -30,21 +28,13 @@ namespace Toast.Game.UI
         {
             Clear();
 
-            cards = new List<InitiativeCardController>();
+            cardTargets = new Dictionary<InitiativeCardController, RectTransform>();
 
             foreach (Character character in CombatFlow.GroupA.Characters)
-            {
-                InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
-                card.Initialize(character, CombatFlow.GroupA.Faction);
-                cards.Add(card);
-            }
+                Add(character, CombatFlow.GroupA.Faction);
 
             foreach (Character character in CombatFlow.GroupB.Characters)
-            {
-                InitiativeCardController card = Instantiate(cardControllerPrefab, container.transform);
-                card.Initialize(character, CombatFlow.GroupB.Faction);
-                cards.Add(card);
-            }
+                Add(character, CombatFlow.GroupB.Faction);
 
             Refresh();
         }
@@ -52,31 +42,19 @@ namespace Toast.Game.UI
         /// <summary> Clear list. </summary>
         public void Clear()
         {
-            if (cards != null)
+            if (cardTargets != null)
             {
-                foreach (InitiativeCardController card in cards)
+                foreach (InitiativeCardController card in cardTargets.Keys)
+                {
+                    if (cardTargets[card]) Destroy(cardTargets[card].gameObject);
                     if (card) Destroy(card.gameObject);
-                cards.Clear();
+                }
+                cardTargets.Clear();
             }
         }
 
         /// <summary> Refresh cards and list. </summary>
         public void Refresh()
-        { StartCoroutine(HandleRefresh()); }
-
-        #endregion
-
-        #region PRIVATE
-
-        private InitiativeCardController GetCard(Character character)
-        {
-            foreach (InitiativeCardController card in cards)
-                if (character == card.Character)
-                    return card;
-            return null;
-        }
-
-        private IEnumerator HandleRefresh()
         {
             if (CombatFlow.Order != null)
             {
@@ -85,25 +63,38 @@ namespace Toast.Game.UI
                     InitiativeCardController card = GetCard(character);
                     if (card)
                     {
-                        if (character.Stats.Dead)
-                        {
-                            cards.Remove(card);
-                            Destroy(card.gameObject);
-                        }
-                        else ((RectTransform)card.transform).SetAsLastSibling();
+                        if (character.Stats.Dead) Remove(card);
+                        else ((RectTransform)cardTargets[card].transform).SetAsLastSibling();
                     }
                 }
             }
+        }
 
-            float padding = 30f;
-            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (cards.Count * ((RectTransform)cardControllerPrefab.transform).sizeDelta.x) + ((cards.Count + 1) * padding));
-            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ((RectTransform)cardControllerPrefab.transform).sizeDelta.x + (2f * padding));
+        #endregion
 
-            InitiativeCardController lastCard = GetCard(CombatFlow.Order.Last.Value);
-            lastCard?.Hide();
-            for (int i = 0; i < 10; i++)
-                yield return null;
-            lastCard?.Show();
+        #region PRIVATE
+
+        private InitiativeCardController GetCard(Character character)
+        {
+            foreach (InitiativeCardController card in cardTargets.Keys)
+                if (character == card.Character)
+                    return card;
+            return null;
+        }
+
+        private void Add(Character character, Faction faction)
+        {
+            InitiativeCardController card = Instantiate(cardControllerPrefab, cardContainer.transform);
+            RectTransform target = Instantiate(targetPrefab, targetContainer.transform);
+            card.Initialize(character, faction, target);
+            cardTargets.Add(card, target);
+        }
+
+        private void Remove(InitiativeCardController card)
+        {
+            if (cardTargets[card]) Destroy(cardTargets[card].gameObject);
+            cardTargets.Remove(card);
+            if (card) Destroy(card.gameObject);
         }
 
         #endregion

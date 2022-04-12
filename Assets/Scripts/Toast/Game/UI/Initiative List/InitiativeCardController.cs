@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Toast.Game.Characters;
+using Toast.UI;
 
 namespace Toast.Game.UI
 {
@@ -22,6 +23,7 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI nameField;
         [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
+        [SerializeField] private RectLerp lerp;
 
         private void Update()
         {
@@ -32,11 +34,12 @@ namespace Toast.Game.UI
         #region PUBLIC
 
         /// <summary> Initialize card with character info. </summary>
-        public void Initialize(Character character, Faction faction)
+        public void Initialize(Character character, Faction faction, RectTransform target)
         {
             Character = character;
             nameField.text = Character.CharacterName;
             factionOutline.color = faction == Faction.A ? factionAColor : factionBColor;
+            lerp.SetTarget(target);
         }
 
         /// <summary> Show Card. </summary>
