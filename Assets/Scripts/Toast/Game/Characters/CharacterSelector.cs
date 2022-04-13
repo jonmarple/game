@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityAtoms.BaseAtoms;
 
 namespace Toast.Game.Characters
 {
@@ -13,10 +12,6 @@ namespace Toast.Game.Characters
         /* Public Fields */
         public static Character SelectedCharacter;
         public static Character HoveredCharacter;
-
-        /* Private Fields */
-        private static BoolEvent OnSelect;
-        private static BoolEvent OnHover;
 
         /* Value Update Delegate/Event */
         public delegate void Updated();
@@ -31,7 +26,6 @@ namespace Toast.Game.Characters
             Deselect();
             SelectedCharacter = character;
             SelectedCharacter?.Select(true);
-            OnSelect?.Raise(true);
             SelectUpdated?.Invoke();
         }
 
@@ -40,7 +34,6 @@ namespace Toast.Game.Characters
         {
             SelectedCharacter?.Select(false);
             SelectedCharacter = null;
-            OnSelect?.Raise(false);
             SelectUpdated?.Invoke();
         }
 
@@ -61,23 +54,15 @@ namespace Toast.Game.Characters
                 Hover(false);
                 HoveredCharacter = character;
                 HoveredCharacter?.Hover(true);
-                OnHover?.Raise(true);
                 HoverUpdated?.Invoke();
             }
             else
             {
                 HoveredCharacter?.Hover(false);
                 HoveredCharacter = null;
-                OnHover?.Raise(false);
                 HoverUpdated?.Invoke();
             }
         }
-
-        public static void SetSelectionEvent(BoolEvent select)
-        { OnSelect = select; }
-
-        public static void SetHoverEvent(BoolEvent hover)
-        { OnHover = hover; }
 
         #endregion
     }

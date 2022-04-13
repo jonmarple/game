@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Toast.Game.Characters;
 using Toast.Game.Combat;
 
@@ -20,6 +19,14 @@ namespace Toast.Game.UI
 
         /* Private Fields */
         private Dictionary<InitiativeCardController, RectTransform> cardTargets;
+
+        private void Start()
+        {
+            CombatFlow.CombatStart += Initialize;
+            CombatFlow.TurnStart += Refresh;
+            CombatFlow.TurnFinish += Refresh;
+            CombatFlow.CombatFinish += Refresh;
+        }
 
         #region PUBLIC
 

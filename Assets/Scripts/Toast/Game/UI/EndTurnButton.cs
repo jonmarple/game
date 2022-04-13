@@ -14,6 +14,9 @@ namespace Toast.Game.UI
         /* Serialized Field */
         [SerializeField] private Button button;
 
+        private void Start()
+        { CharacterSelector.SelectUpdated += Refresh; }
+
         #region PUBLIC
 
         public void Refresh()

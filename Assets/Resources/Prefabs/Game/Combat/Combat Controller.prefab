@@ -126,12 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   factionA: {fileID: 1395287177987927004}
   factionB: {fileID: 411997717382919588}
-  combatStart: {fileID: 11400000, guid: 393e4f388b65b1649ae4f36734ac3633, type: 2}
-  combatFinish: {fileID: 11400000, guid: 75775eeeab4b04e43a7370dcc3705d0f, type: 2}
-  turnStart: {fileID: 11400000, guid: 50b9ea870d9413e4286b503efa9d24b6, type: 2}
-  turnFinish: {fileID: 11400000, guid: f71ea1139f869aa428256bd33b08344e, type: 2}
-  characterSelect: {fileID: 11400000, guid: d62e4fcb6b89d2e49b1878c9fbce2acf, type: 2}
-  characterHover: {fileID: 11400000, guid: 01d4f547be5c8e144a4f7e0fefa9304b, type: 2}
 --- !u!1001 &1587976312764984308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -456,44 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6705686174462063827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877017965220570814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6ab7cbc45164d19b20476265c251c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _developerDescription: 
-  _unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9219522804400475832}
-        m_TargetAssemblyTypeName: Toast.Game.UI.EndTurnButton, Toast
-        m_MethodName: Refresh
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _actionResponses: []
-  _conditions: []
-  _operator: 0
-  _replayEventBufferOnRegister: 1
-  _eventReference:
-    _usage: 0
-    _event: {fileID: 11400000, guid: d62e4fcb6b89d2e49b1878c9fbce2acf, type: 2}
-    _eventInstancer: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
 --- !u!114 &9219522804400475832
 MonoBehaviour:
   m_ObjectHideFlags: 0

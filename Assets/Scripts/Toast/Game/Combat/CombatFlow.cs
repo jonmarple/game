@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityAtoms.BaseAtoms;
 using Toast.Game.Characters;
 using Toast.Utility;
 
@@ -21,11 +20,12 @@ namespace Toast.Game.Combat
         public static bool Active { get; private set; }
         public static bool Finished { get; private set; }
 
-        /* Private Fields */
-        private static VoidEvent combatStart;
-        private static VoidEvent combatFinish;
-        private static VoidEvent turnStart;
-        private static VoidEvent turnFinish;
+        /* Combat Events */
+        public delegate void Event();
+        public static event Event CombatStart;
+        public static event Event CombatFinish;
+        public static event Event TurnStart;
+        public static event Event TurnFinish;
 
         #region PUBLIC
 
@@ -40,7 +40,7 @@ namespace Toast.Game.Combat
         }
 
         /// <summary> Initialize combat with specified groups. </summary>
-        public static void Start(CharacterGroup groupA, CharacterGroup groupB, VoidEvent combatStart = null, VoidEvent combatFinish = null, VoidEvent turnStart = null, VoidEvent turnFinish = null)
+        public static void Start(CharacterGroup groupA, CharacterGroup groupB)
         {
             Active = true;
             Finished = false;
@@ -48,12 +48,8 @@ namespace Toast.Game.Combat
             GroupB = groupB;
             InitializeAI();
             DetermineOrder();
-            CombatFlow.combatStart = combatStart;
-            CombatFlow.combatFinish = combatFinish;
-            CombatFlow.turnStart = turnStart;
-            CombatFlow.turnFinish = turnFinish;
             Debug.Log("Starting Combat.");
-            combatStart?.Raise();
+            CombatStart?.Invoke();
             // move last character to first place so it is skipped in the first Step() call
             Order.AddFirst(Order.Last());
             Order.RemoveLast();
@@ -66,7 +62,7 @@ namespace Toast.Game.Combat
             if (Active && !Finished)
             {
                 CharacterSelector.Deselect();
-                turnFinish?.Raise();
+                TurnFinish?.Invoke();
                 CheckFinished();
                 if (Active && !Finished) Step();
             }
@@ -95,7 +91,7 @@ namespace Toast.Game.Combat
             Debug.Log("");
             Debug.Log("Processing turn for " + CurrentCharacter.CharacterName + ".");
             CharacterSelector.Select(CurrentCharacter);
-            turnStart?.Raise();
+            TurnStart?.Invoke();
             CurrentCharacter.Process();
         }
 
@@ -109,7 +105,7 @@ namespace Toast.Game.Combat
         {
             Debug.Log("");
             Debug.Log("Finishing Combat.");
-            combatFinish?.Raise();
+            CombatFinish?.Invoke();
             Finished = true;
         }
 
