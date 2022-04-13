@@ -18,6 +18,11 @@ namespace Toast.Game.Characters
         private static BoolEvent OnSelect;
         private static BoolEvent OnHover;
 
+        /* Value Update Delegate/Event */
+        public delegate void Updated();
+        public static event Updated SelectUpdated;
+        public static event Updated HoverUpdated;
+
         #region PUBLIC
 
         /// <summary> Select specified Character. </summary>
@@ -27,6 +32,7 @@ namespace Toast.Game.Characters
             SelectedCharacter = character;
             SelectedCharacter?.Select(true);
             OnSelect?.Raise(true);
+            SelectUpdated?.Invoke();
         }
 
         /// <summary> Deselect current Character. </summary>
@@ -35,6 +41,7 @@ namespace Toast.Game.Characters
             SelectedCharacter?.Select(false);
             SelectedCharacter = null;
             OnSelect?.Raise(false);
+            SelectUpdated?.Invoke();
         }
 
         /// <summary> Toggle specified Character. </summary>
@@ -55,12 +62,14 @@ namespace Toast.Game.Characters
                 HoveredCharacter = character;
                 HoveredCharacter?.Hover(true);
                 OnHover?.Raise(true);
+                HoverUpdated?.Invoke();
             }
             else
             {
                 HoveredCharacter?.Hover(false);
                 HoveredCharacter = null;
                 OnHover?.Raise(false);
+                HoverUpdated?.Invoke();
             }
         }
 

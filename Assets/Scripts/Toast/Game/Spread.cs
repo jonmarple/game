@@ -41,6 +41,9 @@ namespace Toast.Game
                 return Roll();
         }
 
+        public override string ToString()
+        { return Value + ":" + Variation; }
+
         #endregion
 
         #region PRIVATE
