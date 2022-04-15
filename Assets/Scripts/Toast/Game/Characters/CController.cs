@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Actions;
 using Toast.Game.Combat;
 
 namespace Toast.Game.Characters
@@ -47,7 +48,12 @@ namespace Toast.Game.Characters
 
         /// <summary> Select this character. </summary>
         public void Select()
-        { CharacterSelector.ToggleSelect(Character); }
+        {
+            if (ActionHelper.Targeting)
+                ActionHelper.Target(Character);
+            else
+                CharacterSelector.ToggleSelect(Character);
+        }
 
         #endregion
 

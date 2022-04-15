@@ -24,28 +24,20 @@ namespace Toast.Game.Characters
         /// <summary> Select specified Character. </summary>
         public static void Select(Character character)
         {
-            if (!ActionHelper.Targeting)
-            {
-                Deselect();
-                ActionHelper.Deselect();
-                SelectedCharacter = character;
-                SelectedCharacter?.Select(true);
-                SelectUpdated?.Invoke();
-            }
-            else ActionHelper.Target(character);
+            Deselect();
+            ActionHelper.Deselect();
+            SelectedCharacter = character;
+            SelectedCharacter?.Select(true);
+            SelectUpdated?.Invoke();
         }
 
         /// <summary> Deselect current Character. </summary>
         public static void Deselect()
         {
-            if (!ActionHelper.Targeting)
-            {
-                ActionHelper.Deselect();
-                SelectedCharacter?.Select(false);
-                SelectedCharacter = null;
-                SelectUpdated?.Invoke();
-            }
-            else ActionHelper.Target(SelectedCharacter);
+            ActionHelper.Deselect();
+            SelectedCharacter?.Select(false);
+            SelectedCharacter = null;
+            SelectUpdated?.Invoke();
         }
 
         /// <summary> Toggle specified Character. </summary>
