@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Characters;
 
 namespace Toast.Game.Actions
 {
@@ -33,6 +34,16 @@ namespace Toast.Game.Actions
             SelectedAction = null;
             SelectUpdated?.Invoke();
         }
+
+        /// <summary> Perform action on target. </summary>
+        public static void Target(Character target)
+        {
+            if (Targeting)
+                CharacterSelector.SelectedCharacter.PerformAction(SelectedAction, target);
+            Deselect();
+        }
+        // TODO: handle faction check
+        // TODO: handle spatial targeting
 
         #endregion
     }

@@ -48,9 +48,8 @@ namespace Toast.Game.UI
         public void Refresh()
         {
             button.interactable = CharacterSelector.SelectedCharacter != null &&
-                                  CharacterSelector.SelectedCharacter.Active &&
                                   CharacterSelector.SelectedCharacter.AI == null &&
-                                  CharacterSelector.SelectedCharacter.HasAction(action);
+                                  CharacterSelector.SelectedCharacter.CanPerformAction(action);
             active = button.interactable && action == ActionHelper.SelectedAction;
             outline.enabled = active;
         }

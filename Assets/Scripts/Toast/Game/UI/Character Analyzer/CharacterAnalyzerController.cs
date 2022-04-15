@@ -27,6 +27,7 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI mdField;
 
         /* Private Fields */
+        private Character character;
         private float targetAlpha = 0f;
 
         private void Start()
@@ -57,8 +58,19 @@ namespace Toast.Game.UI
 
         private void SetInfo(Character character)
         {
+            if (this.character != null)
+            {
+                this.character.Stats.ValueUpdated -= Refresh;
+                this.character.Equipment.Armor.ValueUpdated -= Refresh;
+            }
+
+            this.character = character;
+
             if (character != null)
             {
+                character.Stats.ValueUpdated += Refresh;
+                this.character.Equipment.Armor.ValueUpdated += Refresh;
+
                 nameField.SetText(character.CharacterName);
                 hpField.SetText(string.Format("{0,3} / {1,-3}", character.Stats?.HP, character.Stats?.HPMax));
                 apField.SetText(string.Format("{0,3} / {1,-3}", character.Stats?.AP, character.Stats?.APMax));

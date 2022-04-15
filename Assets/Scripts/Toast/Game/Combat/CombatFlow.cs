@@ -90,9 +90,9 @@ namespace Toast.Game.Combat
         {
             Debug.Log("");
             Debug.Log("Processing turn for " + CurrentCharacter.CharacterName + ".");
-            CharacterSelector.Select(CurrentCharacter);
             TurnStart?.Invoke();
             CurrentCharacter.Process();
+            CharacterSelector.Select(CurrentCharacter);
         }
 
         private static void CheckFinished()
