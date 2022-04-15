@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Toast.Game.Characters;
+using Toast.Game.Combat;
 
 namespace Toast.Game.UI
 {
@@ -15,15 +15,17 @@ namespace Toast.Game.UI
         [SerializeField] private Button button;
 
         private void Start()
-        { CharacterSelector.SelectUpdated += Refresh; }
+        {
+            CombatFlow.TurnStart += Refresh;
+            CombatFlow.TurnFinish += Refresh;
+        }
 
         #region PUBLIC
 
         public void Refresh()
         {
-            button.interactable = CharacterSelector.SelectedCharacter != null &&
-                                  CharacterSelector.SelectedCharacter.Active &&
-                                  CharacterSelector.SelectedCharacter.AI == null;
+            button.interactable = CombatFlow.CurrentCharacter != null &&
+                                  CombatFlow.CurrentCharacter.AI == null;
         }
 
         #endregion
