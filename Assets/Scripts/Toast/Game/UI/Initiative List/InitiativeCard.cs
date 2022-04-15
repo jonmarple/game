@@ -11,7 +11,7 @@ namespace Toast.Game.UI
     /// <summary>
     /// Controller for an Initiative Card.
     /// </summary>
-    public class InitiativeCardController : MonoBehaviour
+    public class InitiativeCard : MonoBehaviour
     {
         /* Public Fields */
         public Character Character { get; private set; }

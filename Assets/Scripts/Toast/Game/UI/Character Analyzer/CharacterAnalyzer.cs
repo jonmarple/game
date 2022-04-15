@@ -9,7 +9,7 @@ namespace Toast.Game.UI
     /// <summary>
     /// Character Analysis Console.
     /// </summary>
-    public class CharacterAnalyzerController : MonoBehaviour
+    public class CharacterAnalyzer : MonoBehaviour
     {
         /* Serialized Fields */
         [SerializeField] private CanvasGroup canvasGroup;
