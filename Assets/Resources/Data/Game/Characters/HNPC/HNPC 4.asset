@@ -21,4 +21,4 @@ MonoBehaviour:
   movementData: {fileID: 11400000, guid: 840e0c093d4d107469149932f489dbfc, type: 2}
   statBlockData: {fileID: 11400000, guid: 2eadaec885a1c064ab266eb5c1168350, type: 2}
   equipmentData: {fileID: 11400000, guid: 87d7a7d6d175dd74bbfa558633ca4546, type: 2}
-  characterAIData: {fileID: 11400000, guid: e597b235d99003c4d9819afb738aa289, type: 2}
+  characterAIData: {fileID: 0}

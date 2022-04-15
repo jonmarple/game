@@ -26,6 +26,7 @@ namespace Toast.Game.UI
             CombatFlow.TurnStart += Refresh;
             CombatFlow.TurnFinish += Refresh;
             CombatFlow.CombatFinish += Refresh;
+            Character.CharacterKilled += Refresh;
         }
 
         #region PUBLIC

@@ -30,8 +30,10 @@ namespace Toast.Game.Characters
         public bool Hovered { get; private set; }
         public System.Action TurnProcessHandler;
 
-        /* Private Fields */
-        private CController controller;
+        /* Value Update Delegate/Event */
+        public delegate void Killed();
+        public static event Killed CharacterKilled;
+        public event Killed ThisCharacterKilled;
 
         public Character(CharacterData data)
         {
@@ -131,13 +133,12 @@ namespace Toast.Game.Characters
             return false;
         }
 
-        /// <summary> Register a CController. </summary>
-        public void Register(CController controller)
-        { this.controller = controller; }
-
         /// <summary> Kill this character. </summary>
         public void Kill()
-        { controller?.Disable(); }
+        {
+            ThisCharacterKilled?.Invoke();
+            CharacterKilled?.Invoke();
+        }
 
         /// <summary> Select this character. </summary>
         public void Select(bool active)

@@ -32,7 +32,7 @@ namespace Toast.Game.Characters
         public void Initialize(Character character, Faction faction)
         {
             Character = character;
-            Character.Register(this);
+            Character.ThisCharacterKilled += Disable;
             Character.TurnProcessHandler = TurnProcessHandler;
             Faction = faction;
             sprite.color = faction == Faction.A ? factionAColor : factionBColor;
