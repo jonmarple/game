@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Actions;
 
 namespace Toast.Game.Characters
 {
@@ -24,6 +25,7 @@ namespace Toast.Game.Characters
         public static void Select(Character character)
         {
             Deselect();
+            ActionHelper.Deselect();
             SelectedCharacter = character;
             SelectedCharacter?.Select(true);
             SelectUpdated?.Invoke();
@@ -32,6 +34,7 @@ namespace Toast.Game.Characters
         /// <summary> Deselect current Character. </summary>
         public static void Deselect()
         {
+            ActionHelper.Deselect();
             SelectedCharacter?.Select(false);
             SelectedCharacter = null;
             SelectUpdated?.Invoke();

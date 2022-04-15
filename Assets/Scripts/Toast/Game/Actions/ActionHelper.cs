@@ -11,6 +11,7 @@ namespace Toast.Game.Actions
     {
         /* Public Fields */
         public static Action SelectedAction;
+        public static bool Targeting { get { return SelectedAction != null; } }
 
         /* Value Update Delegate/Event */
         public delegate void Updated();
@@ -24,7 +25,6 @@ namespace Toast.Game.Actions
             Deselect();
             SelectedAction = action;
             SelectUpdated?.Invoke();
-            Debug.Log("select " + action.ActionName);
         }
 
         /// <summary> Deselect current Action. </summary>
@@ -32,7 +32,6 @@ namespace Toast.Game.Actions
         {
             SelectedAction = null;
             SelectUpdated?.Invoke();
-            Debug.Log("deselect");
         }
 
         #endregion
