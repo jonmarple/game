@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 5356493653272023847}
-  fadeSpeed: 10
+  fadeSpeed: 20
   nameField: {fileID: 81689534076982342}
   hpField: {fileID: 4102745143586220551}
   apField: {fileID: 3040382431393644768}

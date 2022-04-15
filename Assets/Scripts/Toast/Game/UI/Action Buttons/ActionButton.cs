@@ -38,8 +38,12 @@ namespace Toast.Game.UI
         /// <summary> Set the associated action. </summary>
         public void SetAction(Action action)
         {
-            this.action = action;
-            label.text = action?.ActionName ?? "";
+            if (CharacterSelector.SelectedCharacter != null &&
+                CharacterSelector.SelectedCharacter.AI == null)
+            {
+                this.action = action;
+                label.text = action?.ActionName ?? "";
+            }
 
             Refresh();
         }

@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeout: 1
-  fadeSpeed: 10
+  fadeSpeed: 20
   maxAlpha: 1
   minAlpha: 0.25
   canvasGroup: {fileID: 5356493653272023847}

@@ -37,7 +37,7 @@ MonoBehaviour:
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
   initiative:
-    value: 20
-    variation: 0
+    value: 10
+    variation: 5
   physicalMod: 0
   magicalMod: 0
