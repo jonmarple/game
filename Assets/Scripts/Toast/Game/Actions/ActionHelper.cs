@@ -38,12 +38,34 @@ namespace Toast.Game.Actions
         /// <summary> Perform action on target. </summary>
         public static void Target(Character target)
         {
-            if (Targeting)
-                CharacterSelector.SelectedCharacter.PerformAction(SelectedAction, target);
+            Character source = CharacterSelector.SelectedCharacter;
+            Action action = SelectedAction;
+
+            if (source != null && target != null && action != null)
+            {
+                switch (action)
+                {
+                    case Attack attack:
+                        if (source.Faction != target.Faction)
+                            Perform(source, action, target);
+                        break;
+                    case Regen regen:
+                        if (source.Faction == target.Faction)
+                            Perform(source, action, target);
+                        break;
+                }
+            }
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        private static void Perform(Character source, Action action, Character target)
+        {
+            source.PerformAction(action, target);
             Deselect();
         }
-        // TODO: handle faction check
-        // TODO: handle spatial targeting
 
         #endregion
     }

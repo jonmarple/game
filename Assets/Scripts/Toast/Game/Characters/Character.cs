@@ -17,6 +17,7 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public string CharacterName { get; private set; }
+        public Faction Faction { get; private set; }
         public Action Primary { get { return Equipment?.Weapon?.Primary; } }
         public Action Secondary { get { return Equipment?.Weapon?.Secondary; } }
         public Movement Movement { get; private set; }
@@ -145,6 +146,10 @@ namespace Toast.Game.Characters
         /// <summary> Hover this character. </summary>
         public void Hover(bool active)
         { Hovered = active; }
+
+        /// <summary> Set character's faction. </summary>
+        public void SetFaction(Faction faction)
+        { Faction = faction; }
 
         #endregion
 

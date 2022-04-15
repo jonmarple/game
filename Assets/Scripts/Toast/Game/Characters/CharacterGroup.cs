@@ -28,6 +28,8 @@ namespace Toast.Game.Characters
         {
             Faction = faction;
             Characters = characters;
+            foreach (Character character in Characters)
+                character.SetFaction(Faction);
         }
 
         public CharacterGroup(CharacterGroupData data)
@@ -36,6 +38,8 @@ namespace Toast.Game.Characters
             Characters = new List<Character>();
             foreach (CharacterData character in data.Characters)
                 Characters.Add(character.Generate());
+            foreach (Character character in Characters)
+                character.SetFaction(Faction);
         }
     }
 }
