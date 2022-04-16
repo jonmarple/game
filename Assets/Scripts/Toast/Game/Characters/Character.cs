@@ -138,6 +138,7 @@ namespace Toast.Game.Characters
         {
             ThisCharacterKilled?.Invoke();
             CharacterKilled?.Invoke();
+            CharacterSelector.Hover(false);
         }
 
         /// <summary> Select this character. </summary>
