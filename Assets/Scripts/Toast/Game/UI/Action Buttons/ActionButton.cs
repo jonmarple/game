@@ -19,6 +19,10 @@ namespace Toast.Game.UI
         [SerializeField] private Outline outline;
         [SerializeField] private TextMeshProUGUI label;
 
+        [Header("Status Image")]
+        [SerializeField] private Image status;
+        [SerializeField] private Sprite cooldown;
+
         /* Private Fields */
         private Action action;
         private bool active = false;
@@ -56,6 +60,16 @@ namespace Toast.Game.UI
                                   CharacterSelector.SelectedCharacter.CanPerformAction(action);
             active = button.interactable && action == ActionHelper.SelectedAction;
             outline.enabled = active;
+            if (action != null && action.CooldownCounter > 0)
+            {
+                status.sprite = cooldown;
+                status.CrossFadeAlpha(1f, 0f, true);
+            }
+            else
+            {
+                status.CrossFadeAlpha(0f, 0f, true);
+                status.sprite = null;
+            }
         }
 
         #endregion
