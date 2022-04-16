@@ -49,7 +49,7 @@ namespace Toast.Game.UI
             Refresh();
         }
 
-        /// <summary> Select Character. </summary>
+        /// <summary> Refresh card info. </summary>
         public void Refresh()
         {
             hpField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.HP, Character.Stats.HPMax));

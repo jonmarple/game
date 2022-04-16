@@ -26,6 +26,7 @@ namespace Toast.Game.UI
         /* Private Fields */
         private Action action;
         private bool active = false;
+        private bool destroying = false;
 
         private void Awake()
         { ActionHelper.SelectUpdated += Refresh; }
@@ -55,21 +56,31 @@ namespace Toast.Game.UI
         /// <summary> Refresh the action's state. </summary>
         public void Refresh()
         {
-            button.interactable = CharacterSelector.SelectedCharacter != null &&
-                                  CharacterSelector.SelectedCharacter.AI == null &&
-                                  CharacterSelector.SelectedCharacter.CanPerformAction(action);
-            active = button.interactable && action == ActionHelper.SelectedAction;
-            outline.enabled = active;
-            if (action != null && action.CooldownCounter > 0)
+            if (!destroying)
             {
-                status.sprite = cooldown;
-                status.CrossFadeAlpha(1f, 0f, true);
+                button.interactable = CharacterSelector.SelectedCharacter != null &&
+                                      CharacterSelector.SelectedCharacter.AI == null &&
+                                      CharacterSelector.SelectedCharacter.CanPerformAction(action);
+                active = button.interactable && action == ActionHelper.SelectedAction;
+                outline.enabled = active;
+                if (action != null && action.CooldownCounter > 0)
+                {
+                    status.sprite = cooldown;
+                    status.CrossFadeAlpha(1f, 0f, true);
+                }
+                else
+                {
+                    status.CrossFadeAlpha(0f, 0f, true);
+                    status.sprite = null;
+                }
             }
-            else
-            {
-                status.CrossFadeAlpha(0f, 0f, true);
-                status.sprite = null;
-            }
+        }
+
+        /// <summary> Destroy controller. </summary>
+        public void Destroy()
+        {
+            destroying = true;
+            Destroy(gameObject);
         }
 
         #endregion
