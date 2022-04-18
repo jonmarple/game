@@ -21,10 +21,22 @@ namespace Toast.Game.Characters
         [SerializeField] private Color factionBColor;
         [SerializeField] private Animator animator;
 
-        private void Update()
+        private void OnEnable()
         {
-            animator?.SetBool("Selected", Character.Selected);
-            animator?.SetBool("Hovered", Character.Hovered);
+            if (Character != null)
+                Character.ThisCharacterKilled += Disable;
+            CharacterSelector.SelectUpdated += Refresh;
+            CharacterSelector.HoverUpdated += Refresh;
+            ActionHelper.SelectUpdated += Refresh;
+        }
+
+        private void OnDisable()
+        {
+            if (Character != null)
+                Character.ThisCharacterKilled -= Disable;
+            CharacterSelector.SelectUpdated -= Refresh;
+            CharacterSelector.HoverUpdated -= Refresh;
+            ActionHelper.SelectUpdated -= Refresh;
         }
 
         #region PUBLIC
@@ -32,8 +44,8 @@ namespace Toast.Game.Characters
         public void Initialize(Character character, Faction faction)
         {
             Character = character;
-            Character.ThisCharacterKilled += Disable;
             Character.TurnProcessHandler = TurnProcessHandler;
+            Character.ThisCharacterKilled += Disable;
             Faction = faction;
             sprite.color = faction == Faction.A ? factionAColor : factionBColor;
         }
@@ -48,11 +60,14 @@ namespace Toast.Game.Characters
 
         /// <summary> Select this character. </summary>
         public void Select()
+        { if (!ActionHelper.Targeting) CharacterSelector.ToggleSelect(Character); }
+
+        /// <summary> Refresh this character selector. </summary>
+        public void Refresh()
         {
-            if (ActionHelper.Targeting)
-                ActionHelper.Target(Character);
-            else
-                CharacterSelector.ToggleSelect(Character);
+            animator?.SetBool("Selected", Character.Selected);
+            animator?.SetBool("Hovered", Character.Hovered);
+            animator?.SetBool("Targeting", ActionHelper.Targeting);
         }
 
         #endregion

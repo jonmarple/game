@@ -50,9 +50,6 @@ namespace Toast.Game.Actions
                             Perform(source, action, target);
                         break;
                     case Regen regen:
-                        if (source.Faction == target.Faction)
-                            Perform(source, action, target);
-                        break;
                     case Roll roll:
                         if (source.Faction == target.Faction)
                             Perform(source, action, target);

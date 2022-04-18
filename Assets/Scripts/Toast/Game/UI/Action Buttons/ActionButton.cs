@@ -28,8 +28,11 @@ namespace Toast.Game.UI
         private bool active = false;
         private bool destroying = false;
 
-        private void Awake()
+        private void OnEnable()
         { ActionHelper.SelectUpdated += Refresh; }
+
+        private void OnDisable()
+        { ActionHelper.SelectUpdated -= Refresh; }
 
         #region PUBLIC
 

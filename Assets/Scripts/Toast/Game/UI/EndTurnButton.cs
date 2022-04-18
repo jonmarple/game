@@ -14,10 +14,16 @@ namespace Toast.Game.UI
         /* Serialized Field */
         [SerializeField] private Button button;
 
-        private void Start()
+        private void OnEnable()
         {
             CombatFlow.TurnStart += Refresh;
             CombatFlow.TurnFinish += Refresh;
+        }
+
+        private void OnDisable()
+        {
+            CombatFlow.TurnStart -= Refresh;
+            CombatFlow.TurnFinish -= Refresh;
         }
 
         #region PUBLIC

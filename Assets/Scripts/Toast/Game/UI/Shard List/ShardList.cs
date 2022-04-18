@@ -23,10 +23,20 @@ namespace Toast.Game.UI
 
         private void Start()
         {
-            CharacterSelector.SelectUpdated += Refresh;
-            CombatHelper.ShardRolled += Refresh;
             shardTargets = new Dictionary<ShardController, RectTransform>();
             Refresh();
+        }
+
+        private void OnEnable()
+        {
+            CharacterSelector.SelectUpdated += Refresh;
+            CombatHelper.ShardRolled += Refresh;
+        }
+
+        private void OnDisable()
+        {
+            CharacterSelector.SelectUpdated -= Refresh;
+            CombatHelper.ShardRolled -= Refresh;
         }
 
         #region PUBLIC

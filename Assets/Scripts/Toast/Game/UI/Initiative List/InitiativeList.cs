@@ -20,13 +20,22 @@ namespace Toast.Game.UI
         /* Private Fields */
         private Dictionary<InitiativeCard, RectTransform> cardTargets;
 
-        private void Start()
+        private void OnEnable()
         {
             CombatFlow.CombatStart += Initialize;
             CombatFlow.TurnStart += Refresh;
             CombatFlow.TurnFinish += Refresh;
             CombatFlow.CombatFinish += Refresh;
             Character.CharacterKilled += Refresh;
+        }
+
+        private void OnDisable()
+        {
+            CombatFlow.CombatStart -= Initialize;
+            CombatFlow.TurnStart -= Refresh;
+            CombatFlow.TurnFinish -= Refresh;
+            CombatFlow.CombatFinish -= Refresh;
+            Character.CharacterKilled -= Refresh;
         }
 
         #region PUBLIC

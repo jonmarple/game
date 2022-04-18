@@ -10,6 +10,10 @@ namespace Toast.Game.Combat
     /// </summary>
     public class CombatController : MonoBehaviour
     {
+        /* Public Fields */
+        public GroupController FactionA { get { return factionA; } }
+        public GroupController FactionB { get { return factionB; } }
+
         /* Serialized Fields */
         [SerializeField] private GroupController factionA;
         [SerializeField] private GroupController factionB;

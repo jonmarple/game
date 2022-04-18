@@ -39,9 +39,33 @@ namespace Toast.Game.UI
         private void Start()
         {
             StartCoroutine(HandleAlpha());
+            Refresh();
+        }
+
+        private void OnEnable()
+        {
             CharacterSelector.SelectUpdated += Refresh;
             CharacterSelector.HoverUpdated += Refresh;
-            Refresh();
+
+            if (character != null)
+            {
+                character.Stats.ValueUpdated += Refresh;
+                character.Equipment.Armor.ValueUpdated += Refresh;
+                character.ShardBuffer.BufferUpdated += Refresh;
+            }
+        }
+
+        private void OnDisable()
+        {
+            CharacterSelector.SelectUpdated -= Refresh;
+            CharacterSelector.HoverUpdated -= Refresh;
+
+            if (character != null)
+            {
+                character.Stats.ValueUpdated -= Refresh;
+                character.Equipment.Armor.ValueUpdated -= Refresh;
+                character.ShardBuffer.BufferUpdated -= Refresh;
+            }
         }
 
         #region PUBLIC

@@ -20,9 +20,14 @@ namespace Toast.Game.UI
         private void Start()
         {
             StartCoroutine(HandleAlpha());
-            CharacterSelector.SelectUpdated += Refresh;
             Refresh();
         }
+
+        private void OnEnable()
+        { CharacterSelector.SelectUpdated += Refresh; }
+
+        private void OnDisable()
+        { CharacterSelector.SelectUpdated -= Refresh; }
 
         #region PUBLIC
 

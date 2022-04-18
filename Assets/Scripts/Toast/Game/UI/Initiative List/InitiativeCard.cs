@@ -35,6 +35,24 @@ namespace Toast.Game.UI
             animator?.SetBool("Hovered", Character.Hovered);
         }
 
+        private void OnEnable()
+        {
+            if (Character != null)
+            {
+                Character.Stats.ValueUpdated += Refresh;
+                Character.Equipment.Armor.ValueUpdated += Refresh;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (Character != null)
+            {
+                Character.Stats.ValueUpdated -= Refresh;
+                Character.Equipment.Armor.ValueUpdated -= Refresh;
+            }
+        }
+
         #region PUBLIC
 
         /// <summary> Initialize card with character info. </summary>

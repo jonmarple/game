@@ -21,10 +21,16 @@ namespace Toast.Game.UI
         [Header("Attack Info")]
         [SerializeField] private AttackSource source;
 
-        private void Awake()
+        private void OnEnable()
         {
             ActionHelper.SelectUpdated += Refresh;
             CharacterSelector.SelectUpdated += UpdateAction;
+        }
+
+        private void OnDisable()
+        {
+            ActionHelper.SelectUpdated -= Refresh;
+            CharacterSelector.SelectUpdated -= UpdateAction;
         }
 
         #region PRIVATE
