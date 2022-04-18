@@ -13,7 +13,7 @@ namespace Toast.Game.Shards
         public MShard(Spread spread)
         {
             Spread = spread;
-            Roll = new Roll("MShard Roll", 1, this);
+            Roll = new Roll(ToString(), 1, this);
         }
 
         #region PUBLIC
@@ -22,6 +22,9 @@ namespace Toast.Game.Shards
         public static MShard Generate()
         { return new MShard(Spread.Generate(Random.Range(2, 4))); }
 
-        #endregion
+        public override string ToString()
+        { return "M-" + Spread.ToString(); }
     }
+
+    #endregion
 }

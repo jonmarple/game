@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Toast.Game.Characters;
+using Toast.Game.Shards;
 
 namespace Toast.Game.UI
 {
@@ -25,6 +26,11 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI weaponField;
         [SerializeField] private TextMeshProUGUI pdField;
         [SerializeField] private TextMeshProUGUI mdField;
+        [SerializeField] private TextMeshProUGUI smField;
+        [SerializeField] private TextMeshProUGUI sapField;
+        [SerializeField] private TextMeshProUGUI samField;
+        [SerializeField] private TextMeshProUGUI sdpField;
+        [SerializeField] private TextMeshProUGUI sdmField;
 
         /* Private Fields */
         private Character character;
@@ -62,6 +68,7 @@ namespace Toast.Game.UI
             {
                 this.character.Stats.ValueUpdated -= Refresh;
                 this.character.Equipment.Armor.ValueUpdated -= Refresh;
+                this.character.ShardBuffer.BufferUpdated -= Refresh;
             }
 
             this.character = character;
@@ -69,7 +76,8 @@ namespace Toast.Game.UI
             if (character != null)
             {
                 character.Stats.ValueUpdated += Refresh;
-                this.character.Equipment.Armor.ValueUpdated += Refresh;
+                character.Equipment.Armor.ValueUpdated += Refresh;
+                character.ShardBuffer.BufferUpdated += Refresh;
 
                 nameField.SetText(character.CharacterName);
                 hpField.SetText(string.Format("{0,3} / {1,-3}", character.Stats?.HP, character.Stats?.HPMax));
@@ -80,6 +88,11 @@ namespace Toast.Game.UI
                 weaponField.SetText(character.Equipment?.Weapon?.ItemName);
                 pdField.SetText(string.Format("{0,6}", character.Equipment?.Weapon?.Physical.ToString()));
                 mdField.SetText(string.Format("{0,6}", character.Equipment?.Weapon?.Magical.ToString()));
+                smField.SetText(string.Format("{0,2}", character.ShardBuffer?.MBuffer.ToString()));
+                sapField.SetText(string.Format("{0,2}", character.ShardBuffer?.APBuffer.ToString()));
+                samField.SetText(string.Format("{0,2}", character.ShardBuffer?.AMBuffer.ToString()));
+                sdpField.SetText(string.Format("{0,2}", character.ShardBuffer?.DPBuffer.ToString()));
+                sdmField.SetText(string.Format("{0,2}", character.ShardBuffer?.DMBuffer.ToString()));
             }
         }
 

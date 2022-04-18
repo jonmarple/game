@@ -61,6 +61,7 @@ namespace Toast.Game.Combat
         {
             if (Active && !Finished)
             {
+                CurrentCharacter.FinishProcess();
                 CharacterSelector.Deselect();
                 TurnFinish?.Invoke();
                 CheckFinished();

@@ -13,7 +13,7 @@ namespace Toast.Game.Shards
         public AMShard(Spread spread)
         {
             Spread = spread;
-            Roll = new Roll("AMShard Roll", 1, this);
+            Roll = new Roll(ToString(), 1, this);
         }
 
         #region PUBLIC
@@ -21,6 +21,9 @@ namespace Toast.Game.Shards
         /// <summary> Generate random AMShard. </summary>
         new public static AMShard Generate(int value)
         { return new AMShard(Spread.Generate(value)); }
+
+        public override string ToString()
+        { return "AM-" + Spread.ToString(); }
 
         #endregion
     }

@@ -11,6 +11,10 @@ namespace Toast.Game.Combat
     /// </summary>
     public static class CombatHelper
     {
+        /* Roll Delegate/Event */
+        public delegate void Performed();
+        public static event Performed ShardRolled;
+
         #region PUBLIC
 
         /// <summary> Perform an attack. </summary>
@@ -47,6 +51,7 @@ namespace Toast.Game.Combat
                 roll.Perform();
                 int value = target.ShardBuffer.AddRoll(roll.Shard);
                 source.Equipment.Shards.Hand.Remove(roll.Shard);
+                ShardRolled?.Invoke();
                 Debug.Log(roll.ActionName + ": " + value);
             }
         }

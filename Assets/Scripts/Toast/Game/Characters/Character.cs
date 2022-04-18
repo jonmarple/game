@@ -101,7 +101,6 @@ namespace Toast.Game.Characters
             // update stats
             Stats.AlterAP(Stats.APRegen);
             Equipment.Shards.FillHand();
-            ShardBuffer.Reset();
             Equipment.Weapon.Primary.Turn();
             Equipment.Weapon.Secondary.Turn();
 
@@ -109,6 +108,10 @@ namespace Toast.Game.Characters
             if (AI != null)
                 TurnProcessHandler();
         }
+
+        /// <summary> Finish turn process. </summary>
+        public void FinishProcess()
+        { ShardBuffer.Reset(); }
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
         public bool CanPerformAction(Action action)

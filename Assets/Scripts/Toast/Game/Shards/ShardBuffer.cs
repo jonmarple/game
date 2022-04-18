@@ -16,6 +16,10 @@ namespace Toast.Game.Shards
         public int DMBuffer { get; private set; }
         public int MBuffer { get; private set; }
 
+        /* Value Update Delegate/Event */
+        public delegate void Updated();
+        public event Updated BufferUpdated;
+
         public ShardBuffer()
         { Reset(); }
 
@@ -29,6 +33,7 @@ namespace Toast.Game.Shards
             DPBuffer = 0;
             DMBuffer = 0;
             MBuffer = 1;
+            BufferUpdated?.Invoke();
         }
 
         /// <summary> Get Attack Buffer. </summary>
@@ -44,6 +49,7 @@ namespace Toast.Game.Shards
         {
             if (physical) APBuffer = value;
             else AMBuffer = value;
+            BufferUpdated?.Invoke();
         }
 
         /// <summary> Set Defend Buffer. </summary>
@@ -51,6 +57,7 @@ namespace Toast.Game.Shards
         {
             if (physical) DPBuffer = value;
             else DMBuffer = value;
+            BufferUpdated?.Invoke();
         }
 
         /// <summary> Apply shard roll to buffer. </summary>
@@ -76,6 +83,7 @@ namespace Toast.Game.Shards
                     MBuffer = value;
                     break;
             }
+            BufferUpdated?.Invoke();
             return value;
         }
 
