@@ -10,6 +10,9 @@ namespace Toast.Game.Combat
     /// </summary>
     public class CombatController : MonoBehaviour
     {
+        /* Static Fields */
+        public static CombatController Instance;
+
         /* Public Fields */
         public GroupController FactionA { get { return factionA; } }
         public GroupController FactionB { get { return factionB; } }
@@ -17,6 +20,9 @@ namespace Toast.Game.Combat
         /* Serialized Fields */
         [SerializeField] private GroupController factionA;
         [SerializeField] private GroupController factionB;
+
+        private void Awake()
+        { Instance = this; }
 
         private void Start()
         { StartCombat(); }

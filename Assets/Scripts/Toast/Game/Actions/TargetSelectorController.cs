@@ -14,7 +14,6 @@ namespace Toast.Game.Actions
         /* Serialized Fields */
         [SerializeField] private TargetSelector selectorPrefab;
         [SerializeField] private Transform selectorContainer;
-        [SerializeField] private CombatController controller;
 
         /* Private Fields */
         private List<TargetSelector> selectors;
@@ -47,11 +46,11 @@ namespace Toast.Game.Actions
             switch (action)
             {
                 case Attack attack:
-                    Place(source.Faction == Faction.A ? controller.FactionB.Controllers : controller.FactionA.Controllers);
+                    Place(source.Faction == Faction.A ? CombatController.Instance?.FactionB?.Controllers : CombatController.Instance?.FactionA?.Controllers);
                     break;
                 case Regen regen:
                 case Roll roll:
-                    Place(source.Faction == Faction.A ? controller.FactionA.Controllers : controller.FactionB.Controllers);
+                    Place(source.Faction == Faction.A ? CombatController.Instance?.FactionA?.Controllers : CombatController.Instance?.FactionB?.Controllers);
                     break;
             }
         }

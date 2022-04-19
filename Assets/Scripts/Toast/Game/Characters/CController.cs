@@ -44,6 +44,7 @@ namespace Toast.Game.Characters
         public void Initialize(Character character, Faction faction)
         {
             Character = character;
+            Character.Register(this);
             Character.TurnProcessHandler = TurnProcessHandler;
             Character.ThisCharacterKilled += Disable;
             Faction = faction;
@@ -82,7 +83,8 @@ namespace Toast.Game.Characters
             if (Character.AI != null)
             {
                 yield return new WaitForSeconds(0.5f);
-                Character.AI.Process();
+                while (Character.AI.ProcessStep())
+                    yield return new WaitForSeconds(0.1f);
             }
             yield return new WaitForSeconds(0.5f);
             CombatFlow.FinishTurn();

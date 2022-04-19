@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Toast.Game.Characters;
-using Toast.Game.Shards;
 
 namespace Toast.Game.UI
 {

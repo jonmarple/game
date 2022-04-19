@@ -17,6 +17,7 @@ namespace Toast.Game.Characters
     {
         /* Public Fields */
         public string CharacterName { get; private set; }
+        public CController Controller { get; private set; }
         public Faction Faction { get; private set; }
         public Action Primary { get { return Equipment?.Weapon?.Primary; } }
         public Action Secondary { get { return Equipment?.Weapon?.Secondary; } }
@@ -155,6 +156,10 @@ namespace Toast.Game.Characters
         /// <summary> Set character's faction. </summary>
         public void SetFaction(Faction faction)
         { Faction = faction; }
+
+        /// <summary> Set character's controller. </summary>
+        public void Register(CController controller)
+        { Controller = controller; ; }
 
         #endregion
 

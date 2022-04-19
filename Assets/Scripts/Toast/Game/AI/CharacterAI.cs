@@ -32,13 +32,20 @@ namespace Toast.Game.AI
         {
             // TODO: AI
             // currently just running secondary and primary action as available
-            while (!self.Stats.Dead && allies.Active && enemies.Active)
+            while (ProcessStep()) ;
+        }
+
+        /// <summary> Process a step of Character's Turn. </summary>
+        public bool ProcessStep()
+        {
+            if (!self.Stats.Dead && allies.Active && enemies.Active)
             {
                 bool didPerformSecondary = PerformAction(self.Secondary);
                 bool didPerformPrimary = false;
                 if (!didPerformSecondary) didPerformPrimary = PerformAction(self.Primary);
-                if (!didPerformPrimary && !didPerformSecondary) break;
+                return didPerformPrimary || didPerformSecondary;
             }
+            return false;
         }
 
         #endregion

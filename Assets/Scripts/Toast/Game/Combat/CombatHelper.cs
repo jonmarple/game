@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Characters;
 using Toast.Game.Actions;
+using Toast.Game.UI;
 
 namespace Toast.Game.Combat
 {
@@ -26,6 +27,7 @@ namespace Toast.Game.Combat
                 if (crit) Debug.Log(attack.ActionName + " crit.");
                 int damage = ApplyDamage(attack, source, target, true, crit)
                            + ApplyDamage(attack, source, target, false, crit);
+                TextSpawner.Instance?.Spawn(damage.ToString(), target.Controller.transform.position + Vector3.up);
                 Debug.Log(attack.ActionName + ": " + damage + " dmg");
                 if (target.Stats.Dead) Debug.Log(target.CharacterName + " died.");
             }
@@ -39,6 +41,7 @@ namespace Toast.Game.Combat
                 regen.Perform();
                 if (crit) Debug.Log(regen.ActionName + " crit.");
                 int amount = ApplyRegen(regen, source, target, crit);
+                TextSpawner.Instance?.Spawn(amount.ToString(), target.Controller.transform.position + Vector3.up);
                 Debug.Log(regen.ActionName + ": " + amount + " hp");
             }
         }
@@ -52,6 +55,7 @@ namespace Toast.Game.Combat
                 int value = target.ShardBuffer.AddRoll(roll.Shard);
                 source.Equipment.Shards.Hand.Remove(roll.Shard);
                 ShardRolled?.Invoke();
+                TextSpawner.Instance?.Spawn(value.ToString(), target.Controller.transform.position + Vector3.up);
                 Debug.Log(roll.ActionName + ": " + value);
             }
         }

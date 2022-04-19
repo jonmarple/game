@@ -57,6 +57,10 @@ public class CharacterTests
         Assert.AreEqual(0, character.Primary.CooldownCounter);
         Assert.AreEqual(1, character.Secondary.CooldownCounter);
         Assert.AreEqual(5, character.Equipment.Shards.Hand.Count);
+        Assert.AreEqual(5, character.ShardBuffer.MBuffer);
+
+        character.FinishProcess();
+
         Assert.AreEqual(1, character.ShardBuffer.MBuffer);
     }
 
