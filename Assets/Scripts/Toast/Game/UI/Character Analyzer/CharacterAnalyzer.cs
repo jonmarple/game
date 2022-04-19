@@ -31,6 +31,8 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI samField;
         [SerializeField] private TextMeshProUGUI sdpField;
         [SerializeField] private TextMeshProUGUI sdmField;
+        [SerializeField] private TextMeshProUGUI pModField;
+        [SerializeField] private TextMeshProUGUI mModField;
 
         /* Private Fields */
         private Character character;
@@ -117,6 +119,8 @@ namespace Toast.Game.UI
                 samField.SetText(string.Format("{0,2}", character.ShardBuffer?.AMBuffer.ToString()));
                 sdpField.SetText(string.Format("{0,2}", character.ShardBuffer?.DPBuffer.ToString()));
                 sdmField.SetText(string.Format("{0,2}", character.ShardBuffer?.DMBuffer.ToString()));
+                pModField.SetText(character.Stats.PhysicalMod.ToString());
+                mModField.SetText(character.Stats.MagicalMod.ToString());
             }
         }
 
