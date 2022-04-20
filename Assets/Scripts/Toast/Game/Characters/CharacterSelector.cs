@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Actions;
+using Toast.Audio;
 
 namespace Toast.Game.Characters
 {
@@ -24,17 +25,19 @@ namespace Toast.Game.Characters
         /// <summary> Select specified Character. </summary>
         public static void Select(Character character)
         {
-            Deselect();
-            ActionHelper.Deselect();
+            Deselect(false);
+            AudioManager.Play(AudioKey.CHARACTER_SELECT);
+            ActionHelper.Deselect(false);
             SelectedCharacter = character;
             SelectedCharacter?.Select(true);
             SelectUpdated?.Invoke();
         }
 
         /// <summary> Deselect current Character. </summary>
-        public static void Deselect()
+        public static void Deselect(bool sfx = true)
         {
-            ActionHelper.Deselect();
+            if (sfx) AudioManager.Play(AudioKey.CHARACTER_DESELECT);
+            ActionHelper.Deselect(false);
             SelectedCharacter?.Select(false);
             SelectedCharacter = null;
             SelectUpdated?.Invoke();
@@ -44,7 +47,7 @@ namespace Toast.Game.Characters
         public static void ToggleSelect(Character character)
         {
             if (character == SelectedCharacter)
-                Deselect();
+                Deselect(true);
             else
                 Select(character);
         }
@@ -55,6 +58,7 @@ namespace Toast.Game.Characters
             if (active)
             {
                 Hover(false);
+                AudioManager.Play(AudioKey.CHARACTER_HOVER);
                 HoveredCharacter = character;
                 HoveredCharacter?.Hover(true);
                 HoverUpdated?.Invoke();

@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using Toast.Game.Actions;
 using Toast.Game.Characters;
+using Toast.Audio;
 
 namespace Toast.Game.UI
 {
     /// <summary>
     /// Action toggle button.
     /// </summary>
-    public abstract class ActionButton : MonoBehaviour
+    public abstract class ActionButton : MonoBehaviour, IPointerEnterHandler
     {
         /* Serialized Fields */
         [Header("Components")]
@@ -40,7 +42,7 @@ namespace Toast.Game.UI
         public void ToggleAction()
         {
             if (!active) ActionHelper.Select(action);
-            else ActionHelper.Deselect();
+            else ActionHelper.Deselect(true);
         }
 
         /// <summary> Set the associated action. </summary>
@@ -85,6 +87,9 @@ namespace Toast.Game.UI
             destroying = true;
             Destroy(gameObject);
         }
+
+        public void OnPointerEnter(PointerEventData data)
+        { AudioManager.Play(AudioKey.ACTION_HOVER); }
 
         #endregion
     }

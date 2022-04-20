@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Toast.Game.Characters;
 using Toast.Utility;
+using Toast.Audio;
 
 namespace Toast.Game.Combat
 {
@@ -62,8 +63,9 @@ namespace Toast.Game.Combat
             if (Active && !Finished)
             {
                 CurrentCharacter.FinishProcess();
-                CharacterSelector.Deselect();
+                CharacterSelector.Deselect(false);
                 TurnFinish?.Invoke();
+                AudioManager.Play(AudioKey.TURN_END);
                 CheckFinished();
                 if (Active && !Finished) Step();
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Characters;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -23,14 +24,16 @@ namespace Toast.Game.Actions
         /// <summary> Select specified Action. </summary>
         public static void Select(Action action)
         {
-            Deselect();
+            Deselect(false);
+            AudioManager.Play(AudioKey.ACTION_SELECT);
             SelectedAction = action;
             SelectUpdated?.Invoke();
         }
 
         /// <summary> Deselect current Action. </summary>
-        public static void Deselect()
+        public static void Deselect(bool sfx = true)
         {
+            if (sfx) AudioManager.Play(AudioKey.ACTION_DESELECT);
             SelectedAction = null;
             SelectUpdated?.Invoke();
         }
@@ -65,7 +68,7 @@ namespace Toast.Game.Actions
         private static void Perform(Character source, Action action, Character target)
         {
             source.PerformAction(action, target);
-            Deselect();
+            Deselect(false);
         }
 
         #endregion
