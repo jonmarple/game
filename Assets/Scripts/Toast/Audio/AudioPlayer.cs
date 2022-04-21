@@ -32,10 +32,14 @@ namespace Toast.Audio
         public void Play(AudioKey key)
         { Play(data.Get(key)); }
 
-        /// <summary> Play audio clip. </summary>
-        public void Play(AudioClip clip)
+        /// <summary> Play clip. </summary>
+        public void Play(Clip clip)
+        { Play(clip.Audio, clip.Volume); }
+
+        /// <summary> Play audio. </summary>
+        public void Play(AudioClip clip, float volume)
         {
-            source.PlayOneShot(clip);
+            source.PlayOneShot(clip, volume);
             if (debug) Debug.Log(clip);
         }
 

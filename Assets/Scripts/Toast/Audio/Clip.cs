@@ -13,11 +13,13 @@ namespace Toast.Audio
         /* Public Fields */
         public AudioKey Key;
         public AudioClip Audio;
+        public float Volume;
 
-        public Clip(AudioKey key, AudioClip audio)
+        public Clip(AudioKey key, AudioClip audio, float volume)
         {
             Key = key;
             Audio = audio;
+            Volume = volume;
         }
     }
 }

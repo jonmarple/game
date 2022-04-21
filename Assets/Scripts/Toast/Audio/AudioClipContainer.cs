@@ -27,20 +27,15 @@ namespace Toast.Audio
         }
 
         /// <summary> Fetch Clip mapped to Key. </summary>
-        public AudioClip Get(AudioKey key)
+        public Clip Get(AudioKey key)
         {
-            if (mappings.ContainsKey(key))
-                return mappings[key].Audio;
-            return null;
+            if (mappings.ContainsKey(key)) return mappings[key];
+            return new Clip(AudioKey.NONE, null, 0f);
         }
 
-        /// <summary> Play audio mapped to key. </summary>
-        public void Play(AudioKey key)
-        { AudioManager.Play(key); }
-
         /// <summary> Play audio clip. </summary>
-        public void Play(AudioClip clip)
-        { AudioManager.Play(clip); }
+        public void Play(int index)
+        { AudioManager.Play(clips[index]); }
 
         #endregion
     }

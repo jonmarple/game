@@ -19,7 +19,7 @@ namespace Toast.Audio
         { player?.Play(key); }
 
         /// <summary> Play audio clip. </summary>
-        public static void Play(AudioClip clip)
+        public static void Play(Clip clip)
         { player?.Play(clip); }
 
         /// <summary> Register Audio Player. </summary>

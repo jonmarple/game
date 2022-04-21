@@ -15,37 +15,55 @@ MonoBehaviour:
   clips:
   - Key: 0
     Audio: {fileID: 0}
+    Volume: 0
   - Key: 1
     Audio: {fileID: 8300000, guid: 6165921fa009c6e479491469136f340e, type: 3}
+    Volume: 0.25
   - Key: 2
     Audio: {fileID: 8300000, guid: b0976ca686ccdff4287d317f8567cc43, type: 3}
+    Volume: 0.5
   - Key: 3
     Audio: {fileID: 8300000, guid: 7dd89a89db50c9d479e67398afa63533, type: 3}
+    Volume: 0.4
   - Key: 4
     Audio: {fileID: 8300000, guid: 6165921fa009c6e479491469136f340e, type: 3}
+    Volume: 0.25
   - Key: 5
     Audio: {fileID: 8300000, guid: 75c4450b0402a424bbdc0217027149a4, type: 3}
+    Volume: 0.5
   - Key: 6
     Audio: {fileID: 8300000, guid: 27a84d399c5cbe44980ca215fb6d8778, type: 3}
+    Volume: 0.4
   - Key: 7
     Audio: {fileID: 8300000, guid: e963845a78954d6439399b08b4a9ea76, type: 3}
+    Volume: 0.5
   - Key: 8
     Audio: {fileID: 8300000, guid: f6d30196aad016a4eb1dddb0887a1d9e, type: 3}
+    Volume: 0.5
   - Key: 9
     Audio: {fileID: 8300000, guid: 5c13900383c22d04db949016ffc3efa5, type: 3}
+    Volume: 0.65
   - Key: 10
     Audio: {fileID: 8300000, guid: b9b86045a18fd3c4a97f3187e40deae1, type: 3}
+    Volume: 0.65
   - Key: 11
     Audio: {fileID: 8300000, guid: 7e08aa6c781e72c45bdd27b93cca3de7, type: 3}
+    Volume: 0.65
   - Key: 12
     Audio: {fileID: 8300000, guid: 18707d108c8bc4e44a509a210213e635, type: 3}
+    Volume: 0.65
   - Key: 13
     Audio: {fileID: 8300000, guid: c19acb4f0d3f1ea439993286674a52a7, type: 3}
+    Volume: 0.65
   - Key: 14
     Audio: {fileID: 8300000, guid: af7c441051aa1b643bf4942bebed979a, type: 3}
+    Volume: 0.65
   - Key: 15
     Audio: {fileID: 8300000, guid: cdb5ade0dcc46024fa2219f1d01dd3bc, type: 3}
+    Volume: 0.65
   - Key: 16
     Audio: {fileID: 8300000, guid: f1bf9330e8e1ff14f86613fc66f7bf9a, type: 3}
+    Volume: 0.65
   - Key: 17
     Audio: {fileID: 8300000, guid: fca046725200e0d42b2a7921fd12ac9b, type: 3}
+    Volume: 0.65
