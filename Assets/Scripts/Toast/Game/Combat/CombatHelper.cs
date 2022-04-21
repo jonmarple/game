@@ -68,7 +68,7 @@ namespace Toast.Game.Combat
                        + ApplyDamage((Attack)info.Action, info.Source, info.Target, false, info.Crit);
             if (info.Crit) AudioManager.Play(AudioKey.DAMAGE_DEALT_CRIT);
             else AudioManager.Play(AudioKey.DAMAGE_DEALT);
-            TextSpawner.Instance?.Spawn(damage.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            TextSpawner.Instance?.Spawn(damage.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up, info.Crit ? FloatingTextType.CRIT : FloatingTextType.DAMAGE);
             Debug.Log(info.Action.ActionName + ": " + damage + " dmg");
             if (info.Target.Stats.Dead) Debug.Log(info.Target.CharacterName + " died.");
         }
@@ -78,7 +78,7 @@ namespace Toast.Game.Combat
             int amount = ApplyRegen((Regen)info.Action, info.Source, info.Target, info.Crit);
             if (info.Crit) AudioManager.Play(AudioKey.HEALING_DEALT_CRIT);
             else AudioManager.Play(AudioKey.HEALING_DEALT);
-            TextSpawner.Instance?.Spawn(amount.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            TextSpawner.Instance?.Spawn(amount.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up, info.Crit ? FloatingTextType.CRIT : FloatingTextType.HEALING);
             Debug.Log(info.Action.ActionName + ": " + amount + " hp");
         }
 
@@ -88,7 +88,7 @@ namespace Toast.Game.Combat
             info.Source.Equipment.Shards.Hand.Remove(((Roll)info.Action).Shard);
             ShardRolled?.Invoke();
             AudioManager.Play(AudioKey.SHARD_BUFF_DEALT);
-            TextSpawner.Instance?.Spawn(value.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            TextSpawner.Instance?.Spawn(value.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up, FloatingTextType.DEFAULT);
             Debug.Log(info.Action.ActionName + ": " + value);
         }
 

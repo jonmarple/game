@@ -23,9 +23,10 @@ namespace Toast.Game.UI
         #region PUBLIC
 
         /// <summary> Run float animation. </summary>
-        public void Float(string text)
+        public void Float(string text, Color color)
         {
             this.text.text = text;
+            this.text.color = color;
             animator.SetTrigger("Float");
             Invoke("Kill", 5f);
         }

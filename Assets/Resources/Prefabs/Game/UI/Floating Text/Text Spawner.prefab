@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3392847551634986583, guid: 4d3ed4ab531404b43b541162e3e2ba2e, type: 3}
+  def: {r: 1, g: 1, b: 1, a: 1}
+  damage: {r: 0.89411765, g: 0.23137255, b: 0.26666668, a: 1}
+  healing: {r: 0, g: 0.6, b: 0.85882354, a: 1}
+  crit: {r: 0.99607843, g: 0.90588236, b: 0.38039216, a: 1}
