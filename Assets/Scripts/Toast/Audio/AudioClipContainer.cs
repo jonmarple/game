@@ -34,6 +34,14 @@ namespace Toast.Audio
             return null;
         }
 
+        /// <summary> Play audio mapped to key. </summary>
+        public void Play(AudioKey key)
+        { AudioManager.Play(key); }
+
+        /// <summary> Play audio clip. </summary>
+        public void Play(AudioClip clip)
+        { AudioManager.Play(clip); }
+
         #endregion
     }
 }

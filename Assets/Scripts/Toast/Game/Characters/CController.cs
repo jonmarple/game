@@ -84,7 +84,7 @@ namespace Toast.Game.Characters
             {
                 yield return new WaitForSeconds(0.5f);
                 while (Character.AI.ProcessStep())
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(0.4f);
             }
             yield return new WaitForSeconds(0.5f);
             CombatFlow.FinishTurn();

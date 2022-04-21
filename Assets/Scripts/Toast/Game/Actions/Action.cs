@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -14,6 +15,7 @@ namespace Toast.Game.Actions
         public int Cost { get; protected set; }
         public int Cooldown { get; protected set; }
         public int CooldownCounter { get; protected set; }
+        public AudioKey Audio { get; protected set; }
 
         #region PUBLIC
 
@@ -23,7 +25,13 @@ namespace Toast.Game.Actions
 
         /// <summary> Perform action. </summary>
         public void Perform()
-        { if (CanPerform()) CooldownCounter = Cooldown; }
+        {
+            if (CanPerform())
+            {
+                CooldownCounter = Cooldown;
+                AudioManager.Play(Audio);
+            }
+        }
 
         /// <summary> Process action turn. </summary>
         public void Turn()
@@ -33,12 +41,13 @@ namespace Toast.Game.Actions
 
         #region PRIVATE
 
-        protected void InitBaseFields(string actionName, int cost, int cooldown)
+        protected void InitBaseFields(string actionName, int cost, int cooldown, AudioKey audio)
         {
             ActionName = actionName;
             Cost = cost;
             Cooldown = cooldown;
             CooldownCounter = 0;
+            Audio = audio;
         }
 
         #endregion

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Actions;
+using Toast.Audio;
 
 namespace Toast.Game.Shards
 {
@@ -13,7 +14,7 @@ namespace Toast.Game.Shards
         public AMShard(Spread spread)
         {
             Spread = spread;
-            Roll = new Roll(ToString(), 1, this);
+            Roll = new Roll(ToString(), 1, this, AudioKey.SHARD_ROLL);
         }
 
         #region PUBLIC

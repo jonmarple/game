@@ -30,6 +30,7 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 0}
     _variableInstancer: {fileID: 0}
+  audio: 9
   damageModifier:
     _usage: 0
     _value: 1

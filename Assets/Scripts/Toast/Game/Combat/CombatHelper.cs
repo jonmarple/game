@@ -4,6 +4,7 @@ using UnityEngine;
 using Toast.Game.Characters;
 using Toast.Game.Actions;
 using Toast.Game.UI;
+using Toast.Audio;
 
 namespace Toast.Game.Combat
 {
@@ -24,12 +25,10 @@ namespace Toast.Game.Combat
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
                 attack.Perform();
-                if (crit) Debug.Log(attack.ActionName + " crit.");
-                int damage = ApplyDamage(attack, source, target, true, crit)
-                           + ApplyDamage(attack, source, target, false, crit);
-                TextSpawner.Instance?.Spawn(damage.ToString(), target.Controller.transform.position + Vector3.up);
-                Debug.Log(attack.ActionName + ": " + damage + " dmg");
-                if (target.Stats.Dead) Debug.Log(target.CharacterName + " died.");
+                ActionInfo info = new ActionInfo(attack, source, target, crit);
+                if (CombatController.Instance)
+                    CombatController.Instance.PerformAction(HandleAttack, info);
+                else HandleAttack(info);
             }
         }
 
@@ -39,10 +38,10 @@ namespace Toast.Game.Combat
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
                 regen.Perform();
-                if (crit) Debug.Log(regen.ActionName + " crit.");
-                int amount = ApplyRegen(regen, source, target, crit);
-                TextSpawner.Instance?.Spawn(amount.ToString(), target.Controller.transform.position + Vector3.up);
-                Debug.Log(regen.ActionName + ": " + amount + " hp");
+                ActionInfo info = new ActionInfo(regen, source, target, crit);
+                if (CombatController.Instance)
+                    CombatController.Instance.PerformAction(HandleRegen, info);
+                else HandleAttack(info);
             }
         }
 
@@ -52,17 +51,46 @@ namespace Toast.Game.Combat
             if (!source.Stats.Dead && !target.Stats.Dead)
             {
                 roll.Perform();
-                int value = target.ShardBuffer.AddRoll(roll.Shard);
-                source.Equipment.Shards.Hand.Remove(roll.Shard);
-                ShardRolled?.Invoke();
-                TextSpawner.Instance?.Spawn(value.ToString(), target.Controller.transform.position + Vector3.up);
-                Debug.Log(roll.ActionName + ": " + value);
+                ActionInfo info = new ActionInfo(roll, source, target, false);
+                if (CombatController.Instance)
+                    CombatController.Instance.PerformAction(HandleRoll, info);
+                else HandleAttack(info);
             }
         }
 
         #endregion
 
         #region PRIVATE
+
+        private static void HandleAttack(ActionInfo info)
+        {
+            int damage = ApplyDamage((Attack)info.Action, info.Source, info.Target, true, info.Crit)
+                       + ApplyDamage((Attack)info.Action, info.Source, info.Target, false, info.Crit);
+            if (info.Crit) AudioManager.Play(AudioKey.DAMAGE_DEALT_CRIT);
+            else AudioManager.Play(AudioKey.DAMAGE_DEALT);
+            TextSpawner.Instance?.Spawn(damage.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            Debug.Log(info.Action.ActionName + ": " + damage + " dmg");
+            if (info.Target.Stats.Dead) Debug.Log(info.Target.CharacterName + " died.");
+        }
+
+        private static void HandleRegen(ActionInfo info)
+        {
+            int amount = ApplyRegen((Regen)info.Action, info.Source, info.Target, info.Crit);
+            if (info.Crit) AudioManager.Play(AudioKey.HEALING_DEALT_CRIT);
+            else AudioManager.Play(AudioKey.HEALING_DEALT);
+            TextSpawner.Instance?.Spawn(amount.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            Debug.Log(info.Action.ActionName + ": " + amount + " hp");
+        }
+
+        private static void HandleRoll(ActionInfo info)
+        {
+            int value = info.Target.ShardBuffer.AddRoll(((Roll)info.Action).Shard);
+            info.Source.Equipment.Shards.Hand.Remove(((Roll)info.Action).Shard);
+            ShardRolled?.Invoke();
+            AudioManager.Play(AudioKey.SHARD_BUFF_DEALT);
+            TextSpawner.Instance?.Spawn(value.ToString(), (info.Target.Controller?.transform.position ?? Vector3.zero) + Vector3.up);
+            Debug.Log(info.Action.ActionName + ": " + value);
+        }
 
         private static int ApplyDamage(Attack attack, Character source, Character target, bool physical, bool crit)
         {

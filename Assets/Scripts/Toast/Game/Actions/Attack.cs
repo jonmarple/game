@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -12,9 +13,9 @@ namespace Toast.Game.Actions
         /* Public Fields */
         public int Modifier { get; private set; }
 
-        public Attack(string name, int cost, int cooldown, int modifier)
+        public Attack(string name, int cost, int cooldown, int modifier, AudioKey audio = AudioKey.NONE)
         {
-            InitBaseFields(name, cost, cooldown);
+            InitBaseFields(name, cost, cooldown, audio);
             Modifier = modifier;
         }
     }

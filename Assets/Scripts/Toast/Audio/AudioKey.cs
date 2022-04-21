@@ -9,9 +9,11 @@ namespace Toast.Audio
     /// </summary>
     public enum AudioKey
     {   // ALWAYS ADD TO BOTTOM OF LIST
+        NONE,
         CHARACTER_HOVER,
         CHARACTER_SELECT,
         CHARACTER_DESELECT,
+        ACTION_HOVER,
         ACTION_SELECT,
         ACTION_DESELECT,
         TURN_END,
@@ -24,7 +26,6 @@ namespace Toast.Audio
         DAMAGE_DEALT_CRIT,
         HEALING_DEALT,
         HEALING_DEALT_CRIT,
-        SHARD_BUFF_DEALT,
-        ACTION_HOVER
+        SHARD_BUFF_DEALT
     }   // ALWAYS ADD TO BOTTOM OF LIST
 }

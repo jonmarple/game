@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -17,7 +18,7 @@ namespace Toast.Game.Actions
         #region PUBLIC
 
         public override Action Generate()
-        { return new Attack(actionName, cost, cooldown, damageModifier); }
+        { return new Attack(actionName, cost, cooldown, damageModifier, audio); }
 
         #endregion
     }

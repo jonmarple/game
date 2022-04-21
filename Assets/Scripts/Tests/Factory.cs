@@ -11,6 +11,7 @@ using Toast.Game.AI;
 using Toast.Game.Items;
 using Toast.Game.Stats;
 using Toast.Game.Shards;
+using Toast.Audio;
 
 public class Factory
 {

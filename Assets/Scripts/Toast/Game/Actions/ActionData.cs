@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -14,6 +15,7 @@ namespace Toast.Game.Actions
         [SerializeField] protected StringReference actionName;
         [SerializeField] protected IntReference cost;
         [SerializeField] protected IntReference cooldown;
+        [SerializeField] protected AudioKey audio;
 
         #region PUBLIC
 

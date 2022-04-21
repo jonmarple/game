@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -16,7 +17,7 @@ namespace Toast.Game.Actions
         #region PUBLIC
 
         public override Action Generate()
-        { return new Movement(actionName, cost, cooldown, movementType); }
+        { return new Movement(actionName, cost, cooldown, movementType, audio); }
 
         #endregion
     }

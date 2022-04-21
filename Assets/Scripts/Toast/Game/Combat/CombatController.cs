@@ -41,6 +41,20 @@ namespace Toast.Game.Combat
         public void FinishTurn()
         { CombatFlow.FinishTurn(); }
 
+        /// <summary> Perform action with minor delay prior. </summary>
+        public void PerformAction(System.Action<ActionInfo> handler, ActionInfo info)
+        { StartCoroutine(RunAction(handler, info)); }
+
+        #endregion
+
+        #region PRIVATE
+
+        private IEnumerator RunAction(System.Action<ActionInfo> handler, ActionInfo info)
+        {
+            yield return new WaitForSeconds(0.15f);
+            handler(info);
+        }
+
         #endregion
     }
 }

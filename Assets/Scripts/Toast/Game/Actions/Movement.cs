@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Audio;
 
 namespace Toast.Game.Actions
 {
@@ -12,9 +13,9 @@ namespace Toast.Game.Actions
         /* Public Fields */
         public MovementType Type { get; private set; }
 
-        public Movement(string name, int cost, int cooldown, MovementType type)
+        public Movement(string name, int cost, int cooldown, MovementType type, AudioKey audio = AudioKey.NONE)
         {
-            InitBaseFields(name, cost, cooldown);
+            InitBaseFields(name, cost, cooldown, audio);
             Type = type;
         }
     }
