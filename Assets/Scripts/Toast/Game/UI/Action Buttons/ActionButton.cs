@@ -17,13 +17,13 @@ namespace Toast.Game.UI
     {
         /* Serialized Fields */
         [Header("Components")]
-        [SerializeField] private Button button;
-        [SerializeField] private Outline outline;
-        [SerializeField] private TextMeshProUGUI label;
+        [SerializeField] protected Button button;
+        [SerializeField] protected Outline outline;
+        [SerializeField] protected TextMeshProUGUI label;
 
         [Header("Status Image")]
-        [SerializeField] private Image status;
-        [SerializeField] private Sprite cooldown;
+        [SerializeField] protected Image status;
+        [SerializeField] protected Sprite cooldown;
 
         /* Private Fields */
         private Action action;
@@ -59,7 +59,7 @@ namespace Toast.Game.UI
         }
 
         /// <summary> Refresh the action's state. </summary>
-        public void Refresh()
+        public virtual void Refresh()
         {
             if (!destroying)
             {
