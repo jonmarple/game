@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Audio;
 using Toast.Game.Stats;
 using Toast.Game.Items;
 using Toast.Game.Shards;
@@ -143,6 +144,7 @@ namespace Toast.Game.Characters
             ThisCharacterKilled?.Invoke();
             CharacterKilled?.Invoke();
             CharacterSelector.Hover(false);
+            AudioManager.Play(AudioKey.DEATH);
         }
 
         /// <summary> Select this character. </summary>

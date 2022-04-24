@@ -26,6 +26,7 @@ namespace Toast.Audio
         DAMAGE_DEALT_CRIT,
         HEALING_DEALT,
         HEALING_DEALT_CRIT,
-        SHARD_BUFF_DEALT
+        SHARD_BUFF_DEALT,
+        DEATH
     }   // ALWAYS ADD TO BOTTOM OF LIST
 }

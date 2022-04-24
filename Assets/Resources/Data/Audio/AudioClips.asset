@@ -67,3 +67,6 @@ MonoBehaviour:
   - Key: 17
     Audio: {fileID: 8300000, guid: fca046725200e0d42b2a7921fd12ac9b, type: 3}
     Volume: 0.65
+  - Key: 18
+    Audio: {fileID: 8300000, guid: 7ba55e141e31f03479ece1cedbb17d81, type: 3}
+    Volume: 0.6
