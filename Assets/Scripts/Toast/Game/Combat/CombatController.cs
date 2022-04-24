@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Camera;
 using Toast.Game.Characters;
 
 namespace Toast.Game.Combat
@@ -18,6 +19,7 @@ namespace Toast.Game.Combat
         public GroupController FactionB { get { return factionB; } }
 
         /* Serialized Fields */
+        [SerializeField] private CombatCameraController cameraController;
         [SerializeField] private GroupController factionA;
         [SerializeField] private GroupController factionB;
 
@@ -32,6 +34,7 @@ namespace Toast.Game.Combat
         /// <summary> Initialize parties and start CombatFlow. </summary>
         public void StartCombat()
         {
+            cameraController.Reset();
             factionA.Spawn();
             factionB.Spawn();
             CombatFlow.Start(factionA.Group, factionB.Group);
