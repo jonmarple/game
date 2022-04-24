@@ -71,6 +71,18 @@ namespace Toast.Game.Characters
             animator?.SetBool("Targeting", ActionHelper.Targeting);
         }
 
+        /// <summary> Trigger action animation. </summary>
+        public void AnimateAction()
+        { animator?.SetTrigger("Action"); }
+
+        /// <summary> Trigger damaged animation. </summary>
+        public void AnimateDamage()
+        { animator?.SetTrigger("Damaged"); }
+
+        /// <summary> Trigger healed animation. </summary>
+        public void AnimateHealing()
+        { animator?.SetTrigger("Healed"); }
+
         #endregion
 
         #region PRIVATE
