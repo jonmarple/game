@@ -581,6 +581,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6322947056133877189}
     m_Modifications:
+    - target: {fileID: -2159175505312748904, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
+      propertyPath: key
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 202438344715501171, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_Name
       value: Button - Finish
@@ -1025,6 +1029,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6322947056133877189}
     m_Modifications:
+    - target: {fileID: -2159175505312748904, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
+      propertyPath: key
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 202438344715501171, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_Name
       value: Button - Start
