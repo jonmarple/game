@@ -89,7 +89,7 @@ namespace Toast.Game.UI
         }
 
         public void OnPointerEnter(PointerEventData data)
-        { AudioManager.Play(AudioKey.ACTION_HOVER); }
+        { if (button.interactable) AudioManager.Play(AudioKey.ACTION_HOVER); }
 
         #endregion
     }
