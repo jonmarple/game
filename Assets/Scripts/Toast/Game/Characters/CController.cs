@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toast.Game.Actions;
 using Toast.Game.Combat;
+using Toast.Game.UI;
 
 namespace Toast.Game.Characters
 {
@@ -20,6 +21,7 @@ namespace Toast.Game.Characters
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
         [SerializeField] private Animator animator;
+        [SerializeField] private CharUIController uiController;
 
         private void OnEnable()
         {
@@ -49,6 +51,7 @@ namespace Toast.Game.Characters
             Character.ThisCharacterKilled += Disable;
             Faction = faction;
             sprite.color = faction == Faction.A ? factionAColor : factionBColor;
+            uiController?.Register(Character);
         }
 
         /// <summary> Disable this character. </summary>

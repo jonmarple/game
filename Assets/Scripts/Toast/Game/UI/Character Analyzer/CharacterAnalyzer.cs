@@ -47,26 +47,14 @@ namespace Toast.Game.UI
         {
             CharacterSelector.SelectUpdated += Refresh;
             CharacterSelector.HoverUpdated += Refresh;
-
-            if (character != null)
-            {
-                character.Stats.ValueUpdated += Refresh;
-                character.Equipment.Armor.ValueUpdated += Refresh;
-                character.ShardBuffer.BufferUpdated += Refresh;
-            }
+            SetCharListeners(true);
         }
 
         private void OnDisable()
         {
             CharacterSelector.SelectUpdated -= Refresh;
             CharacterSelector.HoverUpdated -= Refresh;
-
-            if (character != null)
-            {
-                character.Stats.ValueUpdated -= Refresh;
-                character.Equipment.Armor.ValueUpdated -= Refresh;
-                character.ShardBuffer.BufferUpdated -= Refresh;
-            }
+            SetCharListeners(false);
         }
 
         #region PUBLIC
@@ -89,21 +77,12 @@ namespace Toast.Game.UI
 
         private void SetInfo(Character character)
         {
-            if (this.character != null)
-            {
-                this.character.Stats.ValueUpdated -= Refresh;
-                this.character.Equipment.Armor.ValueUpdated -= Refresh;
-                this.character.ShardBuffer.BufferUpdated -= Refresh;
-            }
-
+            SetCharListeners(false);
             this.character = character;
+            SetCharListeners(true);
 
             if (character != null)
             {
-                character.Stats.ValueUpdated += Refresh;
-                character.Equipment.Armor.ValueUpdated += Refresh;
-                character.ShardBuffer.BufferUpdated += Refresh;
-
                 nameField.SetText(character.CharacterName);
                 hpField.SetText(string.Format("{0,3} / {1,-3}", character.Stats?.HP, character.Stats?.HPMax));
                 apField.SetText(string.Format("{0,3} / {1,-3}", character.Stats?.AP, character.Stats?.APMax));
@@ -129,6 +108,25 @@ namespace Toast.Game.UI
             {
                 yield return new WaitForEndOfFrame();
                 canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
+            }
+        }
+
+        private void SetCharListeners(bool active)
+        {
+            if (character != null)
+            {
+                if (active)
+                {
+                    character.Stats.ValueUpdated += Refresh;
+                    character.Equipment.Armor.ValueUpdated += Refresh;
+                    character.ShardBuffer.BufferUpdated += Refresh;
+                }
+                else
+                {
+                    character.Stats.ValueUpdated -= Refresh;
+                    character.Equipment.Armor.ValueUpdated -= Refresh;
+                    character.ShardBuffer.BufferUpdated -= Refresh;
+                }
             }
         }
 
