@@ -113,7 +113,7 @@ namespace Toast.Game.Characters
 
         /// <summary> Finish turn process. </summary>
         public void FinishProcess()
-        { ShardBuffer.Reset(); }
+        { } // ShardBuffer.Reset();
 
         /// <summary> Whether this Character can perform the specified Action. </summary>
         public bool CanPerformAction(Action action)
