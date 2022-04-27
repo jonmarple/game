@@ -15,10 +15,11 @@ namespace Toast.Game.UI
         [SerializeField] private Animator animator;
 
         /* Private Fields */
-        private float range = 0.5f;
+        private float range = 0.33f;
+        private float z = 1.33f;
 
         private void Start()
-        { transform.position += new Vector3(2f * Random.value - 1f, 2f * Random.value - 1f, 0f) * range; }
+        { transform.position += (new Vector3(2f * Random.value - 1f, 2f * Random.value - 1f, 0f) * range) + (Vector3.up * z); }
 
         #region PUBLIC
 

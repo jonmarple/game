@@ -32,6 +32,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
@@ -73,15 +77,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2831728121650859305, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2831728121650859305, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2831728121650859305, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2831728121650859305, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_LocalPosition.x
