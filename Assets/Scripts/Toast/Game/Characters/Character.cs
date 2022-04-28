@@ -145,6 +145,7 @@ namespace Toast.Game.Characters
             CharacterKilled?.Invoke();
             CharacterSelector.Hover(false);
             AudioManager.Play(AudioKey.DEATH);
+            CombatFlow.CheckFinished();
         }
 
         /// <summary> Select this character. </summary>

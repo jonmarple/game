@@ -71,6 +71,13 @@ namespace Toast.Game.Combat
             }
         }
 
+        /// <summary> Check whether combat should be finished. </summary>
+        public static void CheckFinished()
+        {
+            if (!GroupA.Active || !GroupB.Active)
+                FinishCombat();
+        }
+
         #endregion
 
         #region PRIVATE
@@ -98,18 +105,13 @@ namespace Toast.Game.Combat
             CharacterSelector.Select(CurrentCharacter);
         }
 
-        private static void CheckFinished()
-        {
-            if (!GroupA.Active || !GroupB.Active)
-                FinishCombat();
-        }
-
         private static void FinishCombat()
         {
             Debug.Log("");
             Debug.Log("Finishing Combat.");
-            CombatFinish?.Invoke();
             Finished = true;
+            CharacterSelector.Deselect();
+            CombatFinish?.Invoke();
         }
 
         /// <summary> Initialize Character AI modules. </summary>

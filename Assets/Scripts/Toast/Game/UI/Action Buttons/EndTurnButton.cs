@@ -16,12 +16,16 @@ namespace Toast.Game.UI
 
         private void OnEnable()
         {
+            CombatFlow.CombatStart += Refresh;
+            CombatFlow.CombatFinish += Refresh;
             CombatFlow.TurnStart += Refresh;
             CombatFlow.TurnFinish += Refresh;
         }
 
         private void OnDisable()
         {
+            CombatFlow.CombatStart -= Refresh;
+            CombatFlow.CombatFinish -= Refresh;
             CombatFlow.TurnStart -= Refresh;
             CombatFlow.TurnFinish -= Refresh;
         }
@@ -30,7 +34,8 @@ namespace Toast.Game.UI
 
         public void Refresh()
         {
-            button.interactable = CombatFlow.CurrentCharacter != null &&
+            button.interactable = CombatFlow.Active && !CombatFlow.Finished &&
+                                  CombatFlow.CurrentCharacter != null &&
                                   CombatFlow.CurrentCharacter.AI == null;
         }
 
