@@ -13,7 +13,7 @@ namespace Toast.Game.UI
     /// <summary>
     /// Action toggle button.
     /// </summary>
-    public abstract class ActionButton : MonoBehaviour, IPointerEnterHandler
+    public abstract class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         /* Serialized Fields */
         [Header("Components")]
@@ -89,7 +89,10 @@ namespace Toast.Game.UI
         }
 
         public void OnPointerEnter(PointerEventData data)
-        { if (button.interactable) AudioManager.Play(AudioKey.ACTION_HOVER); }
+        { if (button.interactable) ActionHelper.Hover(true, action); }
+
+        public void OnPointerExit(PointerEventData data)
+        { if (button.interactable) ActionHelper.Hover(false, action); }
 
         #endregion
     }

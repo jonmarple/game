@@ -13,11 +13,13 @@ namespace Toast.Game.Actions
     {
         /* Public Fields */
         public static Action SelectedAction;
+        public static Action HoveredAction;
         public static bool Targeting { get { return SelectedAction != null; } }
 
         /* Value Update Delegate/Event */
         public delegate void Updated();
         public static event Updated SelectUpdated;
+        public static event Updated HoverUpdated;
 
         #region PUBLIC
 
@@ -58,6 +60,23 @@ namespace Toast.Game.Actions
                             Perform(source, action, target);
                         break;
                 }
+            }
+        }
+
+        /// <summary> Hover/unhover specified Action. </summary>
+        public static void Hover(bool active, Action action = null)
+        {
+            if (active)
+            {
+                Hover(false);
+                AudioManager.Play(AudioKey.ACTION_HOVER);
+                HoveredAction = action;
+                HoverUpdated?.Invoke();
+            }
+            else
+            {
+                HoveredAction = null;
+                HoverUpdated?.Invoke();
             }
         }
 

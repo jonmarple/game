@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fill: {fileID: 6397257876591300748}
+  def: {r: 0, g: 0.6, b: 0.85882354, a: 1}
+  highlight: {r: 0.89411765, g: 0.23137255, b: 0.26666668, a: 1}
 --- !u!1 &8396649315454502111
 GameObject:
   m_ObjectHideFlags: 0

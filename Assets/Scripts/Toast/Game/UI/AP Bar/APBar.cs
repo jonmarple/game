@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.Actions;
 using Toast.Game.Characters;
 
 namespace Toast.Game.UI
@@ -25,10 +26,18 @@ namespace Toast.Game.UI
         }
 
         private void OnEnable()
-        { CharacterSelector.SelectUpdated += Refresh; }
+        {
+            CharacterSelector.SelectUpdated += Refresh;
+            ActionHelper.SelectUpdated += Refresh;
+            ActionHelper.HoverUpdated += Refresh;
+        }
 
         private void OnDisable()
-        { CharacterSelector.SelectUpdated -= Refresh; }
+        {
+            CharacterSelector.SelectUpdated -= Refresh;
+            ActionHelper.SelectUpdated -= Refresh;
+            ActionHelper.HoverUpdated -= Refresh;
+        }
 
         #region PUBLIC
 
@@ -37,21 +46,32 @@ namespace Toast.Game.UI
         {
             UpdateCharacter();
 
-            bool active = CharacterSelector.SelectedCharacter != null &&
-                          CharacterSelector.SelectedCharacter.AI == null;
+            bool active = character != null &&
+                          character.AI == null;
 
             container.gameObject.SetActive(active);
 
             if (active)
             {
+                // fixing number of ap bubbles
                 if (apBubbles.Count < character.Stats.APMax)
                     for (int i = apBubbles.Count; i < character.Stats.APMax; i++)
                         Add(Instantiate(apBubblePrefab, container));
                 else if (apBubbles.Count > character.Stats.APMax)
                     for (int i = apBubbles.Count - 1; i >= character.Stats.APMax; i--)
                         Remove(apBubbles[i]);
+
+                // coloring bubbles
                 for (int i = 0; i < apBubbles.Count; i++)
-                    apBubbles[i].SetFill(character.Stats.AP > i);
+                    if (character.Stats.AP > i)
+                        apBubbles[i].SetFill(APBubbleState.ACTIVE);
+                    else
+                        apBubbles[i].SetFill(APBubbleState.INACTIVE);
+                int cost = (ActionHelper.HoveredAction != null ? ActionHelper.HoveredAction.Cost : (ActionHelper.SelectedAction != null ? ActionHelper.SelectedAction.Cost : 0));
+                cost = Mathf.Min(character.Stats.AP, cost);
+                int start = (character.Stats.AP - cost);
+                for (int i = start; i < Mathf.Min(apBubbles.Count, start + cost); i++)
+                    apBubbles[i].SetFill(APBubbleState.HIGHLIGHTED);
             }
         }
 
