@@ -13,17 +13,17 @@ namespace Toast.Game.UI
     public class ShardList : MonoBehaviour
     {
         /* Serialized Fields */
-        [SerializeField] private ShardController shardControllerPrefab;
+        [SerializeField] private ShardButton shardButtonPrefab;
         [SerializeField] private RectTransform targetPrefab;
         [SerializeField] private RectTransform shardContainer;
         [SerializeField] private RectTransform targetContainer;
 
         /* Private Fields */
-        private Dictionary<ShardController, RectTransform> shardTargets;
+        private Dictionary<ShardButton, RectTransform> shardTargets;
 
         private void Start()
         {
-            shardTargets = new Dictionary<ShardController, RectTransform>();
+            shardTargets = new Dictionary<ShardButton, RectTransform>();
             Refresh();
         }
 
@@ -46,7 +46,7 @@ namespace Toast.Game.UI
         {
             if (shardTargets != null)
             {
-                foreach (ShardController shard in shardTargets.Keys)
+                foreach (ShardButton shard in shardTargets.Keys)
                 {
                     if (shardTargets[shard]) Destroy(shardTargets[shard].gameObject);
                     shard?.Destroy();
@@ -68,8 +68,8 @@ namespace Toast.Game.UI
                 Trim();
                 foreach (Shard shard in CharacterSelector.SelectedCharacter.Equipment.Shards.Hand)
                 {
-                    ShardController sc = GetShard(shard);
-                    if (sc) ((RectTransform)shardTargets[sc].transform).SetAsLastSibling();
+                    ShardButton sb = GetShard(shard);
+                    if (sb) ((RectTransform)shardTargets[sb].transform).SetAsLastSibling();
                     else Add(shard);
                 }
             }
@@ -80,23 +80,23 @@ namespace Toast.Game.UI
 
         #region PRIVATE
 
-        private ShardController GetShard(Shard shard)
+        private ShardButton GetShard(Shard shard)
         {
-            foreach (ShardController sc in shardTargets.Keys)
-                if (shard == sc.Shard)
-                    return sc;
+            foreach (ShardButton sb in shardTargets.Keys)
+                if (shard == sb.Shard)
+                    return sb;
             return null;
         }
 
         private void Add(Shard shard)
         {
-            ShardController sc = Instantiate(shardControllerPrefab, shardContainer.transform);
+            ShardButton sb = Instantiate(shardButtonPrefab, shardContainer.transform);
             RectTransform target = Instantiate(targetPrefab, targetContainer.transform);
-            sc.Initialize(shard, target);
-            shardTargets.Add(sc, target);
+            sb.Initialize(shard, target);
+            shardTargets.Add(sb, target);
         }
 
-        private void Remove(ShardController shard)
+        private void Remove(ShardButton shard)
         {
             if (shardTargets[shard]) Destroy(shardTargets[shard].gameObject);
             shardTargets.Remove(shard);
@@ -105,10 +105,10 @@ namespace Toast.Game.UI
 
         private void Trim()
         {
-            List<ShardController> controllers = new List<ShardController>(shardTargets.Keys);
-            foreach (ShardController sc in controllers)
-                if (!CharacterSelector.SelectedCharacter.Equipment.Shards.Hand.Contains(sc.Shard))
-                    Remove(sc);
+            List<ShardButton> controllers = new List<ShardButton>(shardTargets.Keys);
+            foreach (ShardButton sb in controllers)
+                if (!CharacterSelector.SelectedCharacter.Equipment.Shards.Hand.Contains(sb.Shard))
+                    Remove(sb);
         }
 
         #endregion

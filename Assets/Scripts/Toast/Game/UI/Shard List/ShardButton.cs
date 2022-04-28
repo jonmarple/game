@@ -11,7 +11,7 @@ namespace Toast.Game.UI
     /// <summary>
     /// Controller for a Shard.
     /// </summary>
-    public class ShardController : ActionButton
+    public class ShardButton : ActionButton
     {
         /* Public Fields */
         public Shard Shard { get; private set; }
