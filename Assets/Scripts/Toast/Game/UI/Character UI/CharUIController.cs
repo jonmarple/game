@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Toast.UI;
 using Toast.Game.Characters;
+using Toast.Game.Combat;
 
 namespace Toast.Game.UI
 {
@@ -19,6 +21,10 @@ namespace Toast.Game.UI
         [SerializeField] private TextMeshProUGUI hpText;
         [SerializeField] private TextMeshProUGUI apText;
         [SerializeField] private TextMeshProUGUI amText;
+        [SerializeField] private Image pMod;
+        [SerializeField] private Image mMod;
+        [SerializeField] private Color resistantColor;
+        [SerializeField] private Color weak;
 
         /* Private Fields */
         private Character character;
@@ -36,6 +42,7 @@ namespace Toast.Game.UI
         {
             SetCharListeners(false);
             this.character = character;
+            RefreshModifiers();
             SetCharListeners(true);
             Refresh();
         }
@@ -46,6 +53,13 @@ namespace Toast.Game.UI
             SetFill(hpBar, hpText, character.Stats.HP, character.Stats.HPMax);
             SetFill(apBar, apText, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
             SetFill(amBar, amText, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
+        }
+
+        /// <summary> Refresh UI Modifiers. </summary>
+        public void RefreshModifiers()
+        {
+            RefreshModifier(pMod, character.Stats.PhysicalMod);
+            RefreshModifier(mMod, character.Stats.MagicalMod);
         }
 
         #endregion
@@ -80,6 +94,24 @@ namespace Toast.Game.UI
                     character.Stats.ValueUpdated -= Refresh;
                     character.Equipment.Armor.ValueUpdated -= Refresh;
                 }
+            }
+        }
+
+        private void RefreshModifier(Image image, ModifierLevel modifier)
+        {
+            switch (modifier)
+            {
+                case ModifierLevel.NONE:
+                    image.enabled = false;
+                    break;
+                case ModifierLevel.RESISTANT:
+                    image.color = resistantColor;
+                    image.enabled = true;
+                    break;
+                case ModifierLevel.WEAK:
+                    image.color = weak;
+                    image.enabled = true;
+                    break;
             }
         }
 
