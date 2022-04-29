@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Toast.UI;
 using Toast.Game.Characters;
 
@@ -15,6 +16,9 @@ namespace Toast.Game.UI
         [SerializeField] private FillBar hpBar;
         [SerializeField] private FillBar apBar;
         [SerializeField] private FillBar amBar;
+        [SerializeField] private TextMeshProUGUI hpText;
+        [SerializeField] private TextMeshProUGUI apText;
+        [SerializeField] private TextMeshProUGUI amText;
 
         /* Private Fields */
         private Character character;
@@ -39,21 +43,27 @@ namespace Toast.Game.UI
         /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
-            SetFill(hpBar, character.Stats.HP, character.Stats.HPMax);
-            SetFill(apBar, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
-            SetFill(amBar, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
+            SetFill(hpBar, hpText, character.Stats.HP, character.Stats.HPMax);
+            SetFill(apBar, apText, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
+            SetFill(amBar, amText, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
         }
 
         #endregion
 
         #region PRIVATE
 
-        private void SetFill(FillBar bar, float top, float bottom)
+        private void SetFill(FillBar bar, TextMeshProUGUI text, float top, float bottom)
         {
             if (bottom > 0f)
+            {
                 bar.SetFill(top / bottom);
+                text.SetText(((int)top).ToString() + "/" + ((int)bottom).ToString());
+            }
             else
+            {
                 bar.SetActive(false);
+                text.gameObject.SetActive(false);
+            }
         }
 
         private void SetCharListeners(bool active)
