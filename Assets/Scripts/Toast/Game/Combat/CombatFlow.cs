@@ -38,11 +38,13 @@ namespace Toast.Game.Combat
             GroupA = null;
             GroupB = null;
             Order = null;
+            CharacterSelector.Deselect();
         }
 
         /// <summary> Initialize combat with specified groups. </summary>
         public static void Start(CharacterGroup groupA, CharacterGroup groupB)
         {
+            Reset();
             Active = true;
             Finished = false;
             GroupA = groupA;
