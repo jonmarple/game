@@ -25,12 +25,15 @@ namespace Toast.Game.Characters
         /// <summary> Select specified Character. </summary>
         public static void Select(Character character)
         {
-            Deselect(false);
-            AudioManager.Play(AudioKey.CHARACTER_SELECT);
-            ActionHelper.Deselect(false);
-            SelectedCharacter = character;
-            SelectedCharacter?.Select(true);
-            SelectUpdated?.Invoke();
+            if (character != null && character.AI == null)
+            {
+                Deselect(false);
+                AudioManager.Play(AudioKey.CHARACTER_SELECT);
+                ActionHelper.Deselect(false);
+                SelectedCharacter = character;
+                SelectedCharacter?.Select(true);
+                SelectUpdated?.Invoke();
+            }
         }
 
         /// <summary> Deselect current Character. </summary>
