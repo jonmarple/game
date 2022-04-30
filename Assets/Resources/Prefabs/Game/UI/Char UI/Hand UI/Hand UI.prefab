@@ -203,10 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6e8b888e6698a4eae9c417dad65d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shardMultiplierContainer: {fileID: 6543306423884137933}
-  shardMultiplierText: {fileID: 2495227410465997191}
-  bagCountContainer: {fileID: 8754944500171019198}
-  bagCountText: {fileID: 8996539455662662747}
+  shardMultiplier: {fileID: 2495227410465997191}
+  bagCount: {fileID: 8996539455662662747}
 --- !u!1001 &755639915221558186
 PrefabInstance:
   m_ObjectHideFlags: 0

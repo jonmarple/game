@@ -21,7 +21,7 @@ namespace Toast.Game.Characters
         [SerializeField] private Color factionAColor;
         [SerializeField] private Color factionBColor;
         [SerializeField] private Animator animator;
-        [SerializeField] private CharUI uiController;
+        [SerializeField] private CharUIWorld uiController;
 
         private void OnEnable()
         {

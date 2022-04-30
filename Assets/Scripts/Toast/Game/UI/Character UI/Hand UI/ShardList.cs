@@ -28,16 +28,10 @@ namespace Toast.Game.UI
         }
 
         private void OnEnable()
-        {
-            CharacterSelector.SelectUpdated += Refresh;
-            CombatHelper.ShardRolled += Refresh;
-        }
+        { CombatHelper.ShardRolled += Refresh; }
 
         private void OnDisable()
-        {
-            CharacterSelector.SelectUpdated -= Refresh;
-            CombatHelper.ShardRolled -= Refresh;
-        }
+        { CombatHelper.ShardRolled -= Refresh; }
 
         #region PUBLIC
 
@@ -55,15 +49,10 @@ namespace Toast.Game.UI
             }
         }
 
-        /// <summary> Refresh shard list. </summary>
+        /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
-            bool active = CharacterSelector.SelectedCharacter != null &&
-                          CharacterSelector.SelectedCharacter.AI == null;
-
-            targetContainer.gameObject.SetActive(active);
-
-            if (active)
+            if (gameObject.activeInHierarchy && CharacterSelector.SelectedCharacter != null)
             {
                 Trim();
                 foreach (Shard shard in CharacterSelector.SelectedCharacter.Equipment.Shards.Hand)

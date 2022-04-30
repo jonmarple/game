@@ -11,7 +11,7 @@ namespace Toast.Game.UI
     /// <summary>
     /// Character UI controller.
     /// </summary>
-    public class CharUI : MonoBehaviour
+    public class CharUIWorld : MonoBehaviour
     {
         /* Serialized Fields */
         [SerializeField] private FillBar hpBar;

@@ -27,31 +27,24 @@ namespace Toast.Game.UI
 
         private void OnEnable()
         {
-            CharacterSelector.SelectUpdated += Refresh;
             ActionHelper.SelectUpdated += Refresh;
             ActionHelper.HoverUpdated += Refresh;
         }
 
         private void OnDisable()
         {
-            CharacterSelector.SelectUpdated -= Refresh;
             ActionHelper.SelectUpdated -= Refresh;
             ActionHelper.HoverUpdated -= Refresh;
         }
 
         #region PUBLIC
 
-        /// <summary> Refresh bar. </summary>
+        /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
             UpdateCharacter();
 
-            bool active = character != null &&
-                          character.AI == null;
-
-            container.gameObject.SetActive(active);
-
-            if (active)
+            if (gameObject.activeInHierarchy && character != null)
             {
                 // fixing number of ap bubbles
                 if (apBubbles.Count < character.Stats.APMax)
