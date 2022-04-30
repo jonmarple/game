@@ -33,9 +33,9 @@ namespace Toast.Game.UI
 
             container.gameObject.SetActive(active);
 
-            handUI.Refresh();
-            shardList.Refresh();
             apBar.Refresh();
+            shardList.Refresh();
+            handUI.Register(CharacterSelector.SelectedCharacter);
             statBar.Register(CharacterSelector.SelectedCharacter);
         }
 

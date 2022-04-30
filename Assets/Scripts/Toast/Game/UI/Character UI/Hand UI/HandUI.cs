@@ -15,22 +15,62 @@ namespace Toast.Game.UI
         /* Serialized Fields */
         [SerializeField] private TextMeshProUGUI shardMultiplier;
         [SerializeField] private TextMeshProUGUI bagCount;
+        [SerializeField] private TextMeshProUGUI apBuffer;
+        [SerializeField] private TextMeshProUGUI amBuffer;
+        [SerializeField] private TextMeshProUGUI dpBuffer;
+        [SerializeField] private TextMeshProUGUI dmBuffer;
+
+        /* Private Fields */
+        private Character character;
 
         private void OnEnable()
-        { CombatHelper.ShardRolled += Refresh; }
+        {
+            SetCharListeners(true);
+            CombatHelper.ShardRolled += Refresh;
+        }
 
         private void OnDisable()
-        { CombatHelper.ShardRolled -= Refresh; }
+        {
+            SetCharListeners(false);
+            CombatHelper.ShardRolled -= Refresh;
+        }
 
         #region PUBLIC
+
+        /// <summary> Register associated character. </summary>
+        public void Register(Character character)
+        {
+            SetCharListeners(false);
+            this.character = character;
+            SetCharListeners(true);
+            Refresh();
+        }
 
         /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
-            if (gameObject.activeInHierarchy && CharacterSelector.SelectedCharacter != null)
+            if (gameObject.activeInHierarchy && character != null)
             {
-                shardMultiplier.SetText(CharacterSelector.SelectedCharacter.ShardBuffer.MBuffer.ToString() + "x");
-                bagCount.SetText(CharacterSelector.SelectedCharacter.Equipment.Shards.Bag.Count.ToString());
+                shardMultiplier.SetText(character.ShardBuffer.MBuffer.ToString() + "x");
+                bagCount.SetText(character.Equipment.Shards.Bag.Count.ToString());
+                apBuffer.SetText(character.ShardBuffer.APBuffer.ToString());
+                amBuffer.SetText(character.ShardBuffer.AMBuffer.ToString());
+                dpBuffer.SetText(character.ShardBuffer.DPBuffer.ToString());
+                dmBuffer.SetText(character.ShardBuffer.DMBuffer.ToString());
+            }
+        }
+
+        #endregion
+
+
+        #region PRIVATE
+
+        private void SetCharListeners(bool active)
+        {
+            if (character != null)
+            {
+                if (active) character.ShardBuffer.BufferUpdated += Refresh;
+                else character.ShardBuffer.BufferUpdated -= Refresh;
             }
         }
 

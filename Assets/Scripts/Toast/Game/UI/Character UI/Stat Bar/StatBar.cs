@@ -25,7 +25,7 @@ namespace Toast.Game.UI
         private void OnDisable()
         { SetCharListeners(false); }
 
-        #region PUBLIC        
+        #region PUBLIC
 
         /// <summary> Register associated character. </summary>
         public void Register(Character character)
