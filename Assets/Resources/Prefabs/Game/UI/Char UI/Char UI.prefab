@@ -246,13 +246,10 @@ MonoBehaviour:
   hpBar: {fileID: 2219282159227033813}
   apBar: {fileID: 6789542712128706680}
   amBar: {fileID: 7590102901126980897}
-  hpText: {fileID: 0}
-  apText: {fileID: 0}
-  amText: {fileID: 0}
   pMod: {fileID: 1771701348254568408}
   mMod: {fileID: 212154626816503858}
   resistantColor: {r: 0, g: 0.6, b: 0.85882354, a: 1}
-  weak: {r: 0.89411765, g: 0.23137255, b: 0.26666668, a: 1}
+  weakColor: {r: 0.89411765, g: 0.23137255, b: 0.26666668, a: 1}
 --- !u!1001 &1480336538086998197
 PrefabInstance:
   m_ObjectHideFlags: 0

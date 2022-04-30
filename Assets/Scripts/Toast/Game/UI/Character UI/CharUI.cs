@@ -20,7 +20,7 @@ namespace Toast.Game.UI
         [SerializeField] private Image pMod;
         [SerializeField] private Image mMod;
         [SerializeField] private Color resistantColor;
-        [SerializeField] private Color weak;
+        [SerializeField] private Color weakColor;
 
         /* Private Fields */
         private Character character;
@@ -91,7 +91,7 @@ namespace Toast.Game.UI
                     image.enabled = true;
                     break;
                 case ModifierLevel.WEAK:
-                    image.color = weak;
+                    image.color = weakColor;
                     image.enabled = true;
                     break;
             }
