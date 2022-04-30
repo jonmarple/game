@@ -21,10 +21,9 @@ namespace Toast.Game.UI
         [SerializeField] private Color factionBColor;
         [SerializeField] private Image factionOutline;
         [SerializeField] private TextMeshProUGUI nameField;
-        [SerializeField] private TextMeshProUGUI hpField;
-        [SerializeField] private TextMeshProUGUI apField;
-        [SerializeField] private TextMeshProUGUI paField;
-        [SerializeField] private TextMeshProUGUI maField;
+        [SerializeField] private FillBar hpBar;
+        [SerializeField] private FillBar apBar;
+        [SerializeField] private FillBar amBar;
         [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
         [SerializeField] private RectLerp lerp;
@@ -70,10 +69,9 @@ namespace Toast.Game.UI
         /// <summary> Refresh card info. </summary>
         public void Refresh()
         {
-            hpField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.HP, Character.Stats.HPMax));
-            apField.SetText(string.Format("{0,3} / {1,-3}", Character.Stats.AP, Character.Stats.APMax));
-            paField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax));
-            maField.SetText(string.Format("{0,3} / {1,-3}", Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax));
+            hpBar.SetFill(Character.Stats.HP, Character.Stats.HPMax);
+            apBar.SetFill(Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax);
+            amBar.SetFill(Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax);
         }
 
         /// <summary> Show Card. </summary>

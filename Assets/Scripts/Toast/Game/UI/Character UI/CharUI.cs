@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Toast.UI;
 using Toast.Game.Characters;
 using Toast.Game.Combat;
@@ -47,9 +46,9 @@ namespace Toast.Game.UI
         /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
-            SetFill(hpBar, character.Stats.HP, character.Stats.HPMax);
-            SetFill(apBar, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
-            SetFill(amBar, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
+            hpBar.SetFill(character.Stats.HP, character.Stats.HPMax);
+            apBar.SetFill(character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
+            amBar.SetFill(character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
         }
 
         /// <summary> Refresh UI Modifiers. </summary>
@@ -62,14 +61,6 @@ namespace Toast.Game.UI
         #endregion
 
         #region PRIVATE
-
-        private void SetFill(FillBar bar, float top, float bottom)
-        {
-            if (bottom > 0f)
-                bar.SetFill(top, bottom);
-            else
-                bar.SetActive(false);
-        }
 
         private void SetCharListeners(bool active)
         {

@@ -34,9 +34,13 @@ namespace Toast.UI
         /// <summary> Set image fill values. </summary>
         public void SetFill(float top, float bottom)
         {
-            if (fader != null) StopCoroutine(fader);
-            fader = StartCoroutine(RunFade(top / bottom));
-            text?.SetText(string.Format("{0}/{1}", ((int)top).ToString(), ((int)bottom).ToString()));
+            if (bottom > 0f)
+            {
+                if (fader != null) StopCoroutine(fader);
+                fader = StartCoroutine(RunFade(top / bottom));
+                text?.SetText(string.Format("{0}/{1}", ((int)top).ToString(), ((int)bottom).ToString()));
+            }
+            else SetActive(false);
         }
 
         /// <summary> Set image fill value. </summary>
@@ -45,7 +49,7 @@ namespace Toast.UI
             if (fader != null) StopCoroutine(fader);
             image.enabled = active;
             bg.enabled = active;
-            text.enabled = active;
+            if (text) text.enabled = active;
         }
 
         #endregion

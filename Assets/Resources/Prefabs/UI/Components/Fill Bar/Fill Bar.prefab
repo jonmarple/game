@@ -111,7 +111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 0.1}
+  m_SizeDelta: {x: 100, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5325310143371516147
 MonoBehaviour:
@@ -128,6 +128,7 @@ MonoBehaviour:
   image: {fileID: 5588958175324672221}
   bg: {fileID: 7792201566972411740}
   speed: 10
+  text: {fileID: 0}
 --- !u!1 &8442571904937678583
 GameObject:
   m_ObjectHideFlags: 0
