@@ -15,6 +15,7 @@ namespace Toast.Game.UI
         [SerializeField] private HandUI handUI;
         [SerializeField] private ShardList shardList;
         [SerializeField] private APBar apBar;
+        [SerializeField] private StatBar statBar;
 
         private void OnEnable()
         { CharacterSelector.SelectUpdated += Refresh; }
@@ -35,6 +36,7 @@ namespace Toast.Game.UI
             handUI.Refresh();
             shardList.Refresh();
             apBar.Refresh();
+            statBar.Register(CharacterSelector.SelectedCharacter);
         }
 
         #endregion

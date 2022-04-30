@@ -20,6 +20,7 @@ namespace Toast.UI
         /* Private Fields */
         private float target = 1f;
         private Coroutine fader;
+        private bool active = true;
 
         #region PUBLIC
 
@@ -34,18 +35,19 @@ namespace Toast.UI
         /// <summary> Set image fill values. </summary>
         public void SetFill(float top, float bottom)
         {
-            if (bottom > 0f)
+            SetActive(bottom > 0f);
+            if (active)
             {
                 if (fader != null) StopCoroutine(fader);
                 fader = StartCoroutine(RunFade(top / bottom));
                 text?.SetText(string.Format("{0}/{1}", ((int)top).ToString(), ((int)bottom).ToString()));
             }
-            else SetActive(false);
         }
 
         /// <summary> Set image fill value. </summary>
         public void SetActive(bool active)
         {
+            this.active = active;
             if (fader != null) StopCoroutine(fader);
             image.enabled = active;
             bg.enabled = active;
