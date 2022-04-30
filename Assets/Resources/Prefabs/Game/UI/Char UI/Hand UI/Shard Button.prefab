@@ -376,7 +376,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 202438344715501171, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_Name
-      value: Shard Controller
+      value: Shard Button
       objectReference: {fileID: 0}
     - target: {fileID: 2883364834281119380, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_text
@@ -456,11 +456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7367680450019278605, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7367680450019278605, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7367680450019278605, guid: 8a8212e5634ec764cbf35a870ae7400a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -626,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6813783282365903081, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 6813783282365903081, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 6813783282365903081, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -695,6 +695,10 @@ PrefabInstance:
     - target: {fileID: 8651200618678415858, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651200618678415858, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81b61ffa69109e14683e48e6c93bdd82, type: 3}

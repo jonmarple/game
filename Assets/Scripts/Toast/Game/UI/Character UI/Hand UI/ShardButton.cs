@@ -50,7 +50,7 @@ namespace Toast.Game.UI
                     bg.color = defenseColor;
                     break;
                 case MShard s:
-                    title.text = "Multiplicative";
+                    title.text = "Multiply";
                     bg.color = multColor;
                     break;
                 default:
