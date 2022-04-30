@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Toast.UI
 {
@@ -14,6 +15,7 @@ namespace Toast.UI
         [SerializeField] private Image image;
         [SerializeField] private Image bg;
         [SerializeField] private float speed;
+        [SerializeField] private TextMeshProUGUI text;
 
         /* Private Fields */
         private float target = 1f;
@@ -26,6 +28,15 @@ namespace Toast.UI
         {
             if (fader != null) StopCoroutine(fader);
             fader = StartCoroutine(RunFade(fill));
+            text?.SetText(string.Format("{0:0.00}", fill));
+        }
+
+        /// <summary> Set image fill values. </summary>
+        public void SetFill(float top, float bottom)
+        {
+            if (fader != null) StopCoroutine(fader);
+            fader = StartCoroutine(RunFade(top / bottom));
+            text?.SetText(string.Format("{0}/{1}", ((int)top).ToString(), ((int)bottom).ToString()));
         }
 
         /// <summary> Set image fill value. </summary>
@@ -34,6 +45,7 @@ namespace Toast.UI
             if (fader != null) StopCoroutine(fader);
             image.enabled = active;
             bg.enabled = active;
+            text.enabled = active;
         }
 
         #endregion

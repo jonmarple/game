@@ -12,15 +12,12 @@ namespace Toast.Game.UI
     /// <summary>
     /// Character UI controller.
     /// </summary>
-    public class CharUIController : MonoBehaviour
+    public class CharUI : MonoBehaviour
     {
         /* Serialized Fields */
         [SerializeField] private FillBar hpBar;
         [SerializeField] private FillBar apBar;
         [SerializeField] private FillBar amBar;
-        [SerializeField] private TextMeshProUGUI hpText;
-        [SerializeField] private TextMeshProUGUI apText;
-        [SerializeField] private TextMeshProUGUI amText;
         [SerializeField] private Image pMod;
         [SerializeField] private Image mMod;
         [SerializeField] private Color resistantColor;
@@ -50,9 +47,9 @@ namespace Toast.Game.UI
         /// <summary> Refresh UI. </summary>
         public void Refresh()
         {
-            SetFill(hpBar, hpText, character.Stats.HP, character.Stats.HPMax);
-            SetFill(apBar, apText, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
-            SetFill(amBar, amText, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
+            SetFill(hpBar, character.Stats.HP, character.Stats.HPMax);
+            SetFill(apBar, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
+            SetFill(amBar, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
         }
 
         /// <summary> Refresh UI Modifiers. </summary>
@@ -66,18 +63,12 @@ namespace Toast.Game.UI
 
         #region PRIVATE
 
-        private void SetFill(FillBar bar, TextMeshProUGUI text, float top, float bottom)
+        private void SetFill(FillBar bar, float top, float bottom)
         {
             if (bottom > 0f)
-            {
-                bar.SetFill(top / bottom);
-                text.SetText(((int)top).ToString() + "/" + ((int)bottom).ToString());
-            }
+                bar.SetFill(top, bottom);
             else
-            {
                 bar.SetActive(false);
-                text.gameObject.SetActive(false);
-            }
         }
 
         private void SetCharListeners(bool active)
