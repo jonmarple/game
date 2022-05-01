@@ -50,6 +50,20 @@ namespace Toast.Game.UI
                     SetAction(null);
                     break;
             }
+
+            switch (action)
+            {
+                case Attack attack:
+                    info?.SetText(string.Format("{0}\n   P:\t{1}\n   M:\t{2}", attack.ActionName,
+                                    CharacterSelector.SelectedCharacter?.Equipment?.Weapon?.Physical.Scale(attack.Modifier),
+                                    CharacterSelector.SelectedCharacter?.Equipment?.Weapon?.Magical.Scale(attack.Modifier)));
+                    break;
+                case Regen regen:
+                    info?.SetText(string.Format("{0}\n   P:\t{1}\n   M:\t{2}", regen.ActionName,
+                                    CharacterSelector.SelectedCharacter?.Equipment?.Weapon?.Physical.Scale(regen.Modifier),
+                                    CharacterSelector.SelectedCharacter?.Equipment?.Weapon?.Magical.Scale(regen.Modifier)));
+                    break;
+            }
         }
 
         #endregion

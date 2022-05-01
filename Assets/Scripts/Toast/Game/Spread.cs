@@ -41,6 +41,10 @@ namespace Toast.Game
                 return Roll();
         }
 
+        /// <summary> Generates a new spread of equal value scaled by specified value. </summary>
+        public Spread Scale(int scale)
+        { return new Spread(Value * scale, Variation * scale); }
+
         public override string ToString()
         { return Value + ":" + Variation; }
 

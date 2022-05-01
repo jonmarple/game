@@ -20,13 +20,14 @@ namespace Toast.Game.UI
         [SerializeField] protected Button button;
         [SerializeField] protected Outline outline;
         [SerializeField] protected TextMeshProUGUI label;
+        [SerializeField] protected InfoPanel info;
 
         [Header("Status Image")]
         [SerializeField] protected Image status;
         [SerializeField] protected Sprite cooldown;
 
         /* Private Fields */
-        private Action action;
+        protected Action action;
         private bool active = false;
         private bool destroying = false;
 
@@ -89,10 +90,20 @@ namespace Toast.Game.UI
         }
 
         public void OnPointerEnter(PointerEventData data)
-        { if (button.interactable) ActionHelper.Hover(true, action); }
+        { OnHover(true); }
 
         public void OnPointerExit(PointerEventData data)
-        { if (button.interactable) ActionHelper.Hover(false, action); }
+        { OnHover(false); }
+
+        #endregion
+
+        #region PRIVATE
+
+        protected virtual void OnHover(bool active)
+        {
+            if (button.interactable) ActionHelper.Hover(active, action);
+            info?.SetActive(active);
+        }
 
         #endregion
     }
