@@ -32,6 +32,7 @@ namespace Toast.Game.UI
         [SerializeField] private RectTransform container;
         [SerializeField] private Animator animator;
         [SerializeField] private RectLerp lerp;
+        [SerializeField] private InfoPanel info;
 
         private void Update()
         {
@@ -78,6 +79,10 @@ namespace Toast.Game.UI
             hpBar.SetFill(Character.Stats.HP, Character.Stats.HPMax);
             apBar.SetFill(Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax);
             amBar.SetFill(Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax);
+            info.SetText(string.Format("{0}\nHP: {1}/{2}\t AP: {3}/{4}\nP: {5}\nM: {6}\n\n{7}\nP: {8}/{9}\t M: {10}/{11}\n\n{12}\nP: {13}\t M: {14}",
+                        Character.CharacterName, Character.Stats.HP, Character.Stats.HPMax, Character.Stats.AP, Character.Stats.APMax, Character.Stats.PhysicalMod, Character.Stats.MagicalMod,
+                        Character.Equipment.Armor.ItemName, Character.Equipment.Armor.Physical, Character.Equipment.Armor.PhysicalMax, Character.Equipment.Armor.Magical, Character.Equipment.Armor.MagicalMax,
+                        Character.Equipment.Weapon.ItemName, Character.Equipment.Weapon.Physical.ToString(), Character.Equipment.Weapon.Magical.ToString()));
         }
 
         /// <summary> Refresh UI Modifiers. </summary>
@@ -87,6 +92,17 @@ namespace Toast.Game.UI
             RefreshModifier(mMod, Character.Stats.MagicalMod);
         }
 
+        /// <summary> Hover Character. </summary>
+        public void Hover(bool active)
+        {
+            CharacterSelector.Hover(active, Character);
+            info.SetActive(active);
+        }
+
+        /// <summary> Select Character. </summary>
+        public void Select()
+        { CharacterSelector.ToggleSelect(Character); }
+
         /// <summary> Show Card. </summary>
         public void Show()
         { container.gameObject.SetActive(true); }
@@ -94,14 +110,6 @@ namespace Toast.Game.UI
         /// <summary> Hide Card. </summary>
         public void Hide()
         { container.gameObject.SetActive(false); }
-
-        /// <summary> Hover Character. </summary>
-        public void Hover(bool active)
-        { CharacterSelector.Hover(active, Character); }
-
-        /// <summary> Select Character. </summary>
-        public void Select()
-        { CharacterSelector.ToggleSelect(Character); }
 
         #endregion
 
