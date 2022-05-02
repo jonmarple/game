@@ -39,5 +39,5 @@ MonoBehaviour:
   initiative:
     value: 10
     variation: 5
-  physicalMod: 0
+  physicalMod: 2
   magicalMod: 0
