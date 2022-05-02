@@ -20,6 +20,7 @@ namespace Toast.Game.UI
         /* Serialized Fields */
         [Header("Attack Info")]
         [SerializeField] private AttackSource source;
+        [SerializeField] private InfoPanel info;
 
         private void OnEnable()
         {

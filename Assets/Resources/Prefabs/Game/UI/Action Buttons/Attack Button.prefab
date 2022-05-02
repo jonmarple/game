@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8854901515437095359, guid: 77f3165824e45db4bb0d787f62a22780, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 4543916191861652448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77f3165824e45db4bb0d787f62a22780, type: 3}
 --- !u!114 &5960215930364951100 stripped
@@ -375,7 +379,7 @@ MonoBehaviour:
   button: {fileID: 1428032736461426880}
   outline: {fileID: 4626215868961929003}
   label: {fileID: 1568319350980320007}
-  info: {fileID: 5960215930364951100}
   status: {fileID: 2277347798539636114}
   cooldown: {fileID: 21300000, guid: 390b8a4e1ccacc64ebadaa5fb6e49c42, type: 3}
   source: 0
+  info: {fileID: 5960215930364951100}

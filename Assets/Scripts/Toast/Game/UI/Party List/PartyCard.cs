@@ -87,10 +87,7 @@ namespace Toast.Game.UI
 
         /// <summary> Hover Character. </summary>
         public void Hover(bool active)
-        {
-            CharacterSelector.Hover(active, character);
-            info.SetActive(active);
-        }
+        { CharacterSelector.Hover(active, character); }
 
         /// <summary> Select Character. </summary>
         public void Select()

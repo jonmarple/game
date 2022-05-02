@@ -86,6 +86,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4206408846386446996}
   - component: {fileID: 8854901515437095359}
+  - component: {fileID: 8153636745098003076}
+  - component: {fileID: 3151353635762752926}
   m_Layer: 5
   m_Name: Info Panel
   m_TagString: Untagged
@@ -125,8 +127,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8778c4b2089d1447a8a1ce80adbb9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0
+  target: {fileID: 0}
   container: {fileID: 6958713247129041433}
   text: {fileID: 4381418872657588626}
+  animator: {fileID: 8153636745098003076}
+--- !u!95 &8153636745098003076
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543957401933849492}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 483bead331f4b2d41823619b9cf72f9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &3151353635762752926
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543957401933849492}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &4189232939590845145
 PrefabInstance:
   m_ObjectHideFlags: 0

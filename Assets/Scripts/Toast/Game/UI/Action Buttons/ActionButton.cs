@@ -20,7 +20,6 @@ namespace Toast.Game.UI
         [SerializeField] protected Button button;
         [SerializeField] protected Outline outline;
         [SerializeField] protected TextMeshProUGUI label;
-        [SerializeField] protected InfoPanel info;
 
         [Header("Status Image")]
         [SerializeField] protected Image status;
@@ -99,11 +98,8 @@ namespace Toast.Game.UI
 
         #region PRIVATE
 
-        protected virtual void OnHover(bool active)
-        {
-            if (button.interactable) ActionHelper.Hover(active, action);
-            info?.SetActive(active);
-        }
+        private void OnHover(bool active)
+        { if (button.interactable) ActionHelper.Hover(active, action); }
 
         #endregion
     }

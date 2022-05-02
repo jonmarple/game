@@ -11,11 +11,16 @@ namespace Toast.Game.UI
     public class InfoPanel : MonoBehaviour
     {
         /* Serialized Fields */
-        [SerializeField] private RectTransform container;
+        [Header("Target")]
+        [SerializeField] private float delay = 0f;
+        [SerializeField] private GameObject target;
+
+        [Header("Components")]
         [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private Animator animator;
 
         private void Start()
-        { SetActive(false); }
+        { target.AddComponent<InfoPanelTarget>().Initialize(this, delay); }
 
         #region PUBLIC
 
@@ -25,7 +30,7 @@ namespace Toast.Game.UI
 
         /// <summary> Enable/Disable panel. </summary>
         public void SetActive(bool active)
-        { container.gameObject.SetActive(active); }
+        { animator.SetBool("Active", active); }
 
         #endregion
     }
