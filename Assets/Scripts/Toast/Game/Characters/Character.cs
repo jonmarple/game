@@ -143,6 +143,8 @@ namespace Toast.Game.Characters
         {
             ThisCharacterKilled?.Invoke();
             CharacterKilled?.Invoke();
+            if (CharacterSelector.SelectedCharacter != null && CharacterSelector.SelectedCharacter == this)
+                CharacterSelector.Deselect();
             CharacterSelector.Hover(false);
             AudioManager.Play(AudioKey.DEATH);
             CombatFlow.CheckFinished();

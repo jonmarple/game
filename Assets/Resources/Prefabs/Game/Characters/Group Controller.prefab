@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820e89f25eafd094298c9d19843df132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: {fileID: 0}
+  groupData: {fileID: 0}
   controllerPrefab: {fileID: 4316338042535786239, guid: 4c2712bb9c42f234ba6ec69b0cb244db, type: 3}
   controllerContainer: {fileID: 408262953100101481}
 --- !u!1 &408262953100101480

@@ -80,6 +80,16 @@ namespace Toast.Game.Combat
                 FinishCombat();
         }
 
+        /// <summary> Get Character Group by Faction. </summary>
+        public static CharacterGroup GetGroup(Faction faction)
+        {
+            if (GroupA.Faction == faction)
+                return GroupA;
+            if (GroupB.Faction == faction)
+                return GroupB;
+            return null;
+        }
+
         #endregion
 
         #region PRIVATE

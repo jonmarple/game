@@ -25,7 +25,7 @@ namespace Toast.Game.Characters
         /// <summary> Select specified Character. </summary>
         public static void Select(Character character)
         {
-            if (character != null && character.AI == null)
+            if (character != null && character.AI == null && !character.Stats.Dead)
             {
                 Deselect(false);
                 AudioManager.Play(AudioKey.CHARACTER_SELECT);

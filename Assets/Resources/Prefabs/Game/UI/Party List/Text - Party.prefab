@@ -8,10 +8,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
-      propertyPath: m_text
-      value: NAME
-      objectReference: {fileID: 0}
-    - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_fontSize
       value: 16
       objectReference: {fileID: 0}
@@ -21,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_fontSizeBase
-      value: 16
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 129486538095889458, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_enableWordWrapping
@@ -117,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973949163003877602, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
       propertyPath: m_Name
-      value: Text - Initiative
+      value: Text - Party
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80f42dca0be547b41b09999f5a75191d, type: 3}
