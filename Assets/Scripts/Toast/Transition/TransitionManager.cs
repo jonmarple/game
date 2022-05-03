@@ -3,18 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Toast
+namespace Toast.Transition
 {
     /// <summary>
-    /// Stores options for a prototype scene.
+    /// Scene transition manager.
     /// </summary>
     [CreateAssetMenu(fileName = "Transition Manager", menuName = "Toast/Transition/Transition Manager")]
     public class TransitionManager : ScriptableObject
     {
+        /* Private Fields */
+        private const string QUIT = "QUIT";
+
         #region PUBLIC
 
-        public void Transition(string name)
-        { SceneManager.LoadScene(name); }
+        /// <summary> Transition to specified scene. </summary>
+        public void Transition(string scene)
+        {
+            if (TransitionController.Instance)
+                TransitionController.Instance.TransitionTo(scene);
+            else
+                Load(scene);
+        }
+
+        /// <summary> Load specified scene. </summary>
+        public void Load(string scene)
+        {
+            if (scene == QUIT)
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+            else
+                SceneManager.LoadScene(scene);
+        }
+
+        /// <summary> Transition out of application. </summary>
+        public void Quit()
+        { Transition(QUIT); }
 
         #endregion
     }
