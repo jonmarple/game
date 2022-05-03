@@ -29,6 +29,9 @@ namespace Toast.Game.Combat
         private void Start()
         { StartCombat(); }
 
+        private void OnDisable()
+        { CombatFlow.Reset(); }
+
         #region PUBLIC
 
         /// <summary> Initialize parties and start CombatFlow. </summary>

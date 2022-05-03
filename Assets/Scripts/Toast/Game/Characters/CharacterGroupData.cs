@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toast.Game.AI;
 
 namespace Toast.Game.Characters
 {
@@ -22,6 +23,12 @@ namespace Toast.Game.Characters
 
         public CharacterGroup Generate()
         { return new CharacterGroup(this); }
+
+        public void ApplyAI(CharacterAIData ai)
+        {
+            foreach (CharacterData character in Characters)
+                character.ApplyAI(ai);
+        }
 
         #endregion
     }

@@ -39,7 +39,7 @@ namespace Toast.Audio
         /// <summary> Play audio. </summary>
         public void Play(AudioClip clip, float volume)
         {
-            source.PlayOneShot(clip, volume);
+            source?.PlayOneShot(clip, volume);
             if (debug) Debug.Log(clip);
         }
 

@@ -13,6 +13,7 @@ namespace Toast.Game.Characters
         /* Public Fields */
         public CharacterGroup Group { get; private set; }
         public List<CController> Controllers { get; private set; }
+        public CharacterGroupData GroupData { get { return groupData; } }
 
         /* Serialized Fields */
         [SerializeField] private CharacterGroupData groupData;
