@@ -16,6 +16,7 @@ namespace Toast.Audio
 
         /* Private Fields */
         private AudioSource source;
+        private bool active = false;
 
         private void Awake()
         { source = GetComponent<AudioSource>(); }
@@ -25,6 +26,12 @@ namespace Toast.Audio
             data.Initialize();
             AudioManager.Register(this);
         }
+
+        private void OnEnable()
+        { active = true; }
+
+        private void OnDisable()
+        { active = false; }
 
         #region PUBLIC
 
@@ -39,7 +46,7 @@ namespace Toast.Audio
         /// <summary> Play audio. </summary>
         public void Play(AudioClip clip, float volume)
         {
-            source?.PlayOneShot(clip, volume);
+            if (active) source?.PlayOneShot(clip, volume);
             if (debug) Debug.Log(clip);
         }
 

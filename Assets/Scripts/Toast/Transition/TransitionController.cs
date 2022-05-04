@@ -59,6 +59,7 @@ namespace Toast.Transition
             fadePanel.gameObject.SetActive(true);
             SetBlockers(true);
             yield return new WaitForSecondsRealtime(preDelay);
+            Time.timeScale = 1f;
             FadePanel(false, duration);
             FadeAudio(true, duration);
             yield return new WaitForSecondsRealtime(duration);
@@ -72,6 +73,7 @@ namespace Toast.Transition
             FadePanel(true, duration);
             FadeAudio(false, duration);
             yield return new WaitForSecondsRealtime(duration);
+            Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(postDelay);
             manager.Load(scene);
         }
