@@ -22,7 +22,7 @@ MonoBehaviour:
     value: 0
     variation: 0
   magical:
-    value: 15
-    variation: 5
+    value: 8
+    variation: 4
   primaryAction: {fileID: 11400000, guid: f39d497cb8b31d44bb3c89abe9700b51, type: 2}
   secondaryAction: {fileID: 11400000, guid: 97ebb62a83672c3438cf712b72da6cbb, type: 2}

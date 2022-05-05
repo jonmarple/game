@@ -42,8 +42,9 @@ namespace Toast.Game.Characters
             CharacterName = data.CharacterName;
             Movement = (Movement)data.Movement.Generate();
             Stats = data.StatBlock.Generate();
+            Equipment = data.Equipment.Generate(Stats.Level);
             Stats.Register(this);
-            Equipment = data.Equipment.Generate();
+            Stats.Killed += Kill;
             AI = data.AI?.Generate();
             ShardBuffer = new ShardBuffer();
             Selected = false;

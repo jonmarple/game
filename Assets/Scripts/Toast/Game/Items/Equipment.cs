@@ -14,6 +14,11 @@ namespace Toast.Game.Items
         public Armor Armor { get; private set; }
         public Weapon Weapon { get; private set; }
         public ShardBag Shards { get; private set; }
+        public float AvgLvl { get { return (Armor.Level + Weapon.Level) / 2f; } }
+
+        /* Value Update Delegate/Event */
+        public delegate void Updated();
+        public event Updated EquipmentUpdated;
 
         public Equipment(Armor armor, Weapon weapon, ShardBag shards)
         {
@@ -21,5 +26,23 @@ namespace Toast.Game.Items
             Weapon = weapon;
             Shards = shards;
         }
+
+        #region PUBLIC
+
+        /// <summary> Set armor equipment. </summary>
+        public void SetArmor(Armor armor)
+        {
+            Armor = armor;
+            EquipmentUpdated?.Invoke();
+        }
+
+        /// <summary> Set weapon equipment. </summary>
+        public void SetWeapon(Weapon weapon)
+        {
+            Weapon = weapon;
+            EquipmentUpdated?.Invoke();
+        }
+
+        #endregion
     }
 }

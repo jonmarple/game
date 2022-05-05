@@ -11,5 +11,6 @@ namespace Toast.Game.Items
     {
         /* Public Fields */
         public string ItemName { get; protected set; }
+        public int Level { get; protected set; }
     }
 }

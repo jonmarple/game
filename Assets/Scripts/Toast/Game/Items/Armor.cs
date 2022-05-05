@@ -19,13 +19,14 @@ namespace Toast.Game.Items
         public delegate void Updated();
         public event Updated ValueUpdated;
 
-        public Armor(string name, int physical, int magical)
+        public Armor(string name, int level, int physical, int magical)
         {
             ItemName = name;
-            PhysicalMax = physical;
-            MagicalMax = magical;
-            Physical = physical;
-            Magical = magical;
+            Level = level;
+            PhysicalMax = physical * level;
+            MagicalMax = magical * level;
+            Physical = PhysicalMax;
+            Magical = MagicalMax;
             ValueUpdated?.Invoke();
         }
 

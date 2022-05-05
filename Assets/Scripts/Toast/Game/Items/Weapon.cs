@@ -16,11 +16,12 @@ namespace Toast.Game.Items
         public Action Primary { get; private set; }
         public Action Secondary { get; private set; }
 
-        public Weapon(string name, Spread physical, Spread magical, Action primary, Action secondary)
+        public Weapon(string name, int level, Spread physical, Spread magical, Action primary, Action secondary)
         {
             ItemName = name;
-            Physical = physical;
-            Magical = magical;
+            Level = level;
+            Physical = physical.Scale(level);
+            Magical = magical.Scale(level);
             Primary = primary;
             Secondary = secondary;
         }

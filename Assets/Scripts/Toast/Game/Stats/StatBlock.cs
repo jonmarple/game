@@ -18,6 +18,7 @@ namespace Toast.Game.Stats
         public int APMax { get; private set; }
         public int APRegen { get; private set; }
         public int Crit { get; private set; }
+        public int Level { get; private set; }
         public Spread Initiative { get; private set; }
         public ModifierLevel PhysicalMod { get; private set; }
         public ModifierLevel MagicalMod { get; private set; }
@@ -29,8 +30,9 @@ namespace Toast.Game.Stats
         /* Value Update Delegate/Event */
         public delegate void Updated();
         public event Updated ValueUpdated;
+        public event Updated Killed;
 
-        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, Spread initiative, ModifierLevel physicalMod, ModifierLevel magicalMod)
+        public StatBlock(int hp, int hpMax, int ap, int apMax, int apRegen, int crit, int level, Spread initiative, ModifierLevel physicalMod, ModifierLevel magicalMod)
         {
             HPMax = hpMax;
             APMax = apMax;
@@ -38,6 +40,7 @@ namespace Toast.Game.Stats
             SetHP(hp);
             SetAP(ap);
             Crit = crit;
+            Level = level;
             Initiative = initiative;
             PhysicalMod = physicalMod;
             MagicalMod = magicalMod;
@@ -56,7 +59,7 @@ namespace Toast.Game.Stats
             bool curr = Dead;
 
             if (!prev && curr)
-                owner?.Kill();
+                Killed?.Invoke();
 
             ValueUpdated?.Invoke();
         }
@@ -84,6 +87,17 @@ namespace Toast.Game.Stats
         public void Register(Character owner)
         {
             this.owner = owner;
+            this.owner.Equipment.EquipmentUpdated += RefreshLevel;
+            RefreshLevel();
+        }
+
+        #endregion
+
+        #region PRIVATE
+
+        private void RefreshLevel()
+        {
+            Level = Mathf.RoundToInt(owner.Equipment.AvgLvl);
             ValueUpdated?.Invoke();
         }
 

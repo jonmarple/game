@@ -72,10 +72,10 @@ namespace Toast.Game.UI
             hpBar.SetFill(character.Stats.HP, character.Stats.HPMax);
             apBar.SetFill(character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax);
             amBar.SetFill(character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax);
-            info.SetText(string.Format("{0}\nHP: {1}/{2}\t AP: {3}/{4}\nP: {5}\nM: {6}\n\n{7}\nP: {8}/{9}\t M: {10}/{11}\n\n{12}\nP: {13}\t M: {14}",
-                        character.CharacterName, character.Stats.HP, character.Stats.HPMax, character.Stats.AP, character.Stats.APMax, character.Stats.PhysicalMod, character.Stats.MagicalMod,
-                        character.Equipment.Armor.ItemName, character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax,
-                        character.Equipment.Weapon.ItemName, character.Equipment.Weapon.Physical.ToString(), character.Equipment.Weapon.Magical.ToString()));
+            info.SetText(string.Format("{0}\nLVL: {1}\nHP: {2}/{3}\t AP: {4}/{5}\nP: {6}\nM: {7}\n\n{8}\nLVL: {9}\nP: {10}/{11}\t M: {12}/{13}\n\n{14}\nLVL: {15}\nP: {16}\t M: {17}",
+                        character.CharacterName, character.Stats.Level.ToString(), character.Stats.HP, character.Stats.HPMax, character.Stats.AP, character.Stats.APMax, character.Stats.PhysicalMod, character.Stats.MagicalMod,
+                        character.Equipment.Armor.ItemName, character.Equipment.Armor.Level.ToString(), character.Equipment.Armor.Physical, character.Equipment.Armor.PhysicalMax, character.Equipment.Armor.Magical, character.Equipment.Armor.MagicalMax,
+                        character.Equipment.Weapon.ItemName, character.Equipment.Weapon.Level.ToString(), character.Equipment.Weapon.Physical.ToString(), character.Equipment.Weapon.Magical.ToString()));
         }
 
         /// <summary> Refresh UI Modifiers. </summary>

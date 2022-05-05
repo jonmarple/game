@@ -17,6 +17,7 @@ namespace Toast.Game.Stats
         [SerializeField] private IntReference ap;
         [SerializeField] private IntReference apRegen;
         [SerializeField] private IntReference crit;
+        [SerializeField] private IntReference level;
         [SerializeField] private Spread initiative;
         [SerializeField] private ModifierLevel physicalMod;
         [SerializeField] private ModifierLevel magicalMod;
@@ -24,7 +25,7 @@ namespace Toast.Game.Stats
         #region PUBLIC
 
         public StatBlock Generate()
-        { return new StatBlock(hp, hp, ap / 2, ap, apRegen, crit, initiative, physicalMod, magicalMod); }
+        { return new StatBlock(hp, hp, ap / 2, ap, apRegen, crit, level, initiative, physicalMod, magicalMod); }
 
         #endregion
     }

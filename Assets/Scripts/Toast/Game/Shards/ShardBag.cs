@@ -14,6 +14,10 @@ namespace Toast.Game.Shards
         public List<Shard> Hand { get; private set; }
         public int HandSize { get; private set; }
 
+        /* Private Fields */
+        private const int SCALING_VALUE = 20;
+        private const int SCALING_VARIATION = 5;
+
         public ShardBag(List<Shard> shards, int handSize)
         {
             Bag = shards;
@@ -22,9 +26,9 @@ namespace Toast.Game.Shards
             FillHand();
         }
 
-        public ShardBag(int shardCount, int handSize, Spread targetValue)
+        public ShardBag(int shardCount, int handSize, int level)
         {
-            Bag = GenerateShards(shardCount, targetValue);
+            Bag = GenerateShards(shardCount, level);
             Hand = new List<Shard>();
             HandSize = handSize;
             FillHand();
@@ -43,11 +47,11 @@ namespace Toast.Game.Shards
             }
         }
 
-        public static List<Shard> GenerateShards(int shardCount, Spread targetValue)
+        public static List<Shard> GenerateShards(int shardCount, int level)
         {
             List<Shard> shards = new List<Shard>();
             for (int i = 0; i < shardCount; i++)
-                shards.Add(Shard.Generate(targetValue.Roll()));
+                shards.Add(Shard.Generate(new Spread(level * SCALING_VALUE, level * SCALING_VARIATION).Roll()));
             return shards;
         }
 
