@@ -34,7 +34,7 @@ namespace Toast.Game.Characters
         public Character Generate()
         { return new Character(this); }
 
-        public void ApplyAI(CharacterAIData ai)
+        public void SetAI(CharacterAIData ai)
         { characterAIData = ai; }
 
         #endregion

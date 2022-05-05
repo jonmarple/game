@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0fbd72c8488cb4caf2055521db912d, type: 3}
   m_Name: Prototype Options
   m_EditorClassIdentifier: 
-  groupAHasAI: 0
+  groupAHasAI: 1
   groupBHasAI: 0

@@ -13,10 +13,16 @@ namespace Toast.Game.Prototype
         /* Public Fields */
         public bool GroupAHasAI { get { return groupAHasAI; } }
         public bool GroupBHasAI { get { return groupBHasAI; } }
+        public int Level { get { return level; } }
 
         /* Serialized Fields */
         [SerializeField] private bool groupAHasAI = false;
         [SerializeField] private bool groupBHasAI = false;
+        [SerializeField] private int level = 1;
+
+        /* Value Update Delegate/Event */
+        public delegate void Updated();
+        public event Updated LevelUpdated;
 
         #region PUBLIC
 
@@ -25,6 +31,18 @@ namespace Toast.Game.Prototype
 
         public void SetAISettingB(bool ai)
         { groupBHasAI = ai; }
+
+        public void IncLevel()
+        { SetLevel(level + 1); }
+
+        public void DecLevel()
+        { SetLevel(level - 1); }
+
+        public void SetLevel(int level)
+        {
+            this.level = Mathf.Clamp(level, 1, 100);
+            LevelUpdated?.Invoke();
+        }
 
         #endregion
     }

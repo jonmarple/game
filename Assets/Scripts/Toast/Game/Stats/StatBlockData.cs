@@ -27,6 +27,9 @@ namespace Toast.Game.Stats
         public StatBlock Generate()
         { return new StatBlock(hp, hp, ap / 2, ap, apRegen, crit, level, initiative, physicalMod, magicalMod); }
 
+        public void SetLevel(int level)
+        { this.level.Value = level; }
+
         #endregion
     }
 }

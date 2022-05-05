@@ -20,6 +20,8 @@ namespace Toast.Game.Prototype
         {
             controller?.FactionA.GroupData.ApplyAI(options.GroupAHasAI ? aiData : null);
             controller?.FactionB.GroupData.ApplyAI(options.GroupBHasAI ? aiData : null);
+            controller?.FactionA.GroupData.ApplyLevel(options.Level);
+            controller?.FactionB.GroupData.ApplyLevel(options.Level);
         }
     }
 }

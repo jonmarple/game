@@ -27,7 +27,13 @@ namespace Toast.Game.Characters
         public void ApplyAI(CharacterAIData ai)
         {
             foreach (CharacterData character in Characters)
-                character.ApplyAI(ai);
+                character.SetAI(ai);
+        }
+
+        public void ApplyLevel(int level)
+        {
+            foreach (CharacterData character in Characters)
+                character.StatBlock.SetLevel(level);
         }
 
         #endregion
