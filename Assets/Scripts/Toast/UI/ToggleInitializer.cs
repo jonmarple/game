@@ -14,7 +14,14 @@ namespace Toast.UI
         /* Serialized Fields */
         [SerializeField] private bool value = false;
 
+        /* Private Fields */
+        private Toggle toggle;
+
         private void Awake()
-        { GetComponent<Toggle>().isOn = value; }
+        {
+            toggle = GetComponent<Toggle>();
+            toggle.isOn = !value;
+            toggle.isOn = value;
+        }
     }
 }
